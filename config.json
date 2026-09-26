@@ -17,8 +17,6 @@
       "search_terms": {
         "newegg": "RTX 4070 12GB",
         "amazon": "NVIDIA GeForce RTX 4070",
-        "best_buy": "RTX 4070",
-        "micro_center": "RTX 4070",
         "ebay": "RTX 4070 12GB",
         "facebook": "RTX 4070 12GB"
       },
@@ -32,8 +30,6 @@
       "search_terms": {
         "newegg": "RTX 4080 Super",
         "amazon": "RTX 4080 Super",
-        "best_buy": "RTX 4080 Super",
-        "micro_center": "RTX 4080 Super",
         "ebay": "RTX 4080 Super",
         "facebook": "RTX 4080 Super"
       },
@@ -47,8 +43,6 @@
       "search_terms": {
         "newegg": "DDR5 32GB kit 6000",
         "amazon": "DDR5 RAM 32GB 6000MHz",
-        "best_buy": "DDR5 32GB memory kit",
-        "micro_center": "DDR5 32GB",
         "ebay": "DDR5 32GB kit 6000",
         "facebook": "DDR5 32GB kit 6000"
       },
@@ -62,8 +56,6 @@
       "search_terms": {
         "newegg": "Samsung 990 Pro 2TB",
         "amazon": "Samsung 990 Pro 2TB NVMe",
-        "best_buy": "Samsung 990 Pro 2TB",
-        "micro_center": "Samsung 990 Pro 2TB",
         "ebay": "Samsung 990 Pro 2TB",
         "facebook": "Samsung 990 Pro 2TB"
       },
@@ -77,8 +69,6 @@
       "search_terms": {
         "newegg": "WD Black SN850X 2TB",
         "amazon": "WD Black SN850X 2TB NVMe",
-        "best_buy": "WD Black SN850X 2TB",
-        "micro_center": "WD SN850X 2TB",
         "ebay": "WD Black SN850X 2TB",
         "facebook": "WD Black SN850X 2TB"
       },
@@ -92,8 +82,6 @@
       "search_terms": {
         "newegg": "RTX 5080",
         "amazon": "NVIDIA GeForce RTX 5080",
-        "best_buy": "RTX 5080",
-        "micro_center": "RTX 5080",
         "ebay": "RTX 5080",
         "facebook": "RTX 5080"
       },
@@ -107,8 +95,6 @@
       "search_terms": {
         "newegg": "DDR5 64GB Kit (2x32GB)",
         "amazon": "DDR5 64GB Kit (2x32GB)",
-        "best_buy": "DDR5 64GB Kit (2x32GB)",
-        "micro_center": "DDR5 64GB Kit (2x32GB)",
         "ebay": "DDR5 64GB Kit 2x32GB",
         "facebook": "DDR5 64GB Kit 2x32GB"
       },
@@ -122,8 +108,6 @@
       "search_terms": {
         "newegg": "1TB SATA SSD 2.5",
         "amazon": "1TB SATA SSD 2.5",
-        "best_buy": "1TB SATA SSD 2.5",
-        "micro_center": "1TB SATA SSD 2.5",
         "ebay": "1TB SATA SSD 2.5",
         "facebook": "1TB SATA SSD 2.5"
       }
@@ -136,8 +120,6 @@
       "search_terms": {
         "newegg": "corsair vengence rgb ddr4",
         "amazon": "corsair vengence rgb ddr4",
-        "best_buy": "corsair vengence rgb ddr4",
-        "micro_center": "corsair vengence rgb ddr4",
         "ebay": "corsair vengence rgb ddr4",
         "facebook": "corsair vengence rgb ddr4"
       },
@@ -151,8 +133,6 @@
       "search_terms": {
         "newegg": "corsair vengence rgb ddr4 32gb",
         "amazon": "corsair vengence rgb ddr4 32gb",
-        "best_buy": "corsair vengence rgb ddr4 32gb",
-        "micro_center": "corsair vengence rgb ddr4 32gb",
         "ebay": "corsair vengence rgb ddr4 32gb",
         "facebook": "corsair vengence rgb ddr4 32gb"
       },
@@ -166,8 +146,6 @@
       "search_terms": {
         "newegg": "RTX 3090 Ti",
         "amazon": "NVIDIA GeForce RTX 3090 Ti",
-        "best_buy": "RTX 3090 Ti",
-        "micro_center": "RTX 3090 Ti",
         "ebay": "RTX 3090 Ti",
         "facebook": "RTX 3090 Ti"
       },
@@ -181,8 +159,6 @@
       "search_terms": {
         "newegg": "RTX 4090",
         "amazon": "NVIDIA GeForce RTX 4090",
-        "best_buy": "RTX 4090",
-        "micro_center": "RTX 4090",
         "ebay": "RTX 4090",
         "facebook": "RTX 4090"
       },

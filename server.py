@@ -62,15 +62,13 @@ def auto_search_terms(name, category=""):
     ryzen_match = re.search(r"Ryzen\s*(?:\d+\s*)?(\w+)", name_clean, re.I)
     core_match = re.search(r"(?:Core\s+(?:Ultra\s+)?|i[3579]-?)(\d+\w*)", name_clean, re.I)
 
-    retailers = ["newegg", "amazon", "best_buy", "micro_center", "ebay", "facebook"]
+    retailers = ["newegg", "amazon", "ebay", "facebook"]
 
     if rtx_match:
         model = rtx_match.group(0).replace(" ", " ").strip()  # e.g. "RTX 4070 Super"
         terms = {
             "newegg": model,
             "amazon": f"NVIDIA GeForce {model}",
-            "best_buy": model,
-            "micro_center": model,
             "ebay": model,
             "facebook": model,
         }
@@ -79,8 +77,6 @@ def auto_search_terms(name, category=""):
         terms = {
             "newegg": f"Radeon {model}",
             "amazon": f"AMD Radeon {model}",
-            "best_buy": model,
-            "micro_center": model,
             "ebay": f"Radeon {model}",
             "facebook": model,
         }
@@ -89,8 +85,6 @@ def auto_search_terms(name, category=""):
         terms = {
             "newegg": f"Intel {model}",
             "amazon": f"Intel {model}",
-            "best_buy": model,
-            "micro_center": model,
             "ebay": f"Intel {model}",
             "facebook": model,
         }
@@ -140,7 +134,7 @@ def add_item():
         return jsonify({"status": "exists", "message": f"'{name}' is already being tracked."})
 
     spec_query = data.get("spec_query")  # set when it's a spec/category search
-    retailers = ["newegg", "amazon", "best_buy", "micro_center", "ebay", "facebook"]
+    retailers = ["newegg", "amazon", "ebay", "facebook"]
     if data.get("custom") or data.get("exact_query"):
         # Free-typed product: use the exact string on every retailer
         search_terms = {r: name for r in retailers}

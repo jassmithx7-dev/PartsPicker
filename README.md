@@ -18,7 +18,7 @@ Open http://localhost:5001
 
 ## Retailers
 
-Newegg · Best Buy · Micro Center · Amazon · eBay · Facebook Marketplace
+Newegg · Amazon · eBay · Facebook Marketplace
 
 eBay and Facebook open a brief Chrome window (they block headless bots).
 

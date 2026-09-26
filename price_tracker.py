@@ -1,7 +1,7 @@
 """
 PC Parts Price Tracker
-Uses Playwright (real browser) to scrape prices from Newegg, Amazon, Best Buy,
-Micro Center, and eBay, then generates a morning HTML report.
+Uses Playwright (real browser) to scrape prices from Newegg, Amazon, eBay,
+and Facebook Marketplace, then generates a morning HTML report.
 
 Run manually:  python price_tracker.py
 Schedule it:   run setup_scheduler.bat as Administrator
@@ -435,79 +435,6 @@ def scrape_amazon(browser: BrowserSession, query: str, max_results=3):
     return sorted(results, key=lambda x: x["price"])
 
 
-def scrape_bestbuy(browser: BrowserSession, query: str, max_results=3):
-    results = []
-    url = f"https://www.bestbuy.com/site/searchpage.jsp?st={requests.utils.quote(query)}"
-    try:
-        soup = browser.fetch(url, wait_for_selector="li.product-list-item", timeout=35000)
-        items = soup.select("li.product-list-item")
-        for item in items:
-            name_el = item.select_one("h3") or item.select_one("h4") or item.select_one("[class*='title'] a")
-            link_el = item.select_one("a[href*='/site/']") or item.select_one("h3 a") or item.select_one("a")
-            if not name_el:
-                continue
-            # Extract first dollar price from item text, skipping the name
-            item_text = item.get_text()
-            price_matches = re.findall(r'\$([\d,]+(?:\.\d{2})?)', item_text)
-            price = None
-            for pm in price_matches:
-                val = parse_price(pm)
-                if val and val > 20:
-                    price = val
-                    break
-            if not price:
-                continue
-            href = link_el.get("href", "") if link_el else ""
-            if href and not href.startswith("http"):
-                href = "https://www.bestbuy.com" + href
-            results.append({"name": name_el.get_text(strip=True)[:90], "price": price, "url": href, "retailer": "Best Buy"})
-            if len(results) >= max_results:
-                break
-    except Exception as e:
-        print(f"    [Best Buy error] {e}")
-    return sorted(results, key=lambda x: x["price"])
-
-
-def scrape_microcenter(browser: BrowserSession, query: str, max_results=3):
-    results = []
-    url = f"https://www.microcenter.com/search/search_results.aspx?N=4294966998&NTT={requests.utils.quote(query)}&storeid=All"
-    try:
-        # Don't block on wait_for_selector — MC shows a "no results" page when nothing matches
-        page = browser._context.new_page()
-        try:
-            page.goto(url, wait_until="domcontentloaded", timeout=20000)
-            try:
-                page.wait_for_selector("li.product_wrapper", timeout=6000)
-            except PlaywrightTimeout:
-                pass  # genuinely no results — parse below returns empty
-            html = page.content()
-        finally:
-            page.close()
-
-        soup = BeautifulSoup(html, "html.parser")
-        items = soup.select("li.product_wrapper")
-        for item in items:
-            name_el = (
-                item.select_one(".pDescription a")
-                or item.select_one("a[id*='hypProductH3']")
-                or item.select_one("h2 a")
-            )
-            price_el = item.select_one("span[itemprop='price']") or item.select_one(".price")
-            if not (name_el and price_el):
-                continue
-            # price_el text is like "Our price$479.99" — parse_price extracts the number
-            price = parse_price(price_el.get("content") or price_el.get_text(strip=True))
-            if not price:
-                continue
-            href = name_el.get("href", "")
-            if href and not href.startswith("http"):
-                href = "https://www.microcenter.com" + href
-            results.append({"name": name_el.get_text(strip=True)[:90], "price": price, "url": href, "retailer": "Micro Center"})
-            if len(results) >= max_results:
-                break
-    except Exception as e:
-        print(f"    [Micro Center error] {e}")
-    return sorted(results, key=lambda x: x["price"])
 
 
 def _ebay_shipping(card):
@@ -1075,17 +1002,13 @@ except ImportError:
 SCRAPERS = {
     "newegg": scrape_newegg,
     "amazon": scrape_amazon,
-    "best_buy": scrape_bestbuy,
-    "micro_center": scrape_microcenter,
     "ebay": scrape_ebay,
     "facebook": scrape_facebook,
 }
 
-RETAILER_ORDER = ["newegg", "best_buy", "micro_center", "amazon", "ebay", "facebook"]
+RETAILER_ORDER = ["newegg", "amazon", "ebay", "facebook"]
 RETAILER_LABELS = {
     "newegg": "Newegg",
-    "best_buy": "Best Buy",
-    "micro_center": "Micro Center",
     "amazon": "Amazon",
     "ebay": "eBay",
     "facebook": "Facebook",
@@ -1093,8 +1016,6 @@ RETAILER_LABELS = {
 # Trust notes shown on the report (fair = titles/search can drift)
 RETAILER_META = {
     "newegg": {"trust": "good", "note": "Reliable titles & prices"},
-    "best_buy": {"trust": "fair", "note": "Search can drift to similar SKUs"},
-    "micro_center": {"trust": "good", "note": "Stock varies by store"},
     "amazon": {"trust": "fair", "note": "Titles sometimes approximate"},
     "ebay": {"trust": "fair", "note": "Incl. shipping; sellers need 6+ reviews"},
     "facebook": {"trust": "fair", "note": "Local pickup · ZIP + radius from settings"},
@@ -2123,7 +2044,7 @@ async function confirmAdd() {{
       target_price: target,
       min_price: payload.min_price,
       search_terms: {{
-        newegg: q, amazon: q, best_buy: q, micro_center: q, ebay: q, facebook: q,
+        newegg: q, amazon: q, ebay: q, facebook: q,
       }}
     }}, null, 2);
     navigator.clipboard.writeText(snippet).catch(() => {{}});
