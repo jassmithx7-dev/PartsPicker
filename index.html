@@ -304,14 +304,14 @@
 
   <div class="header">
     <h1>PC Parts Price Report</h1>
-    <span class="ts">Last scrape: September 26, 2026 at 06:39 PM</span>
+    <span class="ts">Last scrape: September 26, 2026 at 07:21 PM</span>
     <div class="header-actions">
       <button id="scanBtn" class="btn-scan" onclick="startScan()">Scan again</button>
       <span id="scanStatus" class="scan-status">Needs companion server on :5001</span>
     </div>
   </div>
 
-  
+  <div class="deals-banner" id="dealsBanner"><div class="deals-banner-title">At or below target — 1 deal</div><a class="deal-row" href="https://www.facebook.com/marketplace/item/1056536537008409/" target="_blank"><strong>NVIDIA RTX 4080 Super</strong> $800.00 <span>at Facebook (target $950.00)</span></a></div>
 
   <!-- Search bar -->
   <div class="search-section">
@@ -361,76 +361,116 @@
   <!-- Summary chips -->
   <div class="summary-bar">
     <div class="chip"><strong id="chipTotal">12</strong>Tracked</div>
-    <div class="chip"><strong>0</strong>With Prices</div>
-    <div class="chip"><strong style="color:var(--green)">0</strong>At or Below Target</div>
+    <div class="chip"><strong>12</strong>With Prices</div>
+    <div class="chip"><strong style="color:var(--green)">1</strong>At or Below Target</div>
   </div>
 
-  <div class="error-banner"><strong>No prices found:</strong> NVIDIA RTX 4070, NVIDIA RTX 4080 Super, DDR5 32GB (2x16) Kit, Samsung 990 Pro 2TB NVMe, WD Black SN850X 2TB NVMe, NVIDIA GeForce RTX 5080, DDR5 64GB Kit (2x32GB), Best 1TB SATA SSD (Any Brand), corsair vengence rgb ddr4, corsair vengence rgb ddr4 32gb, NVIDIA GeForce RTX 3090 Ti, NVIDIA GeForce RTX 4090 — check search terms in config.json</div>
+  
 
   <!-- Price cards -->
   <div id="priceArea">
     <div class="cat-section" id="cat-GPU">
           <div class="cat-title"><span class="cat-dot cat-GPU"></span>GPU</div>
-          <div class="item-card" id="card-rtx-4070">
+          <div class="item-card item-card-deal" id="card-rtx-4080">
               <div class="item-header">
-                <div><div class="item-name">NVIDIA RTX 4070</div><div class="badges"><span class="badge badge-target">Target: $550.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('rtx-4070')" style="cursor:pointer">Min: $350.00 ✎</span></div></div>
+                <div><div class="item-name">NVIDIA RTX 4080 Super</div><div class="badges"><span class="badge badge-target">Target: $950.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('rtx-4080')" style="cursor:pointer">Min: $700.00 ✎</span><span class="badge badge-deal">DEAL! Save $150.00</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
-                  <button class="remove-btn" onclick="removeItem('rtx-4070')" title="Remove from watchlist">✕</button>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/1056536537008409/" target="_blank">$800.00</a></div>
+                  <div class="best-at">at Facebook</div>
                 </div>
-              </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
-              <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,2.0 6.7,20.8 11.4,20.8 16.1,19.4 20.8,22.8 25.4,19.2 30.1,22.0 34.8,18.7 39.5,18.7 44.2,18.7 48.9,29.4 53.6,29.4 58.3,29.4 63.0,29.4 67.7,17.2 72.3,29.4 77.0,29.4 81.7,29.4 86.4,29.4 91.1,29.4 95.8,29.4 100.5,30.0 105.2,29.4 109.9,29.4 114.6,29.3 119.2,29.3 123.9,29.3 128.6,29.3 133.3,29.3 138.0,29.3"/><circle cx="138.0" cy="29.3" r="2.5" fill="#4f8ef7"/></svg></div>
-                      
-                      <div class="hist-stat"><span>30-day Low</span><strong>$349.95</strong></div>
-                      <div class="hist-stat"><span>30-day High</span><strong>$738.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$415.05</strong></div>
-                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
-                    </div>
-            </div><div class="item-card" id="card-rtx-4080">
-              <div class="item-header">
-                <div><div class="item-name">NVIDIA RTX 4080 Super</div><div class="badges"><span class="badge badge-target">Target: $950.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('rtx-4080')" style="cursor:pointer">Min: $700.00 ✎</span></div></div>
-                <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
                   <button class="remove-btn" onclick="removeItem('rtx-4080')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/gigabyte-windforce-gv-n408swf3v2-16gd-geforce-rtx-4080-super-16gb-graphics-card-triple-fans/p/N82E16814932672?Item=9SIAYB7KNK8788" target="_blank" rel="noopener">
+                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
+                  <div class="r-price miss">$1,640.00</div>
+                  
+                  <div class="r-item" title="GIGABYTE GeForce RTX 4080 SUPER WINDFORCE V2 16G Graphics Card, 3x WINDFORCE Fans, 16GB 25">GIGABYTE GeForce RTX 4080 SUPER WINDFORCE V2 16G Graphi</div>
+                </a><a class="price-cell " href="https://www.amazon.com/NVIDIA-GeForce-4080-GDDR6X-Graphics/dp/B0BMZ9TGH1/ref=sr_1_7?dib=eyJ2IjoiMSJ9.DgJvOftiErcuUc8AWd7EDZ7VnZMDl9BT8mhUzvs0yJJ1P4aPhqZB4JUIAbVvoqEUeoGcvlBrLeHkpHbzjFgiB7jHcMzXmwvwifhmii1dv6AxJTiKnxCl_5_oArsVyhG0xV00HfpNK29Q2eiGxJ4BCBdQGRy1DDhQoIahfTWWJD_j5MZabvzGVqKj9i7NaN6EfJTsadYB2Vpp8KBaUuZupO1uh9R9faIMJS2boJ8eUe0.nCou7x_AwvY-dHuOh886HNwcR7ncxgOW6gdzYFuVrdc&dib_tag=se&keywords=RTX+4080+Super&qid=1790463614&sr=8-7" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price miss">$1,699.95</div>
+                  
+                  <div class="r-item" title="NVIDIA GeForce 4080 GDDR6X Graphics">NVIDIA GeForce 4080 GDDR6X Graphics</div>
+                </a><a class="price-cell " href="https://www.ebay.com/itm/287590211865" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price miss">$1,109.99</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="PNY Verto Triple Fan OC GeForce RTX 4080 Super 16GB - Graphics Card - Excellent">PNY Verto Triple Fan OC GeForce RTX 4080 Super 16GB - G</div>
+                </a><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1056536537008409/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price good">$800.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="RTX 4080 super">RTX 4080 super</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,12.2 6.7,22.7 11.4,22.7 16.1,22.7 20.8,22.7 25.4,30.0 30.1,30.0 34.8,30.0 39.5,22.7 44.2,18.6 48.9,19.7 53.6,18.1 58.3,19.2 63.0,17.9 67.7,17.9 72.3,17.1 77.0,17.1 81.7,19.8 86.4,19.8 91.1,16.3 95.8,15.0 100.5,2.0 105.2,20.1 109.9,20.1 114.6,2.0 119.2,20.1 123.9,20.1 128.6,15.4 133.3,7.4 138.0,18.4"/><circle cx="138.0" cy="18.4" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,12.2 6.7,22.7 11.4,22.7 16.1,22.7 20.8,22.7 25.4,30.0 30.1,30.0 34.8,30.0 39.5,22.7 44.2,18.6 48.9,19.7 53.6,18.1 58.3,19.2 63.0,17.9 67.7,17.9 72.3,17.1 77.0,17.1 81.7,19.8 86.4,19.8 91.1,16.3 95.8,15.0 100.5,2.0 105.2,20.1 109.9,20.1 114.6,2.0 119.2,20.1 123.9,20.1 128.6,15.4 133.3,7.4 138.0,24.9"/><circle cx="138.0" cy="24.9" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$639.86</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$1,519.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$998.40</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$991.57</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-nvidia-geforce-rtx-5080">
               <div class="item-header">
                 <div><div class="item-name">NVIDIA GeForce RTX 5080</div><div class="badges"><span class="badge badge-target">Target: $1,000.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-5080')" style="cursor:pointer">Min: $800.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/336813388777" target="_blank">$1,400.00</a></div>
+                  <div class="best-at">at eBay</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-5080')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/GIGABYTE-Graphics-WINDFORCE-GV-N5080GAMING-OC-16GD/dp/B0DS2R6948/ref=sr_1_1?dib=eyJ2IjoiMSJ9.X8E3KaFCmIPpWNEny7fVYFHefFBzUepfOoA4abuuMEeL5ekCSv2WkpIJ90ZXGSspMKshiZ0iiCFYrpdVniESaI4YJb2LrZJ40vsi40TlRFkS-9LeHruo55p690ncPIIEsOj8uIQyz_N19ZEJtDYvoJi_tqARumyMukJ7FciRZPqUVhzBQA8F7weZGTixbQ4Yvtnn-oS2At24ABmOLDTcx4PHlauHnwKdXJX5vhZQ07Q.HSV5hj1icdq0AAf9bwtpMyOPBrt_HjAh4IRBEvXU28I&dib_tag=se&keywords=NVIDIA+GeForce+RTX+5080&qid=1790464024&sr=8-1" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price miss">$1,650.95</div>
+                  
+                  <div class="r-item" title="GIGABYTE Graphics WINDFORCE GV N5080GAMING OC 16GD">GIGABYTE Graphics WINDFORCE GV N5080GAMING OC 16GD</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/336813388777" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price miss">$1,400.00</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="PNY GeForce RTX 5080 Triple Fan 16GB  GDDR7 Video Graphics Card">PNY GeForce RTX 5080 Triple Fan 16GB  GDDR7 Video Graph</div>
+                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/1087114490463777/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price miss">$2,400.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="NEURON 4500X Black Intel Ultra 7 270K Plus/RTX 5080/32GB 6400MT/s/2TB">NEURON 4500X Black Intel Ultra 7 270K Plus/RTX 5080/32G</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,17.0 6.7,20.7 11.4,20.7 16.1,12.8 20.8,12.4 25.4,19.2 30.1,12.3 34.8,13.8 39.5,12.3 44.2,13.4 48.9,12.3 53.6,12.3 58.3,10.8 63.0,16.5 67.7,14.4 72.3,12.3 77.0,17.8 81.7,14.4 86.4,16.5 91.1,17.4 95.8,30.0 100.5,12.3 105.2,15.5 109.9,4.9 114.6,24.8 119.2,24.8 123.9,17.8 128.6,4.0 133.3,2.0 138.0,12.4"/><circle cx="138.0" cy="12.4" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,17.0 6.7,20.7 11.4,20.7 16.1,12.8 20.8,12.4 25.4,19.2 30.1,12.3 34.8,13.8 39.5,12.3 44.2,13.4 48.9,12.3 53.6,12.3 58.3,10.8 63.0,16.5 67.7,14.4 72.3,12.3 77.0,17.8 81.7,14.4 86.4,16.5 91.1,17.4 95.8,30.0 100.5,12.3 105.2,15.5 109.9,4.9 114.6,24.8 119.2,24.8 123.9,17.8 128.6,4.0 133.3,2.0 138.0,12.3"/><circle cx="138.0" cy="12.3" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$975.00</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$1,649.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$1,337.63</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,337.67</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-nvidia-geforce-rtx-3090-ti">
               <div class="item-header">
                 <div><div class="item-name">NVIDIA GeForce RTX 3090 Ti</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-3090-ti')" style="cursor:pointer">Min: $500.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/155962120711" target="_blank">$1,514.60</a></div>
+                  <div class="best-at">at eBay</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-3090-ti')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/Gigabyte-GeForce-Graphics-GV-N3090TURBO-24GD-Renewed/dp/B09Y2K9G3X/ref=sr_1_7?dib=eyJ2IjoiMSJ9.XSyHzbCPlag8bAVa7gzLIb_IF2sIAN3PIVGqcfF19vSHOpWj0SHkxsrhhGV7-C7Ed21nUISW739thmaJAtMZ1HS04Ca56iVUeRxt5uEeM8JipMza-fMJ5UZwvvg6xlydRR12TlLbwjF6ekaP0GV0K7wNDulO4yqKrmFTYoTFQCOS1FhmZUH9aUerOh2bJvDpPbgOau4MrrL1gMxKNJFksxd4GIQbCMGWb9tJsX9liNY.xGYtWbxHXAVZeCYfTRONFuO-2VPAi-bnenqdIZUm6Ak&dib_tag=se&keywords=NVIDIA+GeForce+RTX+3090+Ti&qid=1790464595&sbo=GW1QB%2BmqAsHTPf1jTZRSDA%3D%3D&sr=8-7" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$1,794.99</div>
+                  
+                  <div class="r-item" title="Gigabyte GeForce Graphics GV N3090TURBO 24GD Renewed">Gigabyte GeForce Graphics GV N3090TURBO 24GD Renewed</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/155962120711" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price ">$1,514.60</div>
+                  <div class="r-ship">incl. $14.60 ship (item $1,500.00)</div>
+                  <div class="r-item" title="Gigabyte 3090  GDDR6X Graphics Card GPU">Gigabyte 3090  GDDR6X Graphics Card GPU</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
                       <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.8 7.2,28.8 12.5,28.8 17.7,28.8 22.9,28.8 28.2,28.8 33.4,28.8 38.6,30.0 43.8,30.0 49.1,30.0 54.3,30.0 59.5,30.0 64.8,30.0 70.0,30.0 75.2,28.8 80.5,28.8 85.7,11.8 90.9,11.8 96.2,10.9 101.4,10.9 106.6,10.5 111.8,10.5 117.1,10.5 122.3,9.5 127.5,10.5 132.8,2.0 138.0,10.5"/><circle cx="138.0" cy="10.5" r="2.5" fill="#f5c542"/></svg></div>
                       
@@ -443,17 +483,31 @@
               <div class="item-header">
                 <div><div class="item-name">NVIDIA GeForce RTX 4090</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-4090')" style="cursor:pointer">Min: $1,200.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/2277458823061378/" target="_blank">$2,600.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-4090')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/ASUS-GeForce-Graphics-DisplayPort-TUF-RTX4090-O24G-GAMING/dp/B0BHD9TS9Q/ref=sr_1_4?dib=eyJ2IjoiMSJ9.ZL2QaFsrTo9tX9pa8DoiVeTJzbCaONzLh3h91TOqAt5YL4Ns0W7HBSh2aHjzB07hyP7iJ3-bDbdk6Xp7Bm6993R7iVxIaaeDFspOdu5QyFgp_y-xBGydb0TeD_JaFPbOt6jb_ZwMCiNsxqfq3c3hKPD4ScPVxJdjo_ePblAN6vhgt9vp1Jhu8LUUaRhIgn7-FFv8xN1P7qZVlZkUHJnpc_crEIeSX2EBIJM9SC7vPYk.GpfaVVN3ZhvyxoAVAr8eM1GuFIA8hxeg63oO4aziR2k&dib_tag=se&keywords=NVIDIA+GeForce+RTX+4090&qid=1790464698&sr=8-4" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$4,049.99</div>
+                  
+                  <div class="r-item" title="ASUS GeForce Graphics DisplayPort TUF RTX4090 O24G GAMING">ASUS GeForce Graphics DisplayPort TUF RTX4090 O24G GAMI</div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.facebook.com/marketplace/item/2277458823061378/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$2,600.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="MSI RTX 4090 Gaming X Trio 24GB - Refurbished, Tested & Benchmarked">MSI RTX 4090 Gaming X Trio 24GB - Refurbished, Tested &</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.5 9.2,28.5 16.3,28.5 23.5,28.5 30.6,28.5 37.8,28.5 44.9,27.9 52.1,30.0 59.3,30.0 66.4,27.9 73.6,27.9 80.7,12.0 87.9,30.0 95.1,6.0 102.2,29.0 109.4,29.0 116.5,2.0 123.7,29.4 130.8,29.4 138.0,3.3"/><circle cx="138.0" cy="3.3" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.5 9.2,28.5 16.3,28.5 23.5,28.5 30.6,28.5 37.8,28.5 44.9,27.9 52.1,30.0 59.3,30.0 66.4,27.9 73.6,27.9 80.7,12.0 87.9,30.0 95.1,6.0 102.2,29.0 109.4,29.0 116.5,2.0 123.7,29.4 130.8,29.4 138.0,14.7"/><circle cx="138.0" cy="14.7" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$311.98</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$4,495.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$1,171.35</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,086.36</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>20</strong></div>
                     </div>
             </div>
@@ -464,28 +518,66 @@
               <div class="item-header">
                 <div><div class="item-name">DDR5 32GB (2x16) Kit</div><div class="badges"><span class="badge badge-target">Target: $90.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('ddr5-32gb')" style="cursor:pointer">Min: $50.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/1588499022687157/" target="_blank">$340.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('ddr5-32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_3?dib=eyJ2IjoiMSJ9.iRi_3oFKCuIJRdn2kKnkieaEkfOqX1J-cMKzDYVRcTKd7TPGxLUA3efTwrlyQix_H9zwc0ZLJVFcN-YOK0jzhLu4H9ez1OcrVKBsQ-VubW2oOn4S4ZQjPKzIzbMqR684KSFn5DBYS_UkR9gaMi0wRbQPNNsNe8FO3gmXK2SKQvVxZhDeBPYivM3GrgQb2o0-LqEruk9wEKzKZfs2kscPgw3Zc2VXT-ZZl1O6Cx27D80.AEOWEBkgfVvx-mNSHFNxH6aevK1KXCAU3y3GF0gqB-U&dib_tag=se&keywords=DDR5+RAM+32GB+6000MHz&qid=1790463737&sr=8-3" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price miss">$469.99</div>
+                  
+                  <div class="r-item" title="CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz AMD Intel RAM">CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz</div>
+                </a><a class="price-cell " href="https://www.ebay.com/itm/237079366010" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price miss">$399.99</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM Kit - CL38 XMP EXPO">ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM K</div>
+                </a><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1588499022687157/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price miss">$340.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="TeamGroup T-Force Delta RGB 32GB (2x16GB) DDR5 6000MHz RAM">TeamGroup T-Force Delta RGB 32GB (2x16GB) DDR5 6000MHz </div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,8.0 6.9,27.4 11.7,27.4 16.6,28.8 21.4,28.8 26.3,27.4 31.1,15.4 36.0,15.4 40.9,15.1 45.7,21.5 50.6,21.5 55.4,21.5 60.3,21.5 65.1,30.0 70.0,22.8 74.9,22.8 79.7,15.1 84.6,15.1 89.4,15.1 94.3,15.1 99.1,14.8 104.0,22.2 108.9,22.2 113.7,8.0 118.6,22.2 123.4,2.0 128.3,16.9 133.1,16.9 138.0,16.9"/><circle cx="138.0" cy="16.9" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#3dd68c" stroke-width="2" points="2.0,7.1 6.9,23.7 11.7,23.7 16.6,24.9 21.4,24.9 26.3,23.7 31.1,13.5 36.0,13.5 40.9,13.2 45.7,18.6 50.6,18.6 55.4,18.6 60.3,18.6 65.1,26.0 70.0,19.8 74.9,19.8 79.7,13.2 84.6,13.2 89.4,13.2 94.3,13.2 99.1,12.9 104.0,19.3 108.9,19.3 113.7,7.1 118.6,19.3 123.4,2.0 128.3,14.7 133.1,14.7 138.0,30.0"/><circle cx="138.0" cy="30.0" r="2.5" fill="#3dd68c"/></svg></div>
                       
-                      <div class="hist-stat"><span>30-day Low</span><strong>$355.89</strong></div>
+                      <div class="hist-stat"><span>30-day Low</span><strong>$340.00</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$449.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$392.10</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$390.04</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>29</strong></div>
                     </div>
             </div><div class="item-card" id="card-ddr5-64gb-kit-2x32gb">
               <div class="item-header">
                 <div><div class="item-name">DDR5 64GB Kit (2x32GB)</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('ddr5-64gb-kit-2x32gb')" style="cursor:pointer">Min: $100.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/287604432498" target="_blank">$650.00</a></div>
+                  <div class="best-at">at eBay</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('ddr5-64gb-kit-2x32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/G-Skill-RipJaws-SO-DIMM-CL40-39-39-76-F5-4800S4039A32GA2-RS/dp/B0B1LFX3VC/ref=sr_1_6_mod_primary_new?dib=eyJ2IjoiMSJ9.Tjv4YPDdKQ7AvNStWzCsvDYi7edYiclRaDvYjQhasUAI4fktwUmB6_8SvGrr-NvJBQBY59-UWQ3TuivSdExWsRiElaOF28DLxydQRt61I53zGOiJ5O1uFoNTJcahis-jKW1zAz-zcNo_IxY2UoUsMfvoUcadhqrzn0icQ9OUNNBctyRBopHnfq41NSVn-6F2IwKjvxtu-lyjrxOmD3T3ptQ4HSep0l389-1EqlWxou8.OonywcSBq7A5Dg44o57wqkPuW7MEoflhgwRoH5qZsLo&dib_tag=se&keywords=DDR5+64GB+Kit+%282x32GB%29&qid=1790464127&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-6" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$889.99</div>
+                  
+                  <div class="r-item" title="G.SKILL Ripjaws DDR5 SO-DIMM Series DDR5 RAM 64GB (2x32GB) Up to 4800MT/s* CL40-39-39-76 1">G.SKILL Ripjaws DDR5 SO-DIMM Series DDR5 RAM 64GB (2x32</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/287604432498" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price ">$650.00</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="SK Hynix 64GB Kit (2x32GB) DDR5 4800MHz SODIMM PC5-38400">SK Hynix 64GB Kit (2x32GB) DDR5 4800MHz SODIMM PC5-3840</div>
+                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/1415844163202398/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$750.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="Corsair Vengeance RGB DDR5 64GB (2x32GB) 6000MHz RAM">Corsair Vengeance RGB DDR5 64GB (2x32GB) 6000MHz RAM</div>
+                </a></div>
               <div class="hist-line">
                       <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,6.6 6.7,30.0 11.4,30.0 16.1,30.0 20.8,28.6 25.4,28.6 30.1,28.6 34.8,28.6 39.5,28.6 44.2,28.7 48.9,28.6 53.6,28.4 58.3,28.4 63.0,28.4 67.7,20.8 72.3,20.8 77.0,20.8 81.7,23.8 86.4,23.8 91.1,23.8 95.8,24.4 100.5,20.8 105.2,20.8 109.9,6.2 114.6,7.9 119.2,2.0 123.9,7.9 128.6,17.8 133.3,7.9 138.0,24.4"/><circle cx="138.0" cy="24.4" r="2.5" fill="#4f8ef7"/></svg></div>
                       
@@ -498,34 +590,67 @@
               <div class="item-header">
                 <div><div class="item-name">corsair vengence rgb ddr4</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('corsair-vengence-rgb-ddr4')" style="cursor:pointer">Min: $40.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/1672118747176995/" target="_blank">$40.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('corsair-vengence-rgb-ddr4')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/Corsair-VENGEANCE-3200MHz-Compatible-Computer/dp/B07RS1G6XW/ref=sr_1_12?dib=eyJ2IjoiMSJ9.-9sCcpBNzG6CD3Yh-Z5np4bVF6RAhNCttf3sjWAUYXl2B81DBLHIM_R277w9mTtjULyNYYupN58fz6gxtZm16yJvC1VSM3SPQOeIQKA_Ruq9_rsbzLmI8p3WFS0ebPsz2LqFE9TfE66-tOYf5JX5o0Mq2RQJVX5MWwQs9b-xh7Ax50UZNKVwNCTlvZ9xkTUUY_Xnyah0Ve7nU9iMK1pR0LAYCH456DxzD12hXzOFkMk.a-dmCjdfwaxV3Lg4dC0kfjIEOhEy36zmFvKkFAsfy1o&dib_tag=se&keywords=corsair+vengeance+rgb+ddr4&qid=1790464355&sr=8-12" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$139.99</div>
+                  
+                  <div class="r-item" title="Corsair VENGEANCE 3200MHz Compatible Computer">Corsair VENGEANCE 3200MHz Compatible Computer</div>
+                </a><a class="price-cell " href="https://www.ebay.com/itm/407199670577" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price ">$45.00</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="1 Corsair Vengeance RGB Pro (1x8GB) DDR4 3200MHz DIMM CMW16GX4M2E3200C16">1 Corsair Vengeance RGB Pro (1x8GB) DDR4 3200MHz DIMM C</div>
+                </a><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1672118747176995/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$40.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="Corsair Scimitar RGB Elite">Corsair Scimitar RGB Elite</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,30.0 7.2,30.0 12.5,29.7 17.7,29.7 22.9,29.7 28.2,28.7 33.4,29.7 38.6,29.7 43.8,29.7 49.1,29.7 54.3,29.7 59.5,29.7 64.8,29.7 70.0,29.7 75.2,29.7 80.5,29.7 85.7,29.7 90.9,29.7 96.2,27.3 101.4,27.3 106.6,27.3 111.8,27.3 117.1,27.3 122.3,28.4 127.5,2.0 132.8,2.0 138.0,6.0"/><circle cx="138.0" cy="6.0" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,30.0 7.2,30.0 12.5,29.7 17.7,29.7 22.9,29.7 28.2,28.7 33.4,29.7 38.6,29.7 43.8,29.7 49.1,29.7 54.3,29.7 59.5,29.7 64.8,29.7 70.0,29.7 75.2,29.7 80.5,29.7 85.7,29.7 90.9,29.7 96.2,27.3 101.4,27.3 106.6,27.3 111.8,27.3 117.1,27.3 122.3,28.4 127.5,2.0 132.8,2.0 138.0,28.7"/><circle cx="138.0" cy="28.7" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$34.99</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$139.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$48.92</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$45.77</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>27</strong></div>
                     </div>
             </div><div class="item-card" id="card-corsair-vengence-rgb-ddr4-32gb">
               <div class="item-header">
                 <div><div class="item-name">corsair vengence rgb ddr4 32gb</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('corsair-vengence-rgb-ddr4-32gb')" style="cursor:pointer">Min: $40.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/879981621107934/" target="_blank">$100.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('corsair-vengence-rgb-ddr4-32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/GIGASTONE-Desktop-DDR4-3200MHz-PC4-25600-Unbuffered/dp/B0CB2TZKCG/ref=sr_1_11?dib=eyJ2IjoiMSJ9.-UDEJJVIeZ0zu5d3Wu74ecaC1C1jLLwq1EXJ7k9LRhpR0ixRzGXpCjIe7_hyELm3Z8fSEGQdKK_OxbV__vnBFmELS4vLuG-rJhrNURC43O7qh5ainAnzmAPBjFy51fTbSC9P7SI3msAstf1b8JZNRVJGGJIKUPMgNxxvLD9xyIgX403Owd8PGM5Q5TEjsgatzuXV2BQ0agawk0uhuJRDvUXvry5hcxViyuZkB5SjLNI.UzsNmIx9qMEfTVo3k7jOQU3m5aQsvAvIZ0orzoSVbEY&dib_tag=se&keywords=corsair+vengeance+rgb+ddr4+32gb&qid=1790464458&sr=8-11" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$206.09</div>
+                  
+                  <div class="r-item" title="【DDR4 RAM】 GIGASTONE Game PRO 32GB Kit (2x16GB) DDR4 3200MHz PC4-25600 CL 16-18-18-40 Inte">【DDR4 RAM】 GIGASTONE Game PRO 32GB Kit (2x16GB) DDR4 32</div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.facebook.com/marketplace/item/879981621107934/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$100.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="32GB DDR4 3200mhz RAM">32GB DDR4 3200mhz RAM</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,22.4 7.2,18.0 12.5,18.9 17.7,15.8 22.9,15.8 28.2,15.8 33.4,19.7 38.6,15.8 43.8,20.1 49.1,15.8 54.3,14.6 59.5,30.0 64.8,30.0 70.0,30.0 75.2,15.8 80.5,16.8 85.7,13.5 90.9,13.5 96.2,2.0 101.4,14.4 106.6,16.0 111.8,24.9 117.1,24.9 122.3,24.9 127.5,24.9 132.8,24.9 138.0,24.9"/><circle cx="138.0" cy="24.9" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,22.4 7.2,18.0 12.5,18.9 17.7,15.8 22.9,15.8 28.2,15.8 33.4,19.7 38.6,15.8 43.8,20.1 49.1,15.8 54.3,14.6 59.5,30.0 64.8,30.0 70.0,30.0 75.2,15.8 80.5,16.8 85.7,13.5 90.9,13.5 96.2,2.0 101.4,14.4 106.6,16.0 111.8,24.9 117.1,24.9 122.3,24.9 127.5,24.9 132.8,24.9 138.0,27.2"/><circle cx="138.0" cy="27.2" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$87.83</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$209.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$134.10</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$133.72</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>27</strong></div>
                     </div>
             </div>
@@ -536,28 +661,56 @@
               <div class="item-header">
                 <div><div class="item-name">Samsung 990 Pro 2TB NVMe</div><div class="badges"><span class="badge badge-target">Target: $150.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('samsung-980-pro-2tb')" style="cursor:pointer">Min: $80.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/116119410878" target="_blank">$269.99</a></div>
+                  <div class="best-at">at eBay</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('samsung-980-pro-2tb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.ebay.com/itm/116119410878" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price miss">$269.99</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="Samsung 990 2TB Pro PCI-E 4.0 M.2 SSD NVMe (MZ-V9P2T0)">Samsung 990 2TB Pro PCI-E 4.0 M.2 SSD NVMe (MZ-V9P2T0)</div>
+                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/3248492188672462/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price miss">$500.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="Samsung 990 Pro 2TB SSD Satechi Hub">Samsung 990 Pro 2TB SSD Satechi Hub</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,17.4 6.7,17.4 11.4,17.4 16.1,17.4 20.8,17.4 25.4,17.4 30.1,17.4 34.8,17.4 39.5,17.4 44.2,17.4 48.9,17.4 53.6,30.0 58.3,17.4 63.0,17.4 67.7,15.8 72.3,17.4 77.0,17.4 81.7,17.4 86.4,17.4 91.1,15.4 95.8,15.4 100.5,16.4 105.2,17.6 109.9,16.4 114.6,19.4 119.2,16.9 123.9,15.3 128.6,4.0 133.3,4.0 138.0,2.0"/><circle cx="138.0" cy="2.0" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,16.4 6.7,16.4 11.4,16.4 16.1,16.4 20.8,16.4 25.4,16.4 30.1,16.4 34.8,16.4 39.5,16.4 44.2,16.4 48.9,16.4 53.6,30.0 58.3,16.4 63.0,16.4 67.7,14.7 72.3,16.4 77.0,16.4 81.7,16.4 86.4,16.4 91.1,14.2 95.8,14.2 100.5,15.3 105.2,16.6 109.9,15.3 114.6,18.6 119.2,15.8 123.9,14.2 128.6,2.0 133.3,2.0 138.0,13.1"/><circle cx="138.0" cy="13.1" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$116.70</strong></div>
-                      <div class="hist-stat"><span>30-day High</span><strong>$389.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$252.08</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$369.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$248.08</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-wd-sn850x-2tb">
               <div class="item-header">
                 <div><div class="item-name">WD Black SN850X 2TB NVMe</div><div class="badges"><span class="badge badge-target">Target: $130.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('wd-sn850x-2tb')" style="cursor:pointer">Min: $70.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/307195477687" target="_blank">$250.50</a></div>
+                  <div class="best-at">at eBay</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('wd-sn850x-2tb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/WD_Black-SN850X-Internal-SSD-Heatsink/dp/B0B3RQDGL7/ref=sr_1_1?dib=eyJ2IjoiMSJ9.pVEtnXRya6g7anA4DNGC5RFp27kV8gMrGY4gjIoFzkq36lcTutXdVtdGsCwJqxh80YihfGwY2fE0Z8JrrXLqJrLQcieDPlOB_TSEV-mBUtcnOT9mpP36ktRjKAQKozVY0BcmPlaJabUopeocwaxXrRwRlfcsIyFW1nVNsRmae2I3iprPMVRf6QTUgRymoYJYj4XCgDla0n7_R_qLBKJ-0BpBVc9F8L_HvfFY0X4HleM.u6rcOnQ2ZQp0Vx1TsvoOa4m9_7gmKi2Wo1ha6LIMyu8&dib_tag=se&keywords=WD+Black+SN850X+2TB+NVMe&qid=1790463921&sr=8-1" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price miss">$419.99</div>
+                  
+                  <div class="r-item" title="WD_Black SN850X 2TB NVMe PCIe 4.0 x4 M.2 Internal Gaming SSD Without Heatsink">WD_Black SN850X 2TB NVMe PCIe 4.0 x4 M.2 Internal Gamin</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/307195477687" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price miss">$250.50</div>
+                  <div class="r-ship">incl. $5.50 ship (item $245.00)</div>
+                  <div class="r-item" title="WD_Black SN850x 2tb NVMe m.2 SSD">WD_Black SN850x 2tb NVMe m.2 SSD</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
                       <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,2.0 6.7,16.8 11.4,25.9 16.1,25.9 20.8,16.8 25.4,22.0 30.1,21.9 34.8,16.8 39.5,16.8 44.2,22.0 48.9,27.0 53.6,16.8 58.3,22.0 63.0,16.8 67.7,16.8 72.3,16.8 77.0,16.8 81.7,16.8 86.4,16.8 91.1,16.8 95.8,16.8 100.5,16.8 105.2,16.8 109.9,19.4 114.6,30.0 119.2,22.0 123.9,4.0 128.6,21.9 133.3,23.3 138.0,21.9"/><circle cx="138.0" cy="21.9" r="2.5" fill="#4f8ef7"/></svg></div>
                       
@@ -568,20 +721,70 @@
                     </div>
             </div><div class="item-card" id="card-best-1tb-sata-ssd-any-brand">
               <div class="item-header">
-                <div><div class="item-name">Best 1TB SATA SSD (Any Brand)</div><div class="badges"><span class="badge badge-min-empty" title="Set a minimum listing price" onclick="event.stopPropagation(); setMinPrice('best-1tb-sata-ssd-any-brand')" style="cursor:pointer">+ Min price</span></div></div>
+                <div><div class="item-name">Best 1TB SATA SSD (Any Brand)</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('best-1tb-sata-ssd-any-brand')" style="cursor:pointer">Min: $50.00 ✎</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
-                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/2235157350395205/" target="_blank">$70.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
                   <button class="remove-btn" onclick="removeItem('best-1tb-sata-ssd-any-brand')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/Lufasnd-Internal-Compatible-Laptop-Desktop/dp/B0H1LRG7XK/ref=sr_1_10?dib=eyJ2IjoiMSJ9.q3rEwQUJS5yUsp2-ix9Akb35n63FL2DyX9EsasK-O9ZADBFbqFD683AWIwL5sjoCuvwnm99ZgndWaoog75D4hcO92uy21IiiFZQUkXUU6PkNWdwKJQ23gE3NxwynmZNqlYNsMr4yhqGfTaeUV_hwgoac1p0ZmA56lApyqhUZLtL9aG6CoZ77iCLCp462piY0pj3pxR4bR53FPP_2cEC3uBH4DZAy10Z9qY_AvHxoFMg.1IFxmNBi_LvbggHVqd8k6BZknhqKk4JvMyAEbnKFNdY&dib_tag=se&keywords=1TB+SATA+SSD+2.5&qid=1790464252&sr=8-10" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$101.74</div>
+                  
+                  <div class="r-item" title="Internal 1TB SATA SSD, 2.5 Inch SSD SATA III 6Gb/s, Solid State Drive, Up to 520MB/s Read ">Internal 1TB SATA SSD, 2.5 Inch SSD SATA III 6Gb/s, Sol</div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.facebook.com/marketplace/item/2235157350395205/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$70.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="WD My Passwords 1TB Portable External HDD USB 3.0 (very Low Usage)">WD My Passwords 1TB Portable External HDD USB 3.0 (very</div>
+                </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,3.1 6.7,29.1 11.4,29.1 16.1,29.1 20.8,30.0 25.4,30.0 30.1,30.0 34.8,30.0 39.5,30.0 44.2,30.0 48.9,30.0 53.6,30.0 58.3,30.0 63.0,30.0 67.7,30.0 72.3,30.0 77.0,30.0 81.7,30.0 86.4,30.0 91.1,30.0 95.8,30.0 100.5,30.0 105.2,30.0 109.9,2.0 114.6,30.0 119.2,30.0 123.9,30.0 128.6,29.6 133.3,29.6 138.0,29.6"/><circle cx="138.0" cy="29.6" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,3.1 6.7,29.1 11.4,29.1 16.1,29.1 20.8,30.0 25.4,30.0 30.1,30.0 34.8,30.0 39.5,30.0 44.2,30.0 48.9,30.0 53.6,30.0 58.3,30.0 63.0,30.0 67.7,30.0 72.3,30.0 77.0,30.0 81.7,30.0 86.4,30.0 91.1,30.0 95.8,30.0 100.5,30.0 105.2,30.0 109.9,2.0 114.6,30.0 119.2,30.0 123.9,30.0 128.6,29.6 133.3,29.6 138.0,16.4"/><circle cx="138.0" cy="16.4" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$21.90</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$120.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$28.81</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$30.37</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div>
+        </div>
+<div class="cat-section" id="cat-Other">
+          <div class="cat-title"><span class="cat-dot cat-Other"></span>Other</div>
+          <div class="item-card" id="card-5070-ti">
+              <div class="item-header">
+                <div><div class="item-name">5070 ti</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('5070-ti')" style="cursor:pointer">Min: $400.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block">
+                  <div class="best-label">Best Price</div>
+                  <div class="best-val"><a href="https://www.facebook.com/marketplace/item/1758123055338930/" target="_blank">$450.00</a></div>
+                  <div class="best-at">at Facebook</div>
+                </div>
+                  <button class="remove-btn" onclick="removeItem('5070-ti')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/ASUS-SFF-Ready-Graphics-2-5-Slot-Axial-tech/dp/B0DS6WPTLL/ref=sr_1_5?dib=eyJ2IjoiMSJ9.3Y-2sJLdopHMjKf7XxRU2VigukapB3Pvnf-CoxTBWROgalY5FOxlu9rIsAvfu6R_Dt7krD6kbXavKdFpTOPRrC_Q5qdR6vtFCKXx1eKverJfDCE67vxXIE5AmR7NuQi8XPPrnBskYxQMdlvk46j_-WqiHrbyttXhADV32EPQ12icMy4enBCvirr4lqUaWUO7VhvPKfjHTqDiuoXCnAhCe--28beY4hEAgHl8DnedWqI.hBcN2XLsUzl-iufD9gadnOPFyoT1rIzd6CAfrkhXpTQ&dib_tag=se&keywords=5070+ti&qid=1790464803&sr=8-5" target="_blank" rel="noopener">
+                  <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
+                  <div class="r-price ">$856.99</div>
+                  
+                  <div class="r-item" title="ASUS Prime GeForce RTX 5070 12GB GDDR7 OC Edition Gaming Graphics Card">ASUS Prime GeForce RTX 5070 12GB GDDR7 OC Edition Gamin</div>
+                </a><a class="price-cell " href="https://www.ebay.com/itm/147570453243" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price ">$772.54</div>
+                  <div class="r-ship">incl. $105.35 ship (item $667.19)</div>
+                  <div class="r-item" title="EVGA Nvidia GeForce RTX 3080Ti FTW3 GPU Ultra Gaming 12GB Graphics Card 5070 eqv">EVGA Nvidia GeForce RTX 3080Ti FTW3 GPU Ultra Gaming 12</div>
+                </a><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1758123055338930/" target="_blank" rel="noopener">
+                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
+                  <div class="r-price ">$450.00</div>
+                  <div class="r-ship">local · San Francisco, CA</div>
+                  <div class="r-item" title="Titleist GT3 Driver 9 degree">Titleist GT3 Driver 9 degree</div>
+                </a></div>
+              <div class="hist-line">
+                      
+                      <div class="hist-stat"><span>History</span><strong>1 day — more after next runs</strong></div>
                     </div>
             </div>
         </div>
@@ -758,7 +961,7 @@
 <script>
 // ── Parts database & fuzzy search ──────────────────────────────────────────
 const PARTS_DB = [{"name": "NVIDIA GeForce RTX 5090", "short": "RTX 5090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5090"]}, {"name": "NVIDIA GeForce RTX 5080 Super", "short": "RTX 5080 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5080s", "5080 super"]}, {"name": "NVIDIA GeForce RTX 5080", "short": "RTX 5080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5080"]}, {"name": "NVIDIA GeForce RTX 5070 Ti Super", "short": "RTX 5070 Ti Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070tis"]}, {"name": "NVIDIA GeForce RTX 5070 Ti", "short": "RTX 5070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070ti", "5070 ti"]}, {"name": "NVIDIA GeForce RTX 5070 Super", "short": "RTX 5070 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070s", "5070 super"]}, {"name": "NVIDIA GeForce RTX 5070", "short": "RTX 5070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070"]}, {"name": "NVIDIA GeForce RTX 5060 Ti", "short": "RTX 5060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5060ti", "5060 ti"]}, {"name": "NVIDIA GeForce RTX 5060", "short": "RTX 5060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5060"]}, {"name": "NVIDIA GeForce RTX 5050", "short": "RTX 5050", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5050"]}, {"name": "NVIDIA GeForce RTX 4090", "short": "RTX 4090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4090"]}, {"name": "NVIDIA GeForce RTX 4080 Super", "short": "RTX 4080 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4080s", "4080 super"]}, {"name": "NVIDIA GeForce RTX 4080", "short": "RTX 4080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4080"]}, {"name": "NVIDIA GeForce RTX 4070 Ti Super", "short": "RTX 4070 Ti Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070tis"]}, {"name": "NVIDIA GeForce RTX 4070 Ti", "short": "RTX 4070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070ti"]}, {"name": "NVIDIA GeForce RTX 4070 Super", "short": "RTX 4070 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070s", "4070 super"]}, {"name": "NVIDIA GeForce RTX 4070", "short": "RTX 4070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070"]}, {"name": "NVIDIA GeForce RTX 4060 Ti", "short": "RTX 4060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4060ti"]}, {"name": "NVIDIA GeForce RTX 4060", "short": "RTX 4060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4060"]}, {"name": "NVIDIA GeForce RTX 3090 Ti", "short": "RTX 3090 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3090ti"]}, {"name": "NVIDIA GeForce RTX 3090", "short": "RTX 3090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3090"]}, {"name": "NVIDIA GeForce RTX 3080 Ti", "short": "RTX 3080 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3080ti"]}, {"name": "NVIDIA GeForce RTX 3080", "short": "RTX 3080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3080"]}, {"name": "NVIDIA GeForce RTX 3070 Ti", "short": "RTX 3070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3070ti"]}, {"name": "NVIDIA GeForce RTX 3070", "short": "RTX 3070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3070"]}, {"name": "NVIDIA GeForce RTX 3060 Ti", "short": "RTX 3060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3060ti"]}, {"name": "NVIDIA GeForce RTX 3060", "short": "RTX 3060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3060"]}, {"name": "AMD Radeon RX 9070 XT", "short": "RX 9070 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9070xt", "9070xt", "9070 xt"]}, {"name": "AMD Radeon RX 9070", "short": "RX 9070", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9070", "9070"]}, {"name": "AMD Radeon RX 9060 XT", "short": "RX 9060 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9060xt", "9060xt"]}, {"name": "AMD Radeon RX 9060", "short": "RX 9060", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9060", "9060"]}, {"name": "AMD Radeon RX 7900 XTX", "short": "RX 7900 XTX", "cat": "GPU", "mfr": "AMD", "aliases": ["7900xtx", "rx7900xtx"]}, {"name": "AMD Radeon RX 7900 XT", "short": "RX 7900 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7900xt"]}, {"name": "AMD Radeon RX 7900 GRE", "short": "RX 7900 GRE", "cat": "GPU", "mfr": "AMD", "aliases": ["7900gre"]}, {"name": "AMD Radeon RX 7800 XT", "short": "RX 7800 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7800xt"]}, {"name": "AMD Radeon RX 7700 XT", "short": "RX 7700 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7700xt"]}, {"name": "AMD Radeon RX 7600 XT", "short": "RX 7600 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7600xt"]}, {"name": "AMD Radeon RX 7600", "short": "RX 7600", "cat": "GPU", "mfr": "AMD", "aliases": ["7600"]}, {"name": "Intel Arc B580", "short": "Arc B580", "cat": "GPU", "mfr": "Intel", "aliases": ["b580", "arc b580"]}, {"name": "Intel Arc B770", "short": "Arc B770", "cat": "GPU", "mfr": "Intel", "aliases": ["b770", "arc b770"]}, {"name": "Intel Arc A770", "short": "Arc A770", "cat": "GPU", "mfr": "Intel", "aliases": ["a770", "arc a770"]}, {"name": "AMD Ryzen 9 9950X", "short": "Ryzen 9 9950X", "cat": "CPU", "mfr": "AMD", "aliases": ["9950x", "r9 9950x"]}, {"name": "AMD Ryzen 9 9900X", "short": "Ryzen 9 9900X", "cat": "CPU", "mfr": "AMD", "aliases": ["9900x"]}, {"name": "AMD Ryzen 7 9700X", "short": "Ryzen 7 9700X", "cat": "CPU", "mfr": "AMD", "aliases": ["9700x"]}, {"name": "AMD Ryzen 5 9600X", "short": "Ryzen 5 9600X", "cat": "CPU", "mfr": "AMD", "aliases": ["9600x"]}, {"name": "AMD Ryzen 9 7950X3D", "short": "Ryzen 9 7950X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7950x3d"]}, {"name": "AMD Ryzen 9 7900X3D", "short": "Ryzen 9 7900X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7900x3d"]}, {"name": "AMD Ryzen 7 7800X3D", "short": "Ryzen 7 7800X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7800x3d"]}, {"name": "AMD Ryzen 7 7700X", "short": "Ryzen 7 7700X", "cat": "CPU", "mfr": "AMD", "aliases": ["7700x"]}, {"name": "AMD Ryzen 5 7600X", "short": "Ryzen 5 7600X", "cat": "CPU", "mfr": "AMD", "aliases": ["7600x"]}, {"name": "Intel Core Ultra 9 285K", "short": "Core Ultra 9 285K", "cat": "CPU", "mfr": "Intel", "aliases": ["285k", "i9 285k"]}, {"name": "Intel Core Ultra 7 265K", "short": "Core Ultra 7 265K", "cat": "CPU", "mfr": "Intel", "aliases": ["265k"]}, {"name": "Intel Core Ultra 5 245K", "short": "Core Ultra 5 245K", "cat": "CPU", "mfr": "Intel", "aliases": ["245k"]}, {"name": "Intel Core i9-14900K", "short": "i9-14900K", "cat": "CPU", "mfr": "Intel", "aliases": ["14900k", "i9 14900k"]}, {"name": "Intel Core i7-14700K", "short": "i7-14700K", "cat": "CPU", "mfr": "Intel", "aliases": ["14700k"]}, {"name": "Intel Core i5-14600K", "short": "i5-14600K", "cat": "CPU", "mfr": "Intel", "aliases": ["14600k"]}, {"name": "DDR5 32GB Kit (2x16GB)", "short": "DDR5 32GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 32gb", "32gb ddr5", "32 gb ddr5"]}, {"name": "DDR5 64GB Kit (2x32GB)", "short": "DDR5 64GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 64gb", "64gb ddr5"]}, {"name": "DDR5 96GB Kit (2x48GB)", "short": "DDR5 96GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 96gb", "96gb ddr5"]}, {"name": "DDR4 32GB Kit (2x16GB)", "short": "DDR4 32GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr4 32gb", "32gb ddr4"]}, {"name": "DDR4 16GB Kit (2x8GB)", "short": "DDR4 16GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr4 16gb", "16gb ddr4"]}, {"name": "Corsair Dominator Titanium DDR5", "short": "Corsair Dominator DDR5", "cat": "RAM", "mfr": "Corsair", "aliases": ["dominator ddr5", "corsair dominator"]}, {"name": "G.Skill Trident Z5 DDR5", "short": "Trident Z5", "cat": "RAM", "mfr": "G.Skill", "aliases": ["trident z5", "gskill trident"]}, {"name": "Samsung 990 Pro 2TB", "short": "990 Pro 2TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["samsung 990 pro 2tb", "990pro 2tb"]}, {"name": "Samsung 990 Pro 4TB", "short": "990 Pro 4TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["samsung 990 pro 4tb"]}, {"name": "Samsung 980 Pro 2TB", "short": "980 Pro 2TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["980 pro 2tb"]}, {"name": "WD Black SN850X 2TB", "short": "SN850X 2TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn850x 2tb", "wd black 2tb", "sn850 2tb"]}, {"name": "WD Black SN850X 4TB", "short": "SN850X 4TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn850x 4tb"]}, {"name": "WD Black SN8100 2TB", "short": "SN8100 2TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn8100 2tb"]}, {"name": "Seagate FireCuda 530 2TB", "short": "FireCuda 530 2TB", "cat": "SSD", "mfr": "Seagate", "aliases": ["firecuda 530", "seagate firecuda 2tb"]}, {"name": "SK Hynix Platinum P41 2TB", "short": "Hynix P41 2TB", "cat": "SSD", "mfr": "SK Hynix", "aliases": ["p41 2tb", "hynix p41"]}, {"name": "Crucial T705 2TB", "short": "Crucial T705 2TB", "cat": "SSD", "mfr": "Crucial", "aliases": ["t705 2tb", "crucial t705"]}, {"name": "Crucial T500 2TB", "short": "Crucial T500 2TB", "cat": "SSD", "mfr": "Crucial", "aliases": ["t500 2tb"]}, {"name": "Sabrent Rocket 4 Plus 2TB", "short": "Rocket 4+ 2TB", "cat": "SSD", "mfr": "Sabrent", "aliases": ["rocket 4 plus", "sabrent rocket"]}, {"name": "Best 1TB NVMe SSD (Any Brand)", "short": "1TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "1TB NVMe SSD M.2", "aliases": ["1tb nvme", "1 tb nvme", "1tb ssd", "nvme 1tb"]}, {"name": "Best 2TB NVMe SSD (Any Brand)", "short": "2TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "2TB NVMe SSD M.2", "aliases": ["2tb nvme", "2 tb nvme", "2tb ssd", "nvme 2tb"]}, {"name": "Best 4TB NVMe SSD (Any Brand)", "short": "4TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "4TB NVMe SSD M.2", "aliases": ["4tb nvme", "4tb ssd", "nvme 4tb"]}, {"name": "Best 1TB SATA SSD (Any Brand)", "short": "1TB SATA SSD", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "1TB SATA SSD 2.5", "aliases": ["1tb sata", "sata ssd 1tb"]}, {"name": "Best DDR5 32GB Kit (Any Brand)", "short": "DDR5 32GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR5 32GB kit 6000", "aliases": ["ddr5 32 any", "cheap ddr5 32", "best ddr5 32gb"]}, {"name": "Best DDR5 64GB Kit (Any Brand)", "short": "DDR5 64GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR5 64GB kit", "aliases": ["ddr5 64 any", "cheap ddr5 64"]}, {"name": "Best DDR4 16GB Kit (Any Brand)", "short": "DDR4 16GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR4 16GB 3200 kit", "aliases": ["ddr4 16 any", "cheap ddr4"]}, {"name": "Best Budget GPU Under $300", "short": "Budget GPU <$300", "cat": "GPU", "mfr": "Any", "spec": true, "specQuery": "graphics card GPU", "aliases": ["budget gpu", "cheap gpu", "gpu under 300", "gpu 300"]}, {"name": "Best Mid-Range GPU (RTX/RX)", "short": "Mid GPU", "cat": "GPU", "mfr": "Any", "spec": true, "specQuery": "graphics card GeForce Radeon", "aliases": ["mid range gpu", "midrange gpu", "mid gpu"]}, {"name": "Best Gaming CPU (Any Brand)", "short": "Gaming CPU", "cat": "CPU", "mfr": "Any", "spec": true, "specQuery": "gaming CPU processor Ryzen Intel", "aliases": ["gaming cpu", "best cpu", "cpu deal"]}];
-const TRACKED_IDS = new Set(["rtx-4070", "rtx-4080", "ddr5-32gb", "samsung-980-pro-2tb", "wd-sn850x-2tb", "nvidia-geforce-rtx-5080", "ddr5-64gb-kit-2x32gb", "best-1tb-sata-ssd-any-brand", "corsair-vengence-rgb-ddr4", "corsair-vengence-rgb-ddr4-32gb", "nvidia-geforce-rtx-3090-ti", "nvidia-geforce-rtx-4090"]);
+const TRACKED_IDS = new Set(["rtx-4080", "ddr5-32gb", "samsung-980-pro-2tb", "wd-sn850x-2tb", "nvidia-geforce-rtx-5080", "ddr5-64gb-kit-2x32gb", "best-1tb-sata-ssd-any-brand", "corsair-vengence-rgb-ddr4", "corsair-vengence-rgb-ddr4-32gb", "nvidia-geforce-rtx-3090-ti", "nvidia-geforce-rtx-4090", "5070-ti"]);
 
 function normalize(s) {
   return s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -994,7 +1197,7 @@ async function confirmAdd() {
       target_price: target,
       min_price: payload.min_price,
       search_terms: {
-        newegg: q, amazon: q, best_buy: q, micro_center: q, ebay: q, facebook: q,
+        newegg: q, amazon: q, ebay: q, facebook: q,
       }
     }, null, 2);
     navigator.clipboard.writeText(snippet).catch(() => {});
