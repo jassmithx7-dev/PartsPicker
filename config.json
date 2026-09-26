@@ -5,7 +5,7 @@
     "max_results_per_retailer": 3,
     "request_delay_seconds": 2,
     "timeout_seconds": 20,
-    "facebook_zipcode": "",
+    "facebook_zipcode": "40475",
     "facebook_radius_miles": 100
   },
   "items": [
