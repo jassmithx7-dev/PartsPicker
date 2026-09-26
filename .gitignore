@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+.claude/
+
+# Local probe / temp scripts
+_ebay*
+_fb*
+_t.py
+
+*.log
+.chrome*

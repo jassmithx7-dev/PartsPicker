@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Parts Price Report – September 26, 2026</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3349;
+    --text: #e4e6f0;
+    --muted: #7880a0;
+    --accent: #4f8ef7;
+    --green: #3dd68c;
+    --yellow: #f5c542;
+    --red: #f56767;
+    --gpu: #7c5cbf;
+    --ram: #3b9ac4;
+    --ssd: #2fa87e;
+    --other: #8a6542;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ── */
+  .page-wrap { display: flex; min-height: 100vh; }
+  .main-col { flex: 1 1 0; min-width: 0; padding: 24px 20px 48px; }
+  .sidebar { width: 300px; flex-shrink: 0; background: var(--surface); border-left: 1px solid var(--border); padding: 0; }
+  .sidebar-inner { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 16px; }
+  @media (max-width: 900px) {
+    .page-wrap { flex-direction: column; }
+    .sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); }
+    .sidebar-inner { position: static; height: auto; }
+  }
+
+  /* ── Header ── */
+  .header {
+    max-width: 860px; margin: 0 auto 20px;
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border); padding-bottom: 14px;
+  }
+  .header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
+  .header .ts { color: var(--muted); font-size: 0.82rem; margin-left: auto; }
+  .header-actions { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 4px; }
+  .btn-scan {
+    padding: 7px 14px; border-radius: 7px; border: 1px solid var(--accent);
+    background: rgba(79,142,247,.12); color: var(--accent); cursor: pointer;
+    font-size: 0.82rem; font-weight: 700;
+  }
+  .btn-scan:hover { background: rgba(79,142,247,.22); }
+  .btn-scan:disabled { opacity: .45; cursor: default; }
+  .scan-status { font-size: 0.78rem; color: var(--muted); }
+  .scan-status.running { color: var(--yellow); }
+  .scan-status.ok { color: var(--green); }
+  .scan-status.err { color: var(--red); }
+
+  /* ── Search bar ── */
+  .search-section { max-width: 860px; margin: 0 auto 20px; }
+  .search-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+  .search-wrap { position: relative; }
+  .search-input {
+    width: 100%; padding: 12px 16px; font-size: 1rem;
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 10px; color: var(--text);
+    outline: none; transition: border-color .2s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--muted); }
+  .search-dropdown {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 100;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; display: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  }
+  .search-dropdown.open { display: block; }
+  .dd-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border);
+    transition: background .12s;
+  }
+  .dd-item:last-child { border-bottom: none; }
+  .dd-item:hover, .dd-item.active { background: var(--surface2); }
+  .dd-cat {
+    font-size: 0.65rem; font-weight: 700; padding: 2px 6px;
+    border-radius: 4px; flex-shrink: 0;
+  }
+  .dd-cat-GPU  { background: rgba(124,92,191,.25); color: var(--gpu); }
+  .dd-cat-CPU  { background: rgba(196,130,59,.25);  color: #c4823b; }
+  .dd-cat-RAM  { background: rgba(59,154,196,.25);  color: var(--ram); }
+  .dd-cat-SSD  { background: rgba(47,168,126,.25);  color: var(--ssd); }
+  .dd-cat-Other{ background: rgba(138,101,66,.25);  color: var(--other); }
+  .dd-name { flex: 1; font-size: 0.9rem; }
+  .dd-mfr { font-size: 0.72rem; color: var(--muted); }
+  .dd-tracked { font-size: 0.7rem; color: var(--green); font-weight: 600; }
+  .dd-no-results { padding: 12px 14px; color: var(--muted); font-size: 0.85rem; font-style: italic; }
+
+  /* ── Add panel ── */
+  .add-panel {
+    max-width: 860px; margin: 0 auto 20px;
+    background: var(--surface); border: 1.5px solid var(--accent);
+    border-radius: 10px; padding: 14px 16px;
+    display: none; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .add-panel.visible { display: flex; }
+  .add-panel-name { font-weight: 600; flex: 1; min-width: 180px; }
+  .add-panel-cat { font-size: 0.75rem; color: var(--muted); }
+  .add-price-wrap { display: flex; align-items: center; gap: 6px; }
+  .add-price-wrap label { font-size: 0.78rem; color: var(--muted); }
+  .add-price-input {
+    width: 90px; padding: 6px 10px; font-size: 0.88rem;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); outline: none;
+  }
+  .add-price-input:focus { border-color: var(--accent); }
+  .add-cat-select {
+    padding: 6px 10px; font-size: 0.88rem;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); outline: none;
+  }
+  .dd-custom {
+    border-bottom: 1px solid var(--border);
+    background: rgba(79,142,247,.06);
+  }
+  .dd-custom .dd-name { font-weight: 600; }
+  .dd-hint { font-size: 0.68rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .4px; }
+  .btn-add {
+    padding: 7px 18px; border-radius: 7px; border: none; cursor: pointer;
+    font-size: 0.85rem; font-weight: 700;
+    background: var(--accent); color: #fff; transition: opacity .15s;
+  }
+  .btn-add:hover { opacity: .85; }
+  .btn-add:disabled { opacity: .4; cursor: default; }
+  .btn-cancel {
+    padding: 7px 12px; border-radius: 7px; border: 1px solid var(--border);
+    cursor: pointer; font-size: 0.85rem; background: transparent; color: var(--muted);
+  }
+  .add-status { font-size: 0.8rem; width: 100%; }
+  .add-status.ok { color: var(--green); }
+  .add-status.err { color: var(--red); }
+
+  /* ── Chips ── */
+  .summary-bar { max-width: 860px; margin: 0 auto 22px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 12px; font-size: 0.8rem; color: var(--muted);
+  }
+  .chip strong { color: var(--text); display: block; font-size: 0.95rem; }
+
+  /* ── Price cards ── */
+  .cat-section { max-width: 860px; margin: 0 auto 32px; }
+  .cat-title {
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px; padding-left: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cat-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .cat-GPU { background: var(--gpu); }
+  .cat-RAM { background: var(--ram); }
+  .cat-SSD { background: var(--ssd); }
+  .cat-Other { background: var(--other); }
+  .item-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px; margin-bottom: 12px;
+  }
+  .item-card-deal { border-color: rgba(61,214,140,.45); box-shadow: 0 0 0 1px rgba(61,214,140,.12); }
+  .deals-banner {
+    max-width: 860px; margin: 0 auto 16px; padding: 12px 14px;
+    background: rgba(61,214,140,.08); border: 1px solid rgba(61,214,140,.35);
+    border-radius: 10px;
+  }
+  .deals-banner-title {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+    color: var(--green); margin-bottom: 8px;
+  }
+  .deal-row {
+    display: block; font-size: 0.88rem; padding: 4px 0; color: var(--text);
+  }
+  .deal-row span { color: var(--muted); font-size: 0.8rem; }
+  .trust {
+    font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+    padding: 1px 5px; border-radius: 3px; margin-left: 6px; vertical-align: middle;
+  }
+  .trust-good { background: rgba(61,214,140,.15); color: var(--green); }
+  .trust-fair { background: rgba(245,197,66,.15); color: var(--yellow); }
+  .hist-spark { display: flex; align-items: center; margin-right: 8px; }
+  .spark { display: block; }
+  .item-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 14px; gap: 10px;
+  }
+  .item-name { font-size: 0.98rem; font-weight: 600; }
+  .badges { display: flex; gap: 7px; margin-top: 5px; flex-wrap: wrap; }
+  .badge { font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; font-weight: 600; }
+  .badge-target { background: rgba(79,142,247,.15); color: var(--accent); border: 1px solid rgba(79,142,247,.3); }
+  .badge-min { background: rgba(245,197,66,.12); color: var(--yellow); border: 1px solid rgba(245,197,66,.3); }
+  .badge-min-empty { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
+  .badge-deal { background: rgba(61,214,140,.15); color: var(--green); border: 1px solid rgba(61,214,140,.3); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.6 } }
+  .best-block { text-align: right; flex-shrink: 0; }
+  .best-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+  .best-val { font-size: 1.55rem; font-weight: 800; color: var(--green); }
+  .best-at { font-size: 0.72rem; color: var(--muted); }
+  .remove-btn {
+    background: transparent; border: 1px solid var(--border);
+    border-radius: 5px; color: var(--muted); cursor: pointer;
+    font-size: 0.75rem; padding: 2px 6px; margin-top: 2px;
+    transition: border-color .15s, color .15s;
+  }
+  .remove-btn:hover { border-color: var(--red); color: var(--red); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .price-cell {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 9px 11px;
+    display: block; text-decoration: none; color: inherit; cursor: pointer;
+    transition: border-color .15s, background .15s, transform .12s;
+  }
+  .price-cell:hover {
+    border-color: var(--accent); background: rgba(79,142,247,.08);
+    text-decoration: none; transform: translateY(-1px);
+  }
+  .price-cell.best { border-color: var(--green); background: rgba(61,214,140,.07); }
+  .price-cell.best:hover { border-color: var(--green); background: rgba(61,214,140,.12); }
+  .price-cell.warn { border-color: var(--yellow); }
+  .r-name { font-size: 0.68rem; color: var(--muted); margin-bottom: 3px; font-weight: 600; letter-spacing: .3px; display: flex; align-items: center; flex-wrap: wrap; }
+  .r-price { font-size: 0.95rem; font-weight: 700; }
+  .r-price.good { color: var(--green); }
+  .r-price.warn { color: var(--yellow); }
+  .r-price.miss { color: var(--muted); }
+  .r-ship { font-size: 0.62rem; color: var(--muted); margin-top: 2px; }
+  .r-item { font-size: 0.66rem; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .no-data { font-size: 0.76rem; color: var(--muted); font-style: italic; }
+  .hist-line {
+    margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--border);
+    font-size: 0.73rem; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .hist-stat { display: flex; flex-direction: column; gap: 1px; }
+  .hist-stat strong { color: var(--text); font-size: 0.8rem; }
+  .error-banner {
+    max-width: 860px; margin: 0 auto 16px; padding: 9px 14px;
+    background: rgba(245,103,103,.08); border: 1px solid rgba(245,103,103,.25);
+    border-radius: 8px; font-size: 0.76rem; color: var(--muted);
+  }
+  .error-banner strong { color: var(--red); }
+  .footer {
+    max-width: 860px; margin: 32px auto 0; font-size: 0.7rem; color: var(--muted);
+    text-align: center; border-top: 1px solid var(--border); padding-top: 12px;
+  }
+  .footer .trust { cursor: help; }
+
+  /* ── Sidebar / Release window ── */
+  .sidebar-title {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .sidebar-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .rel-row {
+    padding: 11px 0; border-bottom: 1px solid var(--border);
+  }
+  .rel-row:last-child { border-bottom: none; }
+  .rel-top { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+  .rel-name { font-size: 0.85rem; font-weight: 600; flex: 1; line-height: 1.3; }
+  .rel-badge {
+    font-size: 0.62rem; font-weight: 700; padding: 2px 6px;
+    border-radius: 4px; border: 1px solid; text-transform: uppercase;
+    letter-spacing: .4px; flex-shrink: 0; margin-top: 2px;
+  }
+  .rel-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+  .rel-cat { font-size: 0.7rem; font-weight: 700; }
+  .rel-when { font-size: 0.75rem; color: var(--muted); }
+  .rel-note { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+  .edit-releases-link {
+    display: block; margin-top: 14px; font-size: 0.7rem; color: var(--muted); text-align: center;
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 18px;
+    font-size: 0.85rem; box-shadow: 0 4px 20px rgba(0,0,0,.5);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .25s, transform .25s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.ok { border-color: var(--green); color: var(--green); }
+  .toast.err { border-color: var(--red); color: var(--red); }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ═══ MAIN COLUMN ═══ -->
+<div class="main-col">
+
+  <div class="header">
+    <h1>PC Parts Price Report</h1>
+    <span class="ts">Last scrape: September 26, 2026 at 06:32 PM</span>
+    <div class="header-actions">
+      <button id="scanBtn" class="btn-scan" onclick="startScan()">Scan again</button>
+      <span id="scanStatus" class="scan-status">Needs companion server on :5001</span>
+    </div>
+  </div>
+
+  
+
+  <!-- Search bar -->
+  <div class="search-section">
+    <div class="search-label">What are you looking for? — type anything, or pick a suggestion</div>
+    <div class="search-wrap">
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="e.g. Corsair Vengeance RGB Pro 32GB DDR4 3600 CL18…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <div id="searchDropdown" class="search-dropdown"></div>
+    </div>
+  </div>
+
+  <!-- Add panel (shown after selecting a part) -->
+  <div id="addPanel" class="add-panel">
+    <div>
+      <div id="addPanelName" class="add-panel-name"></div>
+      <div id="addPanelCat" class="add-panel-cat"></div>
+    </div>
+    <div class="add-price-wrap">
+      <label for="addCatSelect">Category</label>
+      <select id="addCatSelect" class="add-cat-select">
+        <option value="GPU">GPU</option>
+        <option value="RAM">RAM</option>
+        <option value="SSD">SSD</option>
+        <option value="CPU">CPU</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="add-price-wrap">
+      <label for="addPriceInput">Target $</label>
+      <input id="addPriceInput" class="add-price-input" type="number" min="0" step="1" placeholder="optional" />
+    </div>
+    <div class="add-price-wrap">
+      <label for="addMinInput" title="Ignore listings cheaper than this (filters damaged/parts junk)">Min $</label>
+      <input id="addMinInput" class="add-price-input" type="number" min="0" step="1" placeholder="floor" />
+    </div>
+    <button id="addBtn" class="btn-add" onclick="confirmAdd()">Add to Watchlist</button>
+    <button class="btn-cancel" onclick="closeAddPanel()">Cancel</button>
+    <div id="addStatus" class="add-status"></div>
+  </div>
+
+  <!-- Summary chips -->
+  <div class="summary-bar">
+    <div class="chip"><strong id="chipTotal">12</strong>Tracked</div>
+    <div class="chip"><strong>0</strong>With Prices</div>
+    <div class="chip"><strong style="color:var(--green)">0</strong>At or Below Target</div>
+  </div>
+
+  <div class="error-banner"><strong>No prices found:</strong> NVIDIA RTX 4070, NVIDIA RTX 4080 Super, DDR5 32GB (2x16) Kit, Samsung 990 Pro 2TB NVMe, WD Black SN850X 2TB NVMe, NVIDIA GeForce RTX 5080, DDR5 64GB Kit (2x32GB), Best 1TB SATA SSD (Any Brand), corsair vengence rgb ddr4, corsair vengence rgb ddr4 32gb, NVIDIA GeForce RTX 3090 Ti, NVIDIA GeForce RTX 4090 — check search terms in config.json</div>
+
+  <!-- Price cards -->
+  <div id="priceArea">
+    <div class="cat-section" id="cat-GPU">
+          <div class="cat-title"><span class="cat-dot cat-GPU"></span>GPU</div>
+          <div class="item-card" id="card-rtx-4070">
+              <div class="item-header">
+                <div><div class="item-name">NVIDIA RTX 4070</div><div class="badges"><span class="badge badge-target">Target: $550.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('rtx-4070')" style="cursor:pointer">Min: $350.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('rtx-4070')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,2.0 6.7,20.8 11.4,20.8 16.1,19.4 20.8,22.8 25.4,19.2 30.1,22.0 34.8,18.7 39.5,18.7 44.2,18.7 48.9,29.4 53.6,29.4 58.3,29.4 63.0,29.4 67.7,17.2 72.3,29.4 77.0,29.4 81.7,29.4 86.4,29.4 91.1,29.4 95.8,29.4 100.5,30.0 105.2,29.4 109.9,29.4 114.6,29.3 119.2,29.3 123.9,29.3 128.6,29.3 133.3,29.3 138.0,29.3"/><circle cx="138.0" cy="29.3" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$349.95</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$738.00</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$415.05</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-rtx-4080">
+              <div class="item-header">
+                <div><div class="item-name">NVIDIA RTX 4080 Super</div><div class="badges"><span class="badge badge-target">Target: $950.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('rtx-4080')" style="cursor:pointer">Min: $700.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('rtx-4080')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,12.2 6.7,22.7 11.4,22.7 16.1,22.7 20.8,22.7 25.4,30.0 30.1,30.0 34.8,30.0 39.5,22.7 44.2,18.6 48.9,19.7 53.6,18.1 58.3,19.2 63.0,17.9 67.7,17.9 72.3,17.1 77.0,17.1 81.7,19.8 86.4,19.8 91.1,16.3 95.8,15.0 100.5,2.0 105.2,20.1 109.9,20.1 114.6,2.0 119.2,20.1 123.9,20.1 128.6,15.4 133.3,7.4 138.0,18.4"/><circle cx="138.0" cy="18.4" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$639.86</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$1,519.00</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$998.40</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-nvidia-geforce-rtx-5080">
+              <div class="item-header">
+                <div><div class="item-name">NVIDIA GeForce RTX 5080</div><div class="badges"><span class="badge badge-target">Target: $1,000.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-5080')" style="cursor:pointer">Min: $800.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-5080')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,17.0 6.7,20.7 11.4,20.7 16.1,12.8 20.8,12.4 25.4,19.2 30.1,12.3 34.8,13.8 39.5,12.3 44.2,13.4 48.9,12.3 53.6,12.3 58.3,10.8 63.0,16.5 67.7,14.4 72.3,12.3 77.0,17.8 81.7,14.4 86.4,16.5 91.1,17.4 95.8,30.0 100.5,12.3 105.2,15.5 109.9,4.9 114.6,24.8 119.2,24.8 123.9,17.8 128.6,4.0 133.3,2.0 138.0,12.4"/><circle cx="138.0" cy="12.4" r="2.5" fill="#f5c542"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$975.00</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$1,649.00</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,337.63</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-nvidia-geforce-rtx-3090-ti">
+              <div class="item-header">
+                <div><div class="item-name">NVIDIA GeForce RTX 3090 Ti</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-3090-ti')" style="cursor:pointer">Min: $500.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-3090-ti')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.8 7.2,28.8 12.5,28.8 17.7,28.8 22.9,28.8 28.2,28.8 33.4,28.8 38.6,30.0 43.8,30.0 49.1,30.0 54.3,30.0 59.5,30.0 64.8,30.0 70.0,30.0 75.2,28.8 80.5,28.8 85.7,11.8 90.9,11.8 96.2,10.9 101.4,10.9 106.6,10.5 111.8,10.5 117.1,10.5 122.3,9.5 127.5,10.5 132.8,2.0 138.0,10.5"/><circle cx="138.0" cy="10.5" r="2.5" fill="#f5c542"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$409.00</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$1,999.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$895.00</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>27</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-nvidia-geforce-rtx-4090">
+              <div class="item-header">
+                <div><div class="item-name">NVIDIA GeForce RTX 4090</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-4090')" style="cursor:pointer">Min: $1,200.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-4090')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.5 9.2,28.5 16.3,28.5 23.5,28.5 30.6,28.5 37.8,28.5 44.9,27.9 52.1,30.0 59.3,30.0 66.4,27.9 73.6,27.9 80.7,12.0 87.9,30.0 95.1,6.0 102.2,29.0 109.4,29.0 116.5,2.0 123.7,29.4 130.8,29.4 138.0,3.3"/><circle cx="138.0" cy="3.3" r="2.5" fill="#f5c542"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$311.98</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$4,495.00</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,171.35</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>20</strong></div>
+                    </div>
+            </div>
+        </div>
+<div class="cat-section" id="cat-RAM">
+          <div class="cat-title"><span class="cat-dot cat-RAM"></span>RAM</div>
+          <div class="item-card" id="card-ddr5-32gb">
+              <div class="item-header">
+                <div><div class="item-name">DDR5 32GB (2x16) Kit</div><div class="badges"><span class="badge badge-target">Target: $90.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('ddr5-32gb')" style="cursor:pointer">Min: $50.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('ddr5-32gb')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,8.0 6.9,27.4 11.7,27.4 16.6,28.8 21.4,28.8 26.3,27.4 31.1,15.4 36.0,15.4 40.9,15.1 45.7,21.5 50.6,21.5 55.4,21.5 60.3,21.5 65.1,30.0 70.0,22.8 74.9,22.8 79.7,15.1 84.6,15.1 89.4,15.1 94.3,15.1 99.1,14.8 104.0,22.2 108.9,22.2 113.7,8.0 118.6,22.2 123.4,2.0 128.3,16.9 133.1,16.9 138.0,16.9"/><circle cx="138.0" cy="16.9" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$355.89</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$449.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$392.10</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>29</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-ddr5-64gb-kit-2x32gb">
+              <div class="item-header">
+                <div><div class="item-name">DDR5 64GB Kit (2x32GB)</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('ddr5-64gb-kit-2x32gb')" style="cursor:pointer">Min: $100.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('ddr5-64gb-kit-2x32gb')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,6.6 6.7,30.0 11.4,30.0 16.1,30.0 20.8,28.6 25.4,28.6 30.1,28.6 34.8,28.6 39.5,28.6 44.2,28.7 48.9,28.6 53.6,28.4 58.3,28.4 63.0,28.4 67.7,20.8 72.3,20.8 77.0,20.8 81.7,23.8 86.4,23.8 91.1,23.8 95.8,24.4 100.5,20.8 105.2,20.8 109.9,6.2 114.6,7.9 119.2,2.0 123.9,7.9 128.6,17.8 133.3,7.9 138.0,24.4"/><circle cx="138.0" cy="24.4" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$565.57</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$989.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$688.71</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-corsair-vengence-rgb-ddr4">
+              <div class="item-header">
+                <div><div class="item-name">corsair vengence rgb ddr4</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('corsair-vengence-rgb-ddr4')" style="cursor:pointer">Min: $40.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('corsair-vengence-rgb-ddr4')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,30.0 7.2,30.0 12.5,29.7 17.7,29.7 22.9,29.7 28.2,28.7 33.4,29.7 38.6,29.7 43.8,29.7 49.1,29.7 54.3,29.7 59.5,29.7 64.8,29.7 70.0,29.7 75.2,29.7 80.5,29.7 85.7,29.7 90.9,29.7 96.2,27.3 101.4,27.3 106.6,27.3 111.8,27.3 117.1,27.3 122.3,28.4 127.5,2.0 132.8,2.0 138.0,6.0"/><circle cx="138.0" cy="6.0" r="2.5" fill="#f5c542"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$34.99</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$139.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$48.92</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>27</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-corsair-vengence-rgb-ddr4-32gb">
+              <div class="item-header">
+                <div><div class="item-name">corsair vengence rgb ddr4 32gb</div><div class="badges"><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('corsair-vengence-rgb-ddr4-32gb')" style="cursor:pointer">Min: $40.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('corsair-vengence-rgb-ddr4-32gb')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,22.4 7.2,18.0 12.5,18.9 17.7,15.8 22.9,15.8 28.2,15.8 33.4,19.7 38.6,15.8 43.8,20.1 49.1,15.8 54.3,14.6 59.5,30.0 64.8,30.0 70.0,30.0 75.2,15.8 80.5,16.8 85.7,13.5 90.9,13.5 96.2,2.0 101.4,14.4 106.6,16.0 111.8,24.9 117.1,24.9 122.3,24.9 127.5,24.9 132.8,24.9 138.0,24.9"/><circle cx="138.0" cy="24.9" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$87.83</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$209.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$134.10</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>27</strong></div>
+                    </div>
+            </div>
+        </div>
+<div class="cat-section" id="cat-SSD">
+          <div class="cat-title"><span class="cat-dot cat-SSD"></span>SSD</div>
+          <div class="item-card" id="card-samsung-980-pro-2tb">
+              <div class="item-header">
+                <div><div class="item-name">Samsung 990 Pro 2TB NVMe</div><div class="badges"><span class="badge badge-target">Target: $150.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('samsung-980-pro-2tb')" style="cursor:pointer">Min: $80.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('samsung-980-pro-2tb')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,17.4 6.7,17.4 11.4,17.4 16.1,17.4 20.8,17.4 25.4,17.4 30.1,17.4 34.8,17.4 39.5,17.4 44.2,17.4 48.9,17.4 53.6,30.0 58.3,17.4 63.0,17.4 67.7,15.8 72.3,17.4 77.0,17.4 81.7,17.4 86.4,17.4 91.1,15.4 95.8,15.4 100.5,16.4 105.2,17.6 109.9,16.4 114.6,19.4 119.2,16.9 123.9,15.3 128.6,4.0 133.3,4.0 138.0,2.0"/><circle cx="138.0" cy="2.0" r="2.5" fill="#f5c542"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$116.70</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$389.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$252.08</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-wd-sn850x-2tb">
+              <div class="item-header">
+                <div><div class="item-name">WD Black SN850X 2TB NVMe</div><div class="badges"><span class="badge badge-target">Target: $130.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('wd-sn850x-2tb')" style="cursor:pointer">Min: $70.00 ✎</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('wd-sn850x-2tb')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,2.0 6.7,16.8 11.4,25.9 16.1,25.9 20.8,16.8 25.4,22.0 30.1,21.9 34.8,16.8 39.5,16.8 44.2,22.0 48.9,27.0 53.6,16.8 58.3,22.0 63.0,16.8 67.7,16.8 72.3,16.8 77.0,16.8 81.7,16.8 86.4,16.8 91.1,16.8 95.8,16.8 100.5,16.8 105.2,16.8 109.9,19.4 114.6,30.0 119.2,22.0 123.9,4.0 128.6,21.9 133.3,23.3 138.0,21.9"/><circle cx="138.0" cy="21.9" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$219.00</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$327.49</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$262.43</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div><div class="item-card" id="card-best-1tb-sata-ssd-any-brand">
+              <div class="item-header">
+                <div><div class="item-name">Best 1TB SATA SSD (Any Brand)</div><div class="badges"><span class="badge badge-min-empty" title="Set a minimum listing price" onclick="event.stopPropagation(); setMinPrice('best-1tb-sata-ssd-any-brand')" style="cursor:pointer">+ Min price</span></div></div>
+                <div style="display:flex;align-items:flex-start;gap:10px">
+                  <div class="best-block"><div class="best-label">Best Price</div><div class="best-val" style="color:var(--muted)">—</div></div>
+                  <button class="remove-btn" onclick="removeItem('best-1tb-sata-ssd-any-brand')" title="Remove from watchlist">✕</button>
+                </div>
+              </div>
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Best Buy <span class="trust trust-fair" title="Search can drift to similar SKUs">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Micro Center <span class="trust trust-good" title="Stock varies by store">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+              <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,3.1 6.7,29.1 11.4,29.1 16.1,29.1 20.8,30.0 25.4,30.0 30.1,30.0 34.8,30.0 39.5,30.0 44.2,30.0 48.9,30.0 53.6,30.0 58.3,30.0 63.0,30.0 67.7,30.0 72.3,30.0 77.0,30.0 81.7,30.0 86.4,30.0 91.1,30.0 95.8,30.0 100.5,30.0 105.2,30.0 109.9,2.0 114.6,30.0 119.2,30.0 123.9,30.0 128.6,29.6 133.3,29.6 138.0,29.6"/><circle cx="138.0" cy="29.6" r="2.5" fill="#4f8ef7"/></svg></div>
+                      
+                      <div class="hist-stat"><span>30-day Low</span><strong>$21.90</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$120.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$28.81</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>30</strong></div>
+                    </div>
+            </div>
+        </div>
+  </div>
+
+  <div class="footer">
+    <div style="margin-bottom:6px">Retailer trust: <span class="trust trust-good" title="Reliable titles & prices">Newegg</span> · <span class="trust trust-fair" title="Search can drift to similar SKUs">Best Buy</span> · <span class="trust trust-good" title="Stock varies by store">Micro Center</span> · <span class="trust trust-fair" title="Titles sometimes approximate">Amazon</span> · <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">eBay</span> · <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">Facebook</span></div>
+    <div style="margin-bottom:8px">Facebook Marketplace: <strong id="fbZipLabel">no ZIP set</strong> · <span id="fbRadiusLabel">100</span> mi
+      <button type="button" class="btn-cancel" style="margin-left:8px;padding:4px 10px;font-size:0.72rem" onclick="setFbZip()">Set ZIP</button>
+    </div>
+    Hover a badge for notes. Always verify before purchasing — prices change frequently.
+  </div>
+
+</div><!-- /main-col -->
+
+<!-- ═══ SIDEBAR ═══ -->
+<div class="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-title">Upcoming Releases</div>
+    
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">NVIDIA RTX 5080 Super</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q4 2026</span>
+          </div>
+          <div class="rel-note">Expected performance between RTX 5080 and 5090</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">NVIDIA RTX 5070 Ti Super</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q4 2026</span>
+          </div>
+          <div class="rel-note">Likely to target AMD RX 9070 XT segment</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">NVIDIA RTX 5060</span>
+            <span class="rel-badge" style="color:#4f8ef7;background:#0e1a2e;border-color:#4f8ef733">confirmed</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q3 2026</span>
+          </div>
+          <div class="rel-note">16GB variant expected; budget-segment Blackwell</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">NVIDIA RTX 5050</span>
+            <span class="rel-badge" style="color:#f5c542;background:#2a2510;border-color:#f5c54233">leaked</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q4 2026</span>
+          </div>
+          <div class="rel-note">Entry-level Blackwell; expected around $199â€“$249</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">AMD Radeon RX 9060 XT</span>
+            <span class="rel-badge" style="color:#4f8ef7;background:#0e1a2e;border-color:#4f8ef733">confirmed</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q3 2026</span>
+          </div>
+          <div class="rel-note">RDNA 4 mid-range; direct competition for RTX 5060 Ti</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">AMD Radeon RX 9060</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q4 2026</span>
+          </div>
+          <div class="rel-note">Entry-level RDNA 4</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">Intel Arc B770</span>
+            <span class="rel-badge" style="color:#f5c542;background:#2a2510;border-color:#f5c54233">leaked</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--gpu)">GPU</span>
+            <span class="rel-when">Q3 2026</span>
+          </div>
+          <div class="rel-note">Battlemage mid-range; expected to challenge RX 7700 XT</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">AMD Ryzen 9000X3D</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:#c4823b">CPU</span>
+            <span class="rel-when">Q4 2026</span>
+          </div>
+          <div class="rel-note">Zen 5 + 3D V-Cache refresh; target for gaming workloads</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">Intel Core Ultra 300 (Panther Lake)</span>
+            <span class="rel-badge" style="color:#4f8ef7;background:#0e1a2e;border-color:#4f8ef733">confirmed</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:#c4823b">CPU</span>
+            <span class="rel-when">H1 2027</span>
+          </div>
+          <div class="rel-note">Intel's next desktop platform; new socket expected</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">AMD Zen 6 (Ryzen 10000?)</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:#c4823b">CPU</span>
+            <span class="rel-when">2027</span>
+          </div>
+          <div class="rel-note">Next-gen AMD desktop platform</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">DDR6 Memory Standard</span>
+            <span class="rel-badge" style="color:#4f8ef7;background:#0e1a2e;border-color:#4f8ef733">confirmed</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--ram)">RAM</span>
+            <span class="rel-when">2027</span>
+          </div>
+          <div class="rel-note">Standard finalized; consumer kits expected in 2027â€“2028</div>
+        </div>
+
+        <div class="rel-row">
+          <div class="rel-top">
+            <span class="rel-name">PCIe 6.0 SSDs</span>
+            <span class="rel-badge" style="color:#7880a0;background:#2e3349;border-color:#7880a033">rumored</span>
+          </div>
+          <div class="rel-meta">
+            <span class="rel-cat" style="color:var(--ssd)">SSD</span>
+            <span class="rel-when">2027</span>
+          </div>
+          <div class="rel-note">Next-gen NVMe interface; consumer products still far out</div>
+        </div>
+    <a class="edit-releases-link" href="#" onclick="alert('Edit releases.json in the project folder to add or update upcoming releases.')">
+      Edit releases.json
+    </a>
+  </div>
+</div>
+
+</div><!-- /page-wrap -->
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ── Parts database & fuzzy search ──────────────────────────────────────────
+const PARTS_DB = [{"name": "NVIDIA GeForce RTX 5090", "short": "RTX 5090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5090"]}, {"name": "NVIDIA GeForce RTX 5080 Super", "short": "RTX 5080 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5080s", "5080 super"]}, {"name": "NVIDIA GeForce RTX 5080", "short": "RTX 5080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5080"]}, {"name": "NVIDIA GeForce RTX 5070 Ti Super", "short": "RTX 5070 Ti Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070tis"]}, {"name": "NVIDIA GeForce RTX 5070 Ti", "short": "RTX 5070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070ti", "5070 ti"]}, {"name": "NVIDIA GeForce RTX 5070 Super", "short": "RTX 5070 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070s", "5070 super"]}, {"name": "NVIDIA GeForce RTX 5070", "short": "RTX 5070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5070"]}, {"name": "NVIDIA GeForce RTX 5060 Ti", "short": "RTX 5060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5060ti", "5060 ti"]}, {"name": "NVIDIA GeForce RTX 5060", "short": "RTX 5060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5060"]}, {"name": "NVIDIA GeForce RTX 5050", "short": "RTX 5050", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["5050"]}, {"name": "NVIDIA GeForce RTX 4090", "short": "RTX 4090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4090"]}, {"name": "NVIDIA GeForce RTX 4080 Super", "short": "RTX 4080 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4080s", "4080 super"]}, {"name": "NVIDIA GeForce RTX 4080", "short": "RTX 4080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4080"]}, {"name": "NVIDIA GeForce RTX 4070 Ti Super", "short": "RTX 4070 Ti Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070tis"]}, {"name": "NVIDIA GeForce RTX 4070 Ti", "short": "RTX 4070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070ti"]}, {"name": "NVIDIA GeForce RTX 4070 Super", "short": "RTX 4070 Super", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070s", "4070 super"]}, {"name": "NVIDIA GeForce RTX 4070", "short": "RTX 4070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4070"]}, {"name": "NVIDIA GeForce RTX 4060 Ti", "short": "RTX 4060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4060ti"]}, {"name": "NVIDIA GeForce RTX 4060", "short": "RTX 4060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["4060"]}, {"name": "NVIDIA GeForce RTX 3090 Ti", "short": "RTX 3090 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3090ti"]}, {"name": "NVIDIA GeForce RTX 3090", "short": "RTX 3090", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3090"]}, {"name": "NVIDIA GeForce RTX 3080 Ti", "short": "RTX 3080 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3080ti"]}, {"name": "NVIDIA GeForce RTX 3080", "short": "RTX 3080", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3080"]}, {"name": "NVIDIA GeForce RTX 3070 Ti", "short": "RTX 3070 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3070ti"]}, {"name": "NVIDIA GeForce RTX 3070", "short": "RTX 3070", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3070"]}, {"name": "NVIDIA GeForce RTX 3060 Ti", "short": "RTX 3060 Ti", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3060ti"]}, {"name": "NVIDIA GeForce RTX 3060", "short": "RTX 3060", "cat": "GPU", "mfr": "NVIDIA", "aliases": ["3060"]}, {"name": "AMD Radeon RX 9070 XT", "short": "RX 9070 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9070xt", "9070xt", "9070 xt"]}, {"name": "AMD Radeon RX 9070", "short": "RX 9070", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9070", "9070"]}, {"name": "AMD Radeon RX 9060 XT", "short": "RX 9060 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9060xt", "9060xt"]}, {"name": "AMD Radeon RX 9060", "short": "RX 9060", "cat": "GPU", "mfr": "AMD", "aliases": ["rx9060", "9060"]}, {"name": "AMD Radeon RX 7900 XTX", "short": "RX 7900 XTX", "cat": "GPU", "mfr": "AMD", "aliases": ["7900xtx", "rx7900xtx"]}, {"name": "AMD Radeon RX 7900 XT", "short": "RX 7900 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7900xt"]}, {"name": "AMD Radeon RX 7900 GRE", "short": "RX 7900 GRE", "cat": "GPU", "mfr": "AMD", "aliases": ["7900gre"]}, {"name": "AMD Radeon RX 7800 XT", "short": "RX 7800 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7800xt"]}, {"name": "AMD Radeon RX 7700 XT", "short": "RX 7700 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7700xt"]}, {"name": "AMD Radeon RX 7600 XT", "short": "RX 7600 XT", "cat": "GPU", "mfr": "AMD", "aliases": ["7600xt"]}, {"name": "AMD Radeon RX 7600", "short": "RX 7600", "cat": "GPU", "mfr": "AMD", "aliases": ["7600"]}, {"name": "Intel Arc B580", "short": "Arc B580", "cat": "GPU", "mfr": "Intel", "aliases": ["b580", "arc b580"]}, {"name": "Intel Arc B770", "short": "Arc B770", "cat": "GPU", "mfr": "Intel", "aliases": ["b770", "arc b770"]}, {"name": "Intel Arc A770", "short": "Arc A770", "cat": "GPU", "mfr": "Intel", "aliases": ["a770", "arc a770"]}, {"name": "AMD Ryzen 9 9950X", "short": "Ryzen 9 9950X", "cat": "CPU", "mfr": "AMD", "aliases": ["9950x", "r9 9950x"]}, {"name": "AMD Ryzen 9 9900X", "short": "Ryzen 9 9900X", "cat": "CPU", "mfr": "AMD", "aliases": ["9900x"]}, {"name": "AMD Ryzen 7 9700X", "short": "Ryzen 7 9700X", "cat": "CPU", "mfr": "AMD", "aliases": ["9700x"]}, {"name": "AMD Ryzen 5 9600X", "short": "Ryzen 5 9600X", "cat": "CPU", "mfr": "AMD", "aliases": ["9600x"]}, {"name": "AMD Ryzen 9 7950X3D", "short": "Ryzen 9 7950X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7950x3d"]}, {"name": "AMD Ryzen 9 7900X3D", "short": "Ryzen 9 7900X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7900x3d"]}, {"name": "AMD Ryzen 7 7800X3D", "short": "Ryzen 7 7800X3D", "cat": "CPU", "mfr": "AMD", "aliases": ["7800x3d"]}, {"name": "AMD Ryzen 7 7700X", "short": "Ryzen 7 7700X", "cat": "CPU", "mfr": "AMD", "aliases": ["7700x"]}, {"name": "AMD Ryzen 5 7600X", "short": "Ryzen 5 7600X", "cat": "CPU", "mfr": "AMD", "aliases": ["7600x"]}, {"name": "Intel Core Ultra 9 285K", "short": "Core Ultra 9 285K", "cat": "CPU", "mfr": "Intel", "aliases": ["285k", "i9 285k"]}, {"name": "Intel Core Ultra 7 265K", "short": "Core Ultra 7 265K", "cat": "CPU", "mfr": "Intel", "aliases": ["265k"]}, {"name": "Intel Core Ultra 5 245K", "short": "Core Ultra 5 245K", "cat": "CPU", "mfr": "Intel", "aliases": ["245k"]}, {"name": "Intel Core i9-14900K", "short": "i9-14900K", "cat": "CPU", "mfr": "Intel", "aliases": ["14900k", "i9 14900k"]}, {"name": "Intel Core i7-14700K", "short": "i7-14700K", "cat": "CPU", "mfr": "Intel", "aliases": ["14700k"]}, {"name": "Intel Core i5-14600K", "short": "i5-14600K", "cat": "CPU", "mfr": "Intel", "aliases": ["14600k"]}, {"name": "DDR5 32GB Kit (2x16GB)", "short": "DDR5 32GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 32gb", "32gb ddr5", "32 gb ddr5"]}, {"name": "DDR5 64GB Kit (2x32GB)", "short": "DDR5 64GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 64gb", "64gb ddr5"]}, {"name": "DDR5 96GB Kit (2x48GB)", "short": "DDR5 96GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr5 96gb", "96gb ddr5"]}, {"name": "DDR4 32GB Kit (2x16GB)", "short": "DDR4 32GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr4 32gb", "32gb ddr4"]}, {"name": "DDR4 16GB Kit (2x8GB)", "short": "DDR4 16GB Kit", "cat": "RAM", "mfr": "Various", "aliases": ["ddr4 16gb", "16gb ddr4"]}, {"name": "Corsair Dominator Titanium DDR5", "short": "Corsair Dominator DDR5", "cat": "RAM", "mfr": "Corsair", "aliases": ["dominator ddr5", "corsair dominator"]}, {"name": "G.Skill Trident Z5 DDR5", "short": "Trident Z5", "cat": "RAM", "mfr": "G.Skill", "aliases": ["trident z5", "gskill trident"]}, {"name": "Samsung 990 Pro 2TB", "short": "990 Pro 2TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["samsung 990 pro 2tb", "990pro 2tb"]}, {"name": "Samsung 990 Pro 4TB", "short": "990 Pro 4TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["samsung 990 pro 4tb"]}, {"name": "Samsung 980 Pro 2TB", "short": "980 Pro 2TB", "cat": "SSD", "mfr": "Samsung", "aliases": ["980 pro 2tb"]}, {"name": "WD Black SN850X 2TB", "short": "SN850X 2TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn850x 2tb", "wd black 2tb", "sn850 2tb"]}, {"name": "WD Black SN850X 4TB", "short": "SN850X 4TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn850x 4tb"]}, {"name": "WD Black SN8100 2TB", "short": "SN8100 2TB", "cat": "SSD", "mfr": "WD", "aliases": ["sn8100 2tb"]}, {"name": "Seagate FireCuda 530 2TB", "short": "FireCuda 530 2TB", "cat": "SSD", "mfr": "Seagate", "aliases": ["firecuda 530", "seagate firecuda 2tb"]}, {"name": "SK Hynix Platinum P41 2TB", "short": "Hynix P41 2TB", "cat": "SSD", "mfr": "SK Hynix", "aliases": ["p41 2tb", "hynix p41"]}, {"name": "Crucial T705 2TB", "short": "Crucial T705 2TB", "cat": "SSD", "mfr": "Crucial", "aliases": ["t705 2tb", "crucial t705"]}, {"name": "Crucial T500 2TB", "short": "Crucial T500 2TB", "cat": "SSD", "mfr": "Crucial", "aliases": ["t500 2tb"]}, {"name": "Sabrent Rocket 4 Plus 2TB", "short": "Rocket 4+ 2TB", "cat": "SSD", "mfr": "Sabrent", "aliases": ["rocket 4 plus", "sabrent rocket"]}, {"name": "Best 1TB NVMe SSD (Any Brand)", "short": "1TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "1TB NVMe SSD M.2", "aliases": ["1tb nvme", "1 tb nvme", "1tb ssd", "nvme 1tb"]}, {"name": "Best 2TB NVMe SSD (Any Brand)", "short": "2TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "2TB NVMe SSD M.2", "aliases": ["2tb nvme", "2 tb nvme", "2tb ssd", "nvme 2tb"]}, {"name": "Best 4TB NVMe SSD (Any Brand)", "short": "4TB NVMe", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "4TB NVMe SSD M.2", "aliases": ["4tb nvme", "4tb ssd", "nvme 4tb"]}, {"name": "Best 1TB SATA SSD (Any Brand)", "short": "1TB SATA SSD", "cat": "SSD", "mfr": "Any", "spec": true, "specQuery": "1TB SATA SSD 2.5", "aliases": ["1tb sata", "sata ssd 1tb"]}, {"name": "Best DDR5 32GB Kit (Any Brand)", "short": "DDR5 32GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR5 32GB kit 6000", "aliases": ["ddr5 32 any", "cheap ddr5 32", "best ddr5 32gb"]}, {"name": "Best DDR5 64GB Kit (Any Brand)", "short": "DDR5 64GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR5 64GB kit", "aliases": ["ddr5 64 any", "cheap ddr5 64"]}, {"name": "Best DDR4 16GB Kit (Any Brand)", "short": "DDR4 16GB Any", "cat": "RAM", "mfr": "Any", "spec": true, "specQuery": "DDR4 16GB 3200 kit", "aliases": ["ddr4 16 any", "cheap ddr4"]}, {"name": "Best Budget GPU Under $300", "short": "Budget GPU <$300", "cat": "GPU", "mfr": "Any", "spec": true, "specQuery": "graphics card GPU", "aliases": ["budget gpu", "cheap gpu", "gpu under 300", "gpu 300"]}, {"name": "Best Mid-Range GPU (RTX/RX)", "short": "Mid GPU", "cat": "GPU", "mfr": "Any", "spec": true, "specQuery": "graphics card GeForce Radeon", "aliases": ["mid range gpu", "midrange gpu", "mid gpu"]}, {"name": "Best Gaming CPU (Any Brand)", "short": "Gaming CPU", "cat": "CPU", "mfr": "Any", "spec": true, "specQuery": "gaming CPU processor Ryzen Intel", "aliases": ["gaming cpu", "best cpu", "cpu deal"]}];
+const TRACKED_IDS = new Set(["rtx-4070", "rtx-4080", "ddr5-32gb", "samsung-980-pro-2tb", "wd-sn850x-2tb", "nvidia-geforce-rtx-5080", "ddr5-64gb-kit-2x32gb", "best-1tb-sata-ssd-any-brand", "corsair-vengence-rgb-ddr4", "corsair-vengence-rgb-ddr4-32gb", "nvidia-geforce-rtx-3090-ti", "nvidia-geforce-rtx-4090"]);
+
+function normalize(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function scoreMatch(query, part) {
+  const q = normalize(query);
+  const name = normalize(part.name);
+  const short = normalize(part.short);
+  const mfr = normalize(part.mfr);
+  let score = 0;
+
+  // Strong: short name contains query or vice versa
+  if (short.includes(q) || q.includes(short)) score += 80;
+  else if (name.includes(q)) score += 60;
+
+  // Alias match
+  for (const alias of (part.aliases || [])) {
+    const a = normalize(alias);
+    if (a.includes(q) || q.includes(a)) { score += 70; break; }
+  }
+
+  // Token overlap: how many query tokens appear in the full name
+  const qTokens = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
+  const nameLower = (part.name + ' ' + part.short + ' ' + part.mfr).toLowerCase();
+  for (const tok of qTokens) {
+    if (nameLower.includes(tok)) score += 10;
+  }
+
+  // Fuzzy character run: count longest subsequence match
+  let qi = 0;
+  for (let i = 0; i < name.length && qi < q.length; i++) {
+    if (name[i] === q[qi]) qi++;
+  }
+  score += (qi / Math.max(q.length, 1)) * 15;
+
+  return score;
+}
+
+let selectedPart = null;
+
+const input = document.getElementById('searchInput');
+const dropdown = document.getElementById('searchDropdown');
+const addPanel = document.getElementById('addPanel');
+
+input.addEventListener('input', debounce(onSearch, 120));
+input.addEventListener('keydown', onKey);
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) hideDropdown();
+});
+
+function debounce(fn, ms) {
+  let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+function guessCategory(q) {
+  const s = q.toLowerCase();
+  if (/\b(rtx|rx\s*\d|arc\s*[ab]|geforce|radeon|\bgpu\b|graphics card)\b/.test(s)) return 'GPU';
+  if (/\b(ddr[45]|\bram\b|vengeance|trident|dominator|ripjaws|ballistix)\b/.test(s)) return 'RAM';
+  if (/\b(ssd|nvme|m\.?2|sn\d|990\s*pro|980\s*pro|firecuda|crucial\s*t\d)\b/.test(s)) return 'SSD';
+  if (/\b(ryzen|core\s*i[3579]|core\s*ultra|\bcpu\b|processor)\b/.test(s)) return 'CPU';
+  return 'Other';
+}
+
+function customPartFromQuery(q) {
+  const cat = guessCategory(q);
+  return {
+    name: q,
+    short: q,
+    cat,
+    mfr: 'Custom',
+    custom: true,
+    aliases: [],
+  };
+}
+
+function escapeAttr(obj) {
+  return JSON.stringify(obj).replace(/"/g, '&quot;');
+}
+
+function renderPartRow(part, i, extraClass) {
+  const tracked = TRACKED_IDS.has(slugify(part.name));
+  const specTag = part.spec ? '<span style="font-size:.65rem;color:var(--yellow);margin-left:4px">SPEC</span>' : '';
+  const customTag = part.custom ? '<span class="dd-hint">Custom</span>' : '';
+  const mfr = part.custom ? 'Use exact search' : (part.spec ? 'Any Brand' : part.mfr);
+  return `<div class="dd-item ${extraClass || ''}" data-idx="${i}" onclick="selectPart(${escapeAttr(part)})">
+    <span class="dd-cat dd-cat-${part.cat}">${part.cat}</span>
+    <span class="dd-name">${part.custom ? 'Track: ' + part.name : part.name}${specTag}</span>
+    <span class="dd-mfr">${mfr}</span>
+    ${customTag}
+    ${tracked ? '<span class="dd-tracked">✓ Tracked</span>' : ''}
+  </div>`;
+}
+
+function onSearch() {
+  const q = input.value.trim();
+  if (q.length < 2) { hideDropdown(); return; }
+
+  const scored = PARTS_DB
+    .map(p => ({ part: p, score: scoreMatch(q, p) }))
+    .filter(x => x.score > 10)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 7);
+
+  const custom = customPartFromQuery(q);
+  let html = renderPartRow(custom, 0, 'dd-custom');
+  html += scored.map(({part}, i) => renderPartRow(part, i + 1, '')).join('');
+  dropdown.innerHTML = html;
+  dropdown.classList.add('open');
+}
+
+function onKey(e) {
+  const items = dropdown.querySelectorAll('.dd-item');
+  const active = dropdown.querySelector('.dd-item.active');
+  let idx = active ? parseInt(active.dataset.idx) : -1;
+  if (e.key === 'ArrowDown') { e.preventDefault(); idx = Math.min(idx + 1, items.length - 1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); idx = Math.max(idx - 1, 0); }
+  else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (active) { active.click(); return; }
+    // Enter with no highlight → add whatever you typed as a custom search
+    const q = input.value.trim();
+    if (q.length >= 2) selectPart(customPartFromQuery(q));
+    return;
+  }
+  else if (e.key === 'Escape') { hideDropdown(); return; }
+  items.forEach(el => el.classList.toggle('active', parseInt(el.dataset.idx) === idx));
+  if (items[idx]) items[idx].scrollIntoView({block:'nearest'});
+}
+
+function hideDropdown() {
+  dropdown.classList.remove('open');
+  dropdown.innerHTML = '';
+}
+
+function selectPart(part) {
+  selectedPart = part;
+  hideDropdown();
+  input.value = part.name;
+
+  document.getElementById('addPanelName').textContent = part.name;
+  const catEl = document.getElementById('addPanelCat');
+  if (part.custom) {
+    catEl.innerHTML = '<span style="color:var(--accent);font-weight:700">CUSTOM SEARCH</span> · exact query across all retailers';
+  } else if (part.spec) {
+    catEl.innerHTML = '<span style="color:var(--yellow);font-weight:700">SPEC SEARCH</span> · Any brand matching: <em>' + (part.specQuery || part.short) + '</em>';
+  } else {
+    catEl.textContent = part.mfr + ' · ' + part.cat;
+  }
+  const catSelect = document.getElementById('addCatSelect');
+  if (catSelect) catSelect.value = part.cat || 'Other';
+  document.getElementById('addStatus').textContent = '';
+  document.getElementById('addStatus').className = 'add-status';
+  document.getElementById('addPriceInput').value = '';
+  const minInput = document.getElementById('addMinInput');
+  if (minInput) minInput.value = '';
+  document.getElementById('addBtn').disabled = false;
+  document.getElementById('addBtn').textContent = 'Add to Watchlist';
+
+  if (TRACKED_IDS.has(slugify(part.name))) {
+    document.getElementById('addStatus').textContent = '✓ Already being tracked.';
+    document.getElementById('addStatus').className = 'add-status ok';
+    document.getElementById('addBtn').disabled = true;
+  }
+
+  addPanel.classList.add('visible');
+  document.getElementById('addPriceInput').focus();
+}
+
+function closeAddPanel() {
+  addPanel.classList.remove('visible');
+  selectedPart = null;
+  input.value = '';
+}
+
+function slugify(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+async function confirmAdd() {
+  if (!selectedPart) return;
+  const target = parseFloat(document.getElementById('addPriceInput').value) || null;
+  const minRaw = document.getElementById('addMinInput');
+  const minPrice = minRaw && minRaw.value !== '' ? parseFloat(minRaw.value) : null;
+  const catSelect = document.getElementById('addCatSelect');
+  const category = (catSelect && catSelect.value) || selectedPart.cat || 'Other';
+  selectedPart.cat = category;
+  const statusEl = document.getElementById('addStatus');
+  const btn = document.getElementById('addBtn');
+  btn.disabled = true;
+  btn.textContent = 'Adding...';
+
+  const isSpec = !!selectedPart.spec;
+  const isCustom = !!selectedPart.custom;
+  const payload = {
+    name: selectedPart.name,
+    category,
+    target_price: target,
+    min_price: (minPrice != null && !Number.isNaN(minPrice)) ? minPrice : null,
+    spec_query: isSpec ? (selectedPart.specQuery || selectedPart.short) : null,
+    custom: isCustom,
+    exact_query: isCustom,
+  };
+
+  try {
+    const res = await fetch('http://localhost:5001/api/add-item', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(4000),
+    });
+    const data = await res.json();
+    if (data.status === 'added') {
+      TRACKED_IDS.add(slugify(selectedPart.name));
+      showToast('Added: ' + selectedPart.name, 'ok');
+      updateChip(1);
+      statusEl.textContent = '✓ Added! Refresh after next scrape run to see prices.';
+      statusEl.className = 'add-status ok';
+      btn.textContent = 'Added ✓';
+    } else if (data.status === 'exists') {
+      statusEl.textContent = '✓ Already tracked.';
+      statusEl.className = 'add-status ok';
+      btn.textContent = 'Add to Watchlist';
+      btn.disabled = false;
+    } else {
+      throw new Error(data.message || 'Unknown error');
+    }
+  } catch (err) {
+    const id = slugify(selectedPart.name);
+    const q = selectedPart.name;
+    const snippet = JSON.stringify({
+      id, name: q, category,
+      target_price: target,
+      min_price: payload.min_price,
+      search_terms: {
+        newegg: q, amazon: q, best_buy: q, micro_center: q, ebay: q, facebook: q,
+      }
+    }, null, 2);
+    navigator.clipboard.writeText(snippet).catch(() => {});
+    showToast('Server offline — config snippet copied to clipboard', 'err');
+    statusEl.innerHTML = '⚠ Server offline. Snippet copied — paste into config.json → items array.<br>Start server: <code>python server.py</code>';
+    statusEl.className = 'add-status err';
+    btn.textContent = 'Add to Watchlist';
+    btn.disabled = false;
+  }
+}
+
+async function setMinPrice(id) {
+  const raw = prompt('Minimum listing price for this item (blank = no floor):');
+  if (raw === null) return;
+  const min_price = raw.trim() === '' ? null : parseFloat(raw);
+  if (raw.trim() !== '' && (Number.isNaN(min_price) || min_price < 0)) {
+    showToast('Enter a valid number', 'err');
+    return;
+  }
+  try {
+    const res = await fetch('http://localhost:5001/api/update-item', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ id, min_price }),
+      signal: AbortSignal.timeout(4000),
+    });
+    const data = await res.json();
+    if (data.status !== 'updated') throw new Error(data.message || 'Update failed');
+    showToast(min_price == null ? 'Min price cleared' : ('Min set to $' + min_price), 'ok');
+    // Refresh badge text without full reload
+    const card = document.getElementById('card-' + id);
+    if (card) {
+      const badges = card.querySelector('.badges');
+      if (badges) {
+        badges.querySelectorAll('.badge-min, .badge-min-empty').forEach(el => el.remove());
+        const span = document.createElement('span');
+        if (min_price == null) {
+          span.className = 'badge badge-min-empty';
+          span.textContent = '+ Min price';
+        } else {
+          span.className = 'badge badge-min';
+          span.textContent = 'Min: $' + Number(min_price).toFixed(2) + ' ✎';
+        }
+        span.title = 'Listings below this are ignored';
+        span.style.cursor = 'pointer';
+        span.onclick = (e) => { e.stopPropagation(); setMinPrice(id); };
+        const deal = badges.querySelector('.badge-deal');
+        if (deal) badges.insertBefore(span, deal);
+        else badges.appendChild(span);
+      }
+    }
+  } catch {
+    showToast('Server offline — edit min_price in config.json', 'err');
+  }
+}
+
+async function setFbZip() {
+  const cur = (document.getElementById('fbZipLabel')?.textContent || '').trim();
+  const raw = prompt('Facebook Marketplace ZIP (blank clears). Radius stays 100 mi:', cur === 'no ZIP set' ? '' : cur);
+  if (raw === null) return;
+  const zip = raw.trim();
+  if (zip && !/^\d{5}(-\d{4})?$/.test(zip)) {
+    showToast('Enter a 5-digit ZIP', 'err');
+    return;
+  }
+  try {
+    const res = await fetch('http://localhost:5001/api/settings', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ facebook_zipcode: zip, facebook_radius_miles: 100 }),
+      signal: AbortSignal.timeout(4000),
+    });
+    const data = await res.json();
+    if (data.status !== 'updated') throw new Error(data.message || 'Update failed');
+    const label = document.getElementById('fbZipLabel');
+    if (label) label.textContent = zip || 'no ZIP set';
+    const rLabel = document.getElementById('fbRadiusLabel');
+    if (rLabel) rLabel.textContent = '100';
+    showToast(zip ? ('FB ZIP set to ' + zip + ' · 100 mi') : 'FB ZIP cleared', 'ok');
+  } catch (err) {
+    showToast('Server offline — set facebook_zipcode in config.json', 'err');
+  }
+}
+
+async function removeItem(id) {
+  if (!confirm('Remove this item from tracking?')) return;
+  try {
+    const res = await fetch('http://localhost:5001/api/remove-item', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id}),
+      signal: AbortSignal.timeout(4000),
+    });
+    const data = await res.json();
+    if (data.status === 'removed') {
+      document.getElementById('card-' + id)?.remove();
+      TRACKED_IDS.delete(id);
+      updateChip(-1);
+      showToast('Removed from watchlist', 'ok');
+    }
+  } catch {
+    showToast('Server offline — edit config.json manually to remove', 'err');
+  }
+}
+
+function updateChip(delta) {
+  const chipEl = document.getElementById('chipTotal');
+  if (chipEl) chipEl.textContent = Math.max(0, parseInt(chipEl.textContent || '0') + (delta || 1));
+}
+
+function showToast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + type;
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+// ── Scan again ─────────────────────────────────────────────────────────────
+let scanPoll = null;
+const scanBtn = document.getElementById('scanBtn');
+const scanStatus = document.getElementById('scanStatus');
+let reportMtimeAtStart = null;
+
+async function startScan() {
+  scanBtn.disabled = true;
+  scanStatus.className = 'scan-status running';
+  scanStatus.textContent = 'Starting scrape… (~10–15 min)';
+  try {
+    const st = await fetch('http://localhost:5001/api/scan-status', { signal: AbortSignal.timeout(3000) });
+    const stData = await st.json();
+    reportMtimeAtStart = stData.report_mtime;
+
+    const res = await fetch('http://localhost:5001/api/run-tracker', {
+      method: 'POST',
+      signal: AbortSignal.timeout(4000),
+    });
+    const data = await res.json();
+    if (data.status === 'already_running') {
+      scanStatus.textContent = 'Scan already running — waiting…';
+    } else if (data.status !== 'started' && data.status !== 'already_running') {
+      throw new Error(data.message || 'Could not start');
+    } else {
+      scanStatus.textContent = 'Scanning retailers… page will refresh when done';
+      showToast('Scan started', 'ok');
+    }
+    if (scanPoll) clearInterval(scanPoll);
+    scanPoll = setInterval(pollScan, 8000);
+  } catch (err) {
+    scanBtn.disabled = false;
+    scanStatus.className = 'scan-status err';
+    scanStatus.textContent = 'Server offline — run start_server.bat';
+    showToast('Companion server not running', 'err');
+  }
+}
+
+async function pollScan() {
+  try {
+    const res = await fetch('http://localhost:5001/api/scan-status', { signal: AbortSignal.timeout(3000) });
+    const data = await res.json();
+    if (data.running) {
+      scanStatus.className = 'scan-status running';
+      scanStatus.textContent = 'Still scanning…';
+      return;
+    }
+    // Finished: refresh if report is newer
+    if (reportMtimeAtStart != null && data.report_mtime && data.report_mtime !== reportMtimeAtStart) {
+      clearInterval(scanPoll);
+      scanStatus.className = 'scan-status ok';
+      scanStatus.textContent = 'Done — refreshing…';
+      showToast('Scan complete', 'ok');
+      setTimeout(() => location.reload(), 900);
+      return;
+    }
+    if (!data.running && reportMtimeAtStart != null) {
+      // Process ended but mtime unchanged yet — keep polling a bit
+      scanStatus.textContent = 'Finishing report…';
+    }
+  } catch {
+    /* keep waiting */
+  }
+}
+
+// On load: if a scan is already running, show status
+(async () => {
+  try {
+    const res = await fetch('http://localhost:5001/api/scan-status', { signal: AbortSignal.timeout(2500) });
+    const data = await res.json();
+    if (data.running) {
+      scanBtn.disabled = true;
+      scanStatus.className = 'scan-status running';
+      scanStatus.textContent = 'Scan in progress…';
+      reportMtimeAtStart = data.report_mtime;
+      scanPoll = setInterval(pollScan, 8000);
+    } else {
+      scanStatus.className = 'scan-status';
+      scanStatus.textContent = 'Ready';
+    }
+  } catch {
+    scanStatus.className = 'scan-status err';
+    scanStatus.textContent = 'Server offline — run start_server.bat for Scan / Add';
+  }
+})();
+</script>
+</body>
+</html>

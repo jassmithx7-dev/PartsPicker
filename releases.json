@@ -1,0 +1,100 @@
+{
+  "releases": [
+    {
+      "name": "NVIDIA RTX 5080 Super",
+      "category": "GPU",
+      "manufacturer": "NVIDIA",
+      "expected": "Q4 2026",
+      "status": "rumored",
+      "note": "Expected performance between RTX 5080 and 5090"
+    },
+    {
+      "name": "NVIDIA RTX 5070 Ti Super",
+      "category": "GPU",
+      "manufacturer": "NVIDIA",
+      "expected": "Q4 2026",
+      "status": "rumored",
+      "note": "Likely to target AMD RX 9070 XT segment"
+    },
+    {
+      "name": "NVIDIA RTX 5060",
+      "category": "GPU",
+      "manufacturer": "NVIDIA",
+      "expected": "Q3 2026",
+      "status": "confirmed",
+      "note": "16GB variant expected; budget-segment Blackwell"
+    },
+    {
+      "name": "NVIDIA RTX 5050",
+      "category": "GPU",
+      "manufacturer": "NVIDIA",
+      "expected": "Q4 2026",
+      "status": "leaked",
+      "note": "Entry-level Blackwell; expected around $199–$249"
+    },
+    {
+      "name": "AMD Radeon RX 9060 XT",
+      "category": "GPU",
+      "manufacturer": "AMD",
+      "expected": "Q3 2026",
+      "status": "confirmed",
+      "note": "RDNA 4 mid-range; direct competition for RTX 5060 Ti"
+    },
+    {
+      "name": "AMD Radeon RX 9060",
+      "category": "GPU",
+      "manufacturer": "AMD",
+      "expected": "Q4 2026",
+      "status": "rumored",
+      "note": "Entry-level RDNA 4"
+    },
+    {
+      "name": "Intel Arc B770",
+      "category": "GPU",
+      "manufacturer": "Intel",
+      "expected": "Q3 2026",
+      "status": "leaked",
+      "note": "Battlemage mid-range; expected to challenge RX 7700 XT"
+    },
+    {
+      "name": "AMD Ryzen 9000X3D",
+      "category": "CPU",
+      "manufacturer": "AMD",
+      "expected": "Q4 2026",
+      "status": "rumored",
+      "note": "Zen 5 + 3D V-Cache refresh; target for gaming workloads"
+    },
+    {
+      "name": "Intel Core Ultra 300 (Panther Lake)",
+      "category": "CPU",
+      "manufacturer": "Intel",
+      "expected": "H1 2027",
+      "status": "confirmed",
+      "note": "Intel's next desktop platform; new socket expected"
+    },
+    {
+      "name": "AMD Zen 6 (Ryzen 10000?)",
+      "category": "CPU",
+      "manufacturer": "AMD",
+      "expected": "2027",
+      "status": "rumored",
+      "note": "Next-gen AMD desktop platform"
+    },
+    {
+      "name": "DDR6 Memory Standard",
+      "category": "RAM",
+      "manufacturer": "JEDEC",
+      "expected": "2027",
+      "status": "confirmed",
+      "note": "Standard finalized; consumer kits expected in 2027–2028"
+    },
+    {
+      "name": "PCIe 6.0 SSDs",
+      "category": "SSD",
+      "manufacturer": "Various",
+      "expected": "2027",
+      "status": "rumored",
+      "note": "Next-gen NVMe interface; consumer products still far out"
+    }
+  ]
+}

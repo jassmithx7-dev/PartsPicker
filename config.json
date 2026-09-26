@@ -1,0 +1,192 @@
+{
+  "settings": {
+    "output_file": "morning_report.html",
+    "history_file": "price_history.json",
+    "max_results_per_retailer": 3,
+    "request_delay_seconds": 2,
+    "timeout_seconds": 20,
+    "facebook_zipcode": "",
+    "facebook_radius_miles": 100
+  },
+  "items": [
+    {
+      "id": "rtx-4070",
+      "name": "NVIDIA RTX 4070",
+      "category": "GPU",
+      "target_price": 550,
+      "search_terms": {
+        "newegg": "RTX 4070 12GB",
+        "amazon": "NVIDIA GeForce RTX 4070",
+        "best_buy": "RTX 4070",
+        "micro_center": "RTX 4070",
+        "ebay": "RTX 4070 12GB",
+        "facebook": "RTX 4070 12GB"
+      },
+      "min_price": 350
+    },
+    {
+      "id": "rtx-4080",
+      "name": "NVIDIA RTX 4080 Super",
+      "category": "GPU",
+      "target_price": 950,
+      "search_terms": {
+        "newegg": "RTX 4080 Super",
+        "amazon": "RTX 4080 Super",
+        "best_buy": "RTX 4080 Super",
+        "micro_center": "RTX 4080 Super",
+        "ebay": "RTX 4080 Super",
+        "facebook": "RTX 4080 Super"
+      },
+      "min_price": 700
+    },
+    {
+      "id": "ddr5-32gb",
+      "name": "DDR5 32GB (2x16) Kit",
+      "category": "RAM",
+      "target_price": 90,
+      "search_terms": {
+        "newegg": "DDR5 32GB kit 6000",
+        "amazon": "DDR5 RAM 32GB 6000MHz",
+        "best_buy": "DDR5 32GB memory kit",
+        "micro_center": "DDR5 32GB",
+        "ebay": "DDR5 32GB kit 6000",
+        "facebook": "DDR5 32GB kit 6000"
+      },
+      "min_price": 50
+    },
+    {
+      "id": "samsung-980-pro-2tb",
+      "name": "Samsung 990 Pro 2TB NVMe",
+      "category": "SSD",
+      "target_price": 150,
+      "search_terms": {
+        "newegg": "Samsung 990 Pro 2TB",
+        "amazon": "Samsung 990 Pro 2TB NVMe",
+        "best_buy": "Samsung 990 Pro 2TB",
+        "micro_center": "Samsung 990 Pro 2TB",
+        "ebay": "Samsung 990 Pro 2TB",
+        "facebook": "Samsung 990 Pro 2TB"
+      },
+      "min_price": 80
+    },
+    {
+      "id": "wd-sn850x-2tb",
+      "name": "WD Black SN850X 2TB NVMe",
+      "category": "SSD",
+      "target_price": 130,
+      "search_terms": {
+        "newegg": "WD Black SN850X 2TB",
+        "amazon": "WD Black SN850X 2TB NVMe",
+        "best_buy": "WD Black SN850X 2TB",
+        "micro_center": "WD SN850X 2TB",
+        "ebay": "WD Black SN850X 2TB",
+        "facebook": "WD Black SN850X 2TB"
+      },
+      "min_price": 70
+    },
+    {
+      "id": "nvidia-geforce-rtx-5080",
+      "name": "NVIDIA GeForce RTX 5080",
+      "category": "GPU",
+      "target_price": 1000,
+      "search_terms": {
+        "newegg": "RTX 5080",
+        "amazon": "NVIDIA GeForce RTX 5080",
+        "best_buy": "RTX 5080",
+        "micro_center": "RTX 5080",
+        "ebay": "RTX 5080",
+        "facebook": "RTX 5080"
+      },
+      "min_price": 800
+    },
+    {
+      "id": "ddr5-64gb-kit-2x32gb",
+      "name": "DDR5 64GB Kit (2x32GB)",
+      "category": "RAM",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "DDR5 64GB Kit (2x32GB)",
+        "amazon": "DDR5 64GB Kit (2x32GB)",
+        "best_buy": "DDR5 64GB Kit (2x32GB)",
+        "micro_center": "DDR5 64GB Kit (2x32GB)",
+        "ebay": "DDR5 64GB Kit 2x32GB",
+        "facebook": "DDR5 64GB Kit 2x32GB"
+      },
+      "min_price": 100
+    },
+    {
+      "id": "best-1tb-sata-ssd-any-brand",
+      "name": "Best 1TB SATA SSD (Any Brand)",
+      "category": "SSD",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "1TB SATA SSD 2.5",
+        "amazon": "1TB SATA SSD 2.5",
+        "best_buy": "1TB SATA SSD 2.5",
+        "micro_center": "1TB SATA SSD 2.5",
+        "ebay": "1TB SATA SSD 2.5",
+        "facebook": "1TB SATA SSD 2.5"
+      }
+    },
+    {
+      "id": "corsair-vengence-rgb-ddr4",
+      "name": "corsair vengence rgb ddr4",
+      "category": "RAM",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "corsair vengence rgb ddr4",
+        "amazon": "corsair vengence rgb ddr4",
+        "best_buy": "corsair vengence rgb ddr4",
+        "micro_center": "corsair vengence rgb ddr4",
+        "ebay": "corsair vengence rgb ddr4",
+        "facebook": "corsair vengence rgb ddr4"
+      },
+      "min_price": 40
+    },
+    {
+      "id": "corsair-vengence-rgb-ddr4-32gb",
+      "name": "corsair vengence rgb ddr4 32gb",
+      "category": "RAM",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "corsair vengence rgb ddr4 32gb",
+        "amazon": "corsair vengence rgb ddr4 32gb",
+        "best_buy": "corsair vengence rgb ddr4 32gb",
+        "micro_center": "corsair vengence rgb ddr4 32gb",
+        "ebay": "corsair vengence rgb ddr4 32gb",
+        "facebook": "corsair vengence rgb ddr4 32gb"
+      },
+      "min_price": 40
+    },
+    {
+      "id": "nvidia-geforce-rtx-3090-ti",
+      "name": "NVIDIA GeForce RTX 3090 Ti",
+      "category": "GPU",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "RTX 3090 Ti",
+        "amazon": "NVIDIA GeForce RTX 3090 Ti",
+        "best_buy": "RTX 3090 Ti",
+        "micro_center": "RTX 3090 Ti",
+        "ebay": "RTX 3090 Ti",
+        "facebook": "RTX 3090 Ti"
+      },
+      "min_price": 500
+    },
+    {
+      "id": "nvidia-geforce-rtx-4090",
+      "name": "NVIDIA GeForce RTX 4090",
+      "category": "GPU",
+      "target_price": null,
+      "search_terms": {
+        "newegg": "RTX 4090",
+        "amazon": "NVIDIA GeForce RTX 4090",
+        "best_buy": "RTX 4090",
+        "micro_center": "RTX 4090",
+        "ebay": "RTX 4090",
+        "facebook": "RTX 4090"
+      },
+      "min_price": 1200
+    }
+  ]
+}
