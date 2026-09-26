@@ -10,19 +10,6 @@
   },
   "items": [
     {
-      "id": "rtx-4070",
-      "name": "NVIDIA RTX 4070",
-      "category": "GPU",
-      "target_price": 550,
-      "search_terms": {
-        "newegg": "RTX 4070 12GB",
-        "amazon": "NVIDIA GeForce RTX 4070",
-        "ebay": "RTX 4070 12GB",
-        "facebook": "RTX 4070 12GB"
-      },
-      "min_price": 350
-    },
-    {
       "id": "rtx-4080",
       "name": "NVIDIA RTX 4080 Super",
       "category": "GPU",
@@ -110,7 +97,8 @@
         "amazon": "1TB SATA SSD 2.5",
         "ebay": "1TB SATA SSD 2.5",
         "facebook": "1TB SATA SSD 2.5"
-      }
+      },
+      "min_price": 50.0
     },
     {
       "id": "corsair-vengence-rgb-ddr4",
@@ -163,6 +151,21 @@
         "facebook": "RTX 4090"
       },
       "min_price": 1200
+    },
+    {
+      "id": "5070-ti",
+      "name": "5070 ti",
+      "category": "Other",
+      "target_price": null,
+      "min_price": 400.0,
+      "search_terms": {
+        "newegg": "5070 ti",
+        "amazon": "5070 ti",
+        "best_buy": "5070 ti",
+        "micro_center": "5070 ti",
+        "ebay": "5070 ti",
+        "facebook": "5070 ti"
+      }
     }
   ]
 }

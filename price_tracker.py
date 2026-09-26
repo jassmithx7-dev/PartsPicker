@@ -562,6 +562,55 @@ def _ebay_search_url(query: str) -> str:
     )
 
 
+HEADED_CHROME_ARGS = [
+    "--disable-blink-features=AutomationControlled",
+    "--start-minimized",
+    # Keep the window off to the side so it rarely steals focus
+    "--window-position=2400,0",
+    "--window-size=1280,900",
+]
+
+
+def _launch_headed_chrome(pw):
+    """Real Chrome window required by eBay/Facebook — start minimized."""
+    try:
+        return pw.chromium.launch(
+            channel="chrome",
+            headless=False,
+            args=list(HEADED_CHROME_ARGS),
+        )
+    except Exception:
+        return pw.chromium.launch(
+            headless=False,
+            args=list(HEADED_CHROME_ARGS),
+        )
+
+
+def _minimize_page(page):
+    """Re-minimize after navigation (sites sometimes restore the window)."""
+    try:
+        page.evaluate(
+            """() => {
+              try { window.moveTo(2400, 0); } catch (e) {}
+              try { window.blur(); } catch (e) {}
+            }"""
+        )
+    except Exception:
+        pass
+    try:
+        # CDP Browser.setWindowBounds minimize (state 2 = minimized on Chromium)
+        session = page.context.new_cdp_session(page)
+        targets = session.send("Browser.getWindowForTarget")
+        window_id = targets.get("windowId")
+        if window_id is not None:
+            session.send(
+                "Browser.setWindowBounds",
+                {"windowId": window_id, "bounds": {"windowState": "minimized"}},
+            )
+    except Exception:
+        pass
+
+
 def _ebay_worker_main():
     """Subprocess entry: scrape eBay headed and print JSON to stdout."""
     import json as _json
@@ -574,17 +623,7 @@ def _ebay_worker_main():
 
     html = ""
     with sync_playwright() as pw:
-        try:
-            headed = pw.chromium.launch(
-                channel="chrome",
-                headless=False,
-                args=["--disable-blink-features=AutomationControlled"],
-            )
-        except Exception:
-            headed = pw.chromium.launch(
-                headless=False,
-                args=["--disable-blink-features=AutomationControlled"],
-            )
+        headed = _launch_headed_chrome(pw)
         context = headed.new_context(
             viewport={"width": 1400, "height": 900},
             user_agent=(
@@ -601,8 +640,10 @@ def _ebay_worker_main():
         try:
             # Homepage warmup — without this, search often returns eBay's error page
             page.goto("https://www.ebay.com/", wait_until="domcontentloaded", timeout=45000)
+            _minimize_page(page)
             time.sleep(1.5)
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            _minimize_page(page)
             try:
                 page.wait_for_selector("li.s-card .s-card__title", timeout=15000)
             except Exception:
@@ -875,17 +916,7 @@ def _fb_worker_main():
 
     html = ""
     with sync_playwright() as pw:
-        try:
-            headed = pw.chromium.launch(
-                channel="chrome",
-                headless=False,
-                args=["--disable-blink-features=AutomationControlled"],
-            )
-        except Exception:
-            headed = pw.chromium.launch(
-                headless=False,
-                args=["--disable-blink-features=AutomationControlled"],
-            )
+        headed = _launch_headed_chrome(pw)
         context = headed.new_context(
             viewport={"width": 1400, "height": 900},
             user_agent=(
@@ -901,6 +932,7 @@ def _fb_worker_main():
         page = context.new_page()
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            _minimize_page(page)
             time.sleep(3)
             for sel in ('[aria-label="Close"]', 'div[role="dialog"] [aria-label="Close"]'):
                 try:
@@ -909,6 +941,7 @@ def _fb_worker_main():
                     break
                 except Exception:
                     pass
+            _minimize_page(page)
 
             if zipcode and re.fullmatch(r"\d{5}(-\d{4})?", zipcode):
                 print(f"      [Facebook] ZIP {zipcode} · {radius} mi…", file=sys.stderr)
@@ -2327,10 +2360,30 @@ def main():
         f.write(report_html)
 
     print(f"Report written to: {output_file}")
+    # Keep GitHub Pages entry point in sync for phone viewing
+    try:
+        index_file = BASE_DIR / "index.html"
+        index_file.write_text(report_html, encoding="utf-8")
+        print(f"Also wrote: {index_file}")
+    except Exception as e:
+        print(f"(index.html skip: {e})")
+
     if deals:
         print(f"Deals at/below target: {len(deals)}")
         for d in deals:
             print(f"  • {d['name']}: {fmt(d['price'])} (target {fmt(d['target'])})")
+
+    if "--publish" in sys.argv:
+        print("\nPublishing to GitHub Pages…")
+        try:
+            import subprocess
+            subprocess.run(
+                [sys.executable, str(BASE_DIR / "publish_report.py")],
+                cwd=str(BASE_DIR),
+                check=False,
+            )
+        except Exception as e:
+            print(f"(publish failed: {e})")
 
     try:
         import webbrowser
@@ -2340,6 +2393,8 @@ def main():
         pass
 
     print(f"\nDone.\n")
+    print("Phone link (after publish): https://jassmithx7-dev.github.io/PartsPicker/")
+    print("Publish only: publish_report.bat   |   Scrape+publish: run_now.bat (add --publish)")
 
 
 if __name__ == "__main__":
