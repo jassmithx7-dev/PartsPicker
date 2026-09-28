@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PC Parts Price Report – September 27, 2026</title>
+<title>PC Parts Price Report – September 28, 2026</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -304,14 +304,14 @@
 
   <div class="header">
     <h1>PC Parts Price Report</h1>
-    <span class="ts">Last scrape: September 27, 2026 at 11:21 AM</span>
+    <span class="ts">Last scrape: September 28, 2026 at 07:11 AM</span>
     <div class="header-actions">
       <button id="scanBtn" class="btn-scan" onclick="startScan()">Scan again</button>
       <span id="scanStatus" class="scan-status">Needs companion server on :5001</span>
     </div>
   </div>
 
-  
+  <div class="deals-banner" id="dealsBanner"><div class="deals-banner-title">At or below target — 1 deal</div><a class="deal-row" href="https://www.ebay.com/itm/820179501260" target="_blank"><strong>NVIDIA GeForce RTX 5080</strong> $999.00 <span>at eBay (target $1,000.00)</span></a></div>
 
   <!-- Search bar -->
   <div class="search-section">
@@ -362,7 +362,7 @@
   <div class="summary-bar">
     <div class="chip"><strong id="chipTotal">13</strong>Tracked</div>
     <div class="chip"><strong>13</strong>With Prices</div>
-    <div class="chip"><strong style="color:var(--green)">0</strong>At or Below Target</div>
+    <div class="chip"><strong style="color:var(--green)">1</strong>At or Below Target</div>
   </div>
 
   
@@ -377,70 +377,55 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/287590211865" target="_blank">$1,109.99</a></div>
-                  <div class="best-at">at eBay</div>
+                  <div class="best-val"><a href="https://www.amazon.com/NVIDIA-GeForce-4080-Super-GDDR6X/dp/B0CVNM2LBK/ref=sr_1_3?dib=eyJ2IjoiMSJ9.DgJvOftiErcuUc8AWd7EDZ7VnZMDl9BT8mhUzvs0yJJO8iNU_grzi2yME2FUrj1x5A5-Om_3pjy5WFNsCbmeQYL2S-VBkEaniE1YAposHaz4VsWjMcduEr-jqbvT523KPonXkaEwRpT4KD6vu0qMJgjpNMpxRifvqfjTXYVFNJI6OEC7c0aM3g99ZJ72195Br2LUwy4Kz-xtKaYeGdLuh6yXMm58Kvkc0p4FX3S1G5o.98-GX7glxfbG8SjIH6s3_JOGZKtDN4YxB0Ba0MKDnSo&dib_tag=se&keywords=RTX+4080+Super&qid=1790593223&sr=8-3" target="_blank">$2,099.99</a></div>
+                  <div class="best-at">at Amazon</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('rtx-4080')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/gigabyte-windforce-gv-n408swf3v2-16gd-geforce-rtx-4080-super-16gb-graphics-card-triple-fans/p/N82E16814932672?Item=9SIB3T1KEH0301" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$1,632.00</div>
-                  
-                  <div class="r-item" title="GIGABYTE GeForce RTX 4080 SUPER WINDFORCE V2 16G Graphics Card, 3x WINDFORCE Fans, 16GB 25">GIGABYTE GeForce RTX 4080 SUPER WINDFORCE V2 16G Graphi</div>
-                </a><a class="price-cell " href="https://www.amazon.com/NVIDIA-GeForce-4080-Super-GDDR6X/dp/B0CVNM2LBK/ref=sr_1_4?dib=eyJ2IjoiMSJ9.kPQabdUBNPNuT-6A8NpedHWi1joJth-o4Ku8cF2orx9ABNyLFoUKvnhoiaDA8OSoDv5K819DiHb0xhuw3V-wmf7tdHETNWAmNOnJsArn3TPaE66aVkIMK-65jrKeuxsZvHeTMUQ-L6OAFVWDtk2ImDaPXQpZmtq8bTXa4L7FBqs8BUGkkIwCXw87v9fRxk9a4_LNdEzNV_U8njX02T-atNKMVhjapnntzEjVMtCjrok.FErShCHfbFwk05irMBgnGe453Audq5uC3uCrufC62xE&dib_tag=se&keywords=RTX+4080+Super&qid=1790521950&sr=8-4" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.amazon.com/NVIDIA-GeForce-4080-Super-GDDR6X/dp/B0CVNM2LBK/ref=sr_1_3?dib=eyJ2IjoiMSJ9.DgJvOftiErcuUc8AWd7EDZ7VnZMDl9BT8mhUzvs0yJJO8iNU_grzi2yME2FUrj1x5A5-Om_3pjy5WFNsCbmeQYL2S-VBkEaniE1YAposHaz4VsWjMcduEr-jqbvT523KPonXkaEwRpT4KD6vu0qMJgjpNMpxRifvqfjTXYVFNJI6OEC7c0aM3g99ZJ72195Br2LUwy4Kz-xtKaYeGdLuh6yXMm58Kvkc0p4FX3S1G5o.98-GX7glxfbG8SjIH6s3_JOGZKtDN4YxB0Ba0MKDnSo&dib_tag=se&keywords=RTX+4080+Super&qid=1790593223&sr=8-3" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
                   <div class="r-price miss">$2,099.99</div>
                   
                   <div class="r-item" title="NVIDIA GeForce 4080 Super GDDR6X">NVIDIA GeForce 4080 Super GDDR6X</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/287590211865" target="_blank" rel="noopener">
-                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price miss">$1,109.99</div>
-                  <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="PNY Verto Triple Fan OC GeForce RTX 4080 Super 16GB - Graphics Card - Excellent">PNY Verto Triple Fan OC GeForce RTX 4080 Super 16GB - G</div>
-                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,22.7 6.7,22.7 11.4,22.7 16.1,22.7 20.8,30.0 25.4,30.0 30.1,30.0 34.8,22.7 39.5,18.6 44.2,19.7 48.9,18.1 53.6,19.2 58.3,17.9 63.0,17.9 67.7,17.1 72.3,17.1 77.0,19.8 81.7,19.8 86.4,16.3 91.1,15.0 95.8,2.0 100.5,20.1 105.2,20.1 109.9,2.0 114.6,20.1 119.2,20.1 123.9,15.4 128.6,7.4 133.3,24.9 138.0,15.0"/><circle cx="138.0" cy="15.0" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,25.6 6.7,25.6 11.4,25.6 16.1,30.0 20.8,30.0 25.4,30.0 30.1,25.6 34.8,23.1 39.5,23.8 44.2,22.8 48.9,23.5 53.6,22.7 58.3,22.7 63.0,22.2 67.7,22.2 72.3,23.9 77.0,23.9 81.7,21.7 86.4,21.0 91.1,13.1 95.8,24.1 100.5,24.1 105.2,13.1 109.9,24.1 114.6,24.1 119.2,21.2 123.9,16.4 128.6,26.9 133.3,21.0 138.0,2.0"/><circle cx="138.0" cy="2.0" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$639.86</strong></div>
-                      <div class="hist-stat"><span>30-day High</span><strong>$1,519.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$988.57</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$2,099.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,029.57</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
-            </div><div class="item-card" id="card-nvidia-geforce-rtx-5080">
+            </div><div class="item-card item-card-deal" id="card-nvidia-geforce-rtx-5080">
               <div class="item-header">
-                <div><div class="item-name">NVIDIA GeForce RTX 5080</div><div class="badges"><span class="badge badge-target">Target: $1,000.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-5080')" style="cursor:pointer">Min: $800.00 ✎</span></div></div>
+                <div><div class="item-name">NVIDIA GeForce RTX 5080</div><div class="badges"><span class="badge badge-target">Target: $1,000.00</span><span class="badge badge-min" title="Listings below this are ignored" onclick="event.stopPropagation(); setMinPrice('nvidia-geforce-rtx-5080')" style="cursor:pointer">Min: $800.00 ✎</span><span class="badge badge-deal">DEAL! Save $1.00</span></div></div>
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/336813388777" target="_blank">$1,400.00</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/820179501260" target="_blank">$999.00</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-5080')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/msi-rtx-5080-16g-ventus-3x-oc-black-geforce-rtx-5080-16gb-video-card-triple-fans/p/N82E16814982009?Item=N82E16814982009" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$1,679.99</div>
-                  
-                  <div class="r-item" title="MSI GeForce RTX 5080 16GB GDDR7 PCI Express 5.0 ATX Video Card RTX 5080 16G VENTUS 3X OC B">MSI GeForce RTX 5080 16GB GDDR7 PCI Express 5.0 ATX Vid</div>
-                </a><a class="price-cell " href="https://www.amazon.com/ZOTAC-Graphics-IceStorm-Advanced-ZT-B50800J2-10A/dp/B0GK8N9DR7/ref=sr_1_8?dib=eyJ2IjoiMSJ9.X8E3KaFCmIPpWNEny7fVYFHefFBzUepfOoA4abuuMEffgEtxOocyvkPJApnkRv9Vr6Hl-KE1jUHRP0-QcKKiglcT2zd8g03wkEJz5lSfF11UuWq3rlO8rl64duh5e5bVGZdyG__9BmnuFRmhrdnhtP2TGRSwzOwA7wZfa-qRllU8WjaI5lYB2O9zToUrE0CtArRZzlNo1_EnCmWiNV7gBlKUenqz8xU7DqoVWI9tVmI.wo2V10IX6jSfZLqb9GyKHUQY01BvShQoau61S-ddrAc&dib_tag=se&keywords=NVIDIA+GeForce+RTX+5080&qid=1790522149&sr=8-8" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/GIGABYTE-Graphics-WINDFORCE-GV-N5080GAMING-OC-16GD/dp/B0DS2R6948/ref=sr_1_1_mod_primary_new?dib=eyJ2IjoiMSJ9.X8E3KaFCmIPpWNEny7fVYFHefFBzUepfOoA4abuuMEeL5ekCSv2WkpIJ90ZXGSspMKshiZ0iiCFYrpdVniESaI4YJb2LrZJ40vsi40TlRFn5rTSb66iw2ubGiBReSSHKSIfSc3rp40SDONC1QNy9qvqUzaeJY4tlTInwVvvgtGBeprLrgOmf9i2_j8oXubetT8nNrGKHWahFzabjAMVHrddQWa0Nff2G0CBErqqaemk.7fCt22AlA2od6tVF3BYlNJUER0norKaTmLh6L9QjT8o&dib_tag=se&keywords=NVIDIA+GeForce+RTX+5080&qid=1790593432&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-1" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price miss">$1,649.98</div>
+                  <div class="r-price miss">$1,649.00</div>
                   
-                  <div class="r-item" title="ZOTAC Graphics IceStorm Advanced ZT B50800J2 10A">ZOTAC Graphics IceStorm Advanced ZT B50800J2 10A</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/336813388777" target="_blank" rel="noopener">
+                  <div class="r-item" title="GIGABYTE Graphics WINDFORCE GV N5080GAMING OC 16GD">GIGABYTE Graphics WINDFORCE GV N5080GAMING OC 16GD</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/820179501260" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price miss">$1,400.00</div>
+                  <div class="r-price good">$999.00</div>
                   <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="PNY GeForce RTX 5080 Triple Fan 16GB  GDDR7 Video Graphics Card">PNY GeForce RTX 5080 Triple Fan 16GB  GDDR7 Video Graph</div>
+                  <div class="r-item" title="GIGABYTE GeForce RTX 5080 AERO OC SFF 16G Graphics Card/     no boot">GIGABYTE GeForce RTX 5080 AERO OC SFF 16G Graphics Card</div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,20.7 6.7,20.7 11.4,12.8 16.1,12.4 20.8,19.2 25.4,12.3 30.1,13.8 34.8,12.3 39.5,13.4 44.2,12.3 48.9,12.3 53.6,10.8 58.3,16.5 63.0,14.4 67.7,12.3 72.3,17.8 77.0,14.4 81.7,16.5 86.4,17.4 91.1,30.0 95.8,12.3 100.5,15.5 105.2,4.9 109.9,24.8 114.6,24.8 119.2,17.8 123.9,4.0 128.6,2.0 133.3,12.3 138.0,12.3"/><circle cx="138.0" cy="12.3" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,20.7 6.7,12.8 11.4,12.4 16.1,19.2 20.8,12.3 25.4,13.8 30.1,12.3 34.8,13.4 39.5,12.3 44.2,12.3 48.9,10.8 53.6,16.5 58.3,14.4 63.0,12.3 67.7,17.8 72.3,14.4 77.0,16.5 81.7,17.4 86.4,30.0 91.1,12.3 95.8,15.5 100.5,4.9 105.2,24.8 109.9,24.8 114.6,17.8 119.2,4.0 123.9,2.0 128.6,12.3 133.3,12.3 138.0,29.0"/><circle cx="138.0" cy="29.0" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$975.00</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$1,649.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$1,341.40</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,334.70</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-nvidia-geforce-rtx-3090-ti">
@@ -449,35 +434,25 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/820164077537" target="_blank">$1,499.99</a></div>
-                  <div class="best-at">at eBay</div>
+                  <div class="best-val"><a href="https://www.amazon.com/Nvidia-RTX-3090-TI-Founders/dp/B09X4JVZB5/ref=sr_1_1?dib=eyJ2IjoiMSJ9.XSyHzbCPlag8bAVa7gzLIc8sVAFsRc4_Gi5eu5x-jb5HdFmYz0o9xMcGM0FcYRn6Wu7l2UiYbT62fd7TJXPyITMtMVxdteBAXwWh4qb2TyeK7WcWngg4TBZKQzHjxsug7T3HaQ4LTXOw9JqIJ1zmX3Rj_-X4iA0O6jo_RBQp8sQjLmIsxhpbq8Mpaikxe9ZXnTImlMI2rBpF-theSUQQPVyfi2RzIasQTpRJzAt6Ygo.n0n4q0wMDAYoxliubvCQ8ucyhIZ5txbqoE1REavKE-4&dib_tag=se&keywords=NVIDIA+GeForce+RTX+3090+Ti&qid=1790593628&sr=8-1" target="_blank">$2,449.99</a></div>
+                  <div class="best-at">at Amazon</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-3090-ti')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/p/1FT-001K-00FE5?Item=9SIB4VJKBN8280" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$2,399.00</div>
-                  
-                  <div class="r-item" title="EVGA GeForce RTX 3090 Ti FTW3 ULTRA GAMING, 24G-P5-4985-KR, 24GB GDDR6X, iCX3 Technology, ">EVGA GeForce RTX 3090 Ti FTW3 ULTRA GAMING, 24G-P5-4985</div>
-                </a><a class="price-cell " href="https://www.amazon.com/Gigabyte-GeForce-Graphics-GV-N3090TURBO-24GD-Renewed/dp/B09Y2K9G3X/ref=sr_1_6?dib=eyJ2IjoiMSJ9.XSyHzbCPlag8bAVa7gzLIb_IF2sIAN3PIVGqcfF19vTECm5P1zEgRh6trZDAaITCnb9UwPdAbmFp10Xqewf_-BvfG1bXICk8h5kfz0yX5FipxEzhwdHD-WZYnxmwL66lyC12ejL8SDlslKQ2S956DHkrmAioIxyXArf15IiOsNg0uM2569CWh2JzRpP8Sd9sxda-VT2DeubmhoWMi7FEvHNXqELYdZzxeQ5B82_G3ts.SXaJdPn6NHB51EJs2zf9VwYfbYWW3XobmUeGNa296BM&dib_tag=se&keywords=NVIDIA+GeForce+RTX+3090+Ti&qid=1790522288&sbo=GW1QB%2BmqAsHTPf1jTZRSDA%3D%3D&sr=8-6" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.amazon.com/Nvidia-RTX-3090-TI-Founders/dp/B09X4JVZB5/ref=sr_1_1?dib=eyJ2IjoiMSJ9.XSyHzbCPlag8bAVa7gzLIc8sVAFsRc4_Gi5eu5x-jb5HdFmYz0o9xMcGM0FcYRn6Wu7l2UiYbT62fd7TJXPyITMtMVxdteBAXwWh4qb2TyeK7WcWngg4TBZKQzHjxsug7T3HaQ4LTXOw9JqIJ1zmX3Rj_-X4iA0O6jo_RBQp8sQjLmIsxhpbq8Mpaikxe9ZXnTImlMI2rBpF-theSUQQPVyfi2RzIasQTpRJzAt6Ygo.n0n4q0wMDAYoxliubvCQ8ucyhIZ5txbqoE1REavKE-4&dib_tag=se&keywords=NVIDIA+GeForce+RTX+3090+Ti&qid=1790593628&sr=8-1" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price ">$1,794.99</div>
+                  <div class="r-price ">$2,449.99</div>
                   
-                  <div class="r-item" title="Gigabyte GeForce Graphics GV N3090TURBO 24GD Renewed">Gigabyte GeForce Graphics GV N3090TURBO 24GD Renewed</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/820164077537" target="_blank" rel="noopener">
-                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$1,499.99</div>
-                  <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="ZOTAC GAMING GeForce RTX 3090 Ti AMP Extreme Holo 24GB Graphics card">ZOTAC GAMING GeForce RTX 3090 Ti AMP Extreme Holo 24GB </div>
-                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+                  <div class="r-item" title="Nvidia RTX 3090 TI Founders">Nvidia RTX 3090 TI Founders</div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.8 7.0,28.8 12.1,28.8 17.1,28.8 22.1,28.8 27.2,28.8 32.2,28.8 37.3,30.0 42.3,30.0 47.3,30.0 52.4,30.0 57.4,30.0 62.4,30.0 67.5,30.0 72.5,28.8 77.6,28.8 82.6,11.8 87.6,11.8 92.7,10.9 97.7,10.9 102.7,10.5 107.8,10.5 112.8,10.5 117.9,9.5 122.9,10.5 127.9,2.0 133.0,10.5 138.0,10.8"/><circle cx="138.0" cy="10.8" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,29.1 6.9,29.1 11.7,29.1 16.6,29.1 21.4,29.1 26.3,29.1 31.1,29.1 36.0,30.0 40.9,30.0 45.7,30.0 50.6,30.0 55.4,30.0 60.3,30.0 65.1,30.0 70.0,29.1 74.9,29.1 79.7,15.8 84.6,15.8 89.4,15.1 94.3,15.1 99.1,14.8 104.0,14.8 108.9,14.8 113.7,14.0 118.6,14.8 123.4,8.2 128.3,14.8 133.1,15.0 138.0,2.0"/><circle cx="138.0" cy="2.0" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$409.00</strong></div>
-                      <div class="hist-stat"><span>30-day High</span><strong>$1,999.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$916.60</strong></div>
-                      <div class="hist-stat"><span>Days</span><strong>28</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$2,449.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$969.48</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>29</strong></div>
                     </div>
             </div><div class="item-card" id="card-nvidia-geforce-rtx-4090">
               <div class="item-header">
@@ -485,30 +460,30 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.amazon.com/ASUS-GeForce-Graphics-DisplayPort-TUF-RTX4090-O24G-GAMING/dp/B0BHD9TS9Q/ref=sr_1_7?dib=eyJ2IjoiMSJ9.ZL2QaFsrTo9tX9pa8DoiVfm0tj6s-8zmpbY8y_WT0h6If4zqt8a0OUUUKsx1w8NJl-7PCWFYhFjMOjvmrSgZkk8czOasgMKwcyixGoI-0fbDeFSENyrYKbqb-8THPUh6N7HlOFi5MSWUhfDKCtg6AIABCofeNdfJRvQ3-cs0_PKOdFFXU7CBqQ6BMFqo4lfEP3HDWZGQw3JVez27j6zYwOwOpIdLDy6kbPdNBfAvG3Q.S_ZK5RhWTWvbS2vIKonx2Sl7Q2tsb4v30mF4NzgRJNU&dib_tag=se&keywords=NVIDIA+GeForce+RTX+4090&qid=1790522315&sr=8-7" target="_blank">$4,049.99</a></div>
-                  <div class="best-at">at Amazon</div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/800020842949" target="_blank">$2,083.48</a></div>
+                  <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-4090')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/gigabyte-gv-n4090aorus-m-24gd-geforce-rtx-4090-24gb-graphics-card-triple-fans/p/N82E16814932555?Item=9SIB4VJKG06128" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$4,499.00</div>
-                  
-                  <div class="r-item" title="GIGABYTE AORUS GeForce RTX 4090 24GB GDDR6X PCI Express 4.0 x16 ATX Graphics Card GV-N4090">GIGABYTE AORUS GeForce RTX 4090 24GB GDDR6X PCI Express</div>
-                </a><a class="price-cell best" href="https://www.amazon.com/ASUS-GeForce-Graphics-DisplayPort-TUF-RTX4090-O24G-GAMING/dp/B0BHD9TS9Q/ref=sr_1_7?dib=eyJ2IjoiMSJ9.ZL2QaFsrTo9tX9pa8DoiVfm0tj6s-8zmpbY8y_WT0h6If4zqt8a0OUUUKsx1w8NJl-7PCWFYhFjMOjvmrSgZkk8czOasgMKwcyixGoI-0fbDeFSENyrYKbqb-8THPUh6N7HlOFi5MSWUhfDKCtg6AIABCofeNdfJRvQ3-cs0_PKOdFFXU7CBqQ6BMFqo4lfEP3HDWZGQw3JVez27j6zYwOwOpIdLDy6kbPdNBfAvG3Q.S_ZK5RhWTWvbS2vIKonx2Sl7Q2tsb4v30mF4NzgRJNU&dib_tag=se&keywords=NVIDIA+GeForce+RTX+4090&qid=1790522315&sr=8-7" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/ASUS-GeForce-Graphics-DisplayPort-TUF-RTX4090-O24G-GAMING/dp/B0BHD9TS9Q/ref=sr_1_5?dib=eyJ2IjoiMSJ9.nxQnVGDJibHr3qNB9QD2tyAx6NVx_IAe4Ck_II29c09T-BGbxpPPya-d4qbZYvdm5yDDOjgkyrd5sCQWudMVyUMuEz1dpBSkKFfVQOBcJgIdl5SRrJScVcyUZLg0F1kGuaHvdYWzXyVzLLV9ja3U_D8wOLKMM27tUlVGsJ2Nk4wOazTBy4rZFwm8Aud7KjHa_Jm4mGu7A9JxasPLekutEpJ7CQgyWt0pcKvejfKNfqo.0CDPTLMhoHm9OskqIFKTpvA3fytpGY9R2EO_API_z9k&dib_tag=se&keywords=NVIDIA+GeForce+RTX+4090&qid=1790593673&sr=8-5" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price ">$4,049.99</div>
+                  <div class="r-price ">$4,039.95</div>
                   
                   <div class="r-item" title="ASUS GeForce Graphics DisplayPort TUF RTX4090 O24G GAMING">ASUS GeForce Graphics DisplayPort TUF RTX4090 O24G GAMI</div>
-                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/800020842949" target="_blank" rel="noopener">
+                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
+                  <div class="r-price ">$2,083.48</div>
+                  <div class="r-ship">incl. $9.99 ship (item $2,073.49)</div>
+                  <div class="r-item" title="MSI Gaming GeForce RTX 4090 24GB GDDR6X PCI Express 4.0 Video Card RTX 4090 GAMI">MSI Gaming GeForce RTX 4090 24GB GDDR6X PCI Express 4.0</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,28.5 8.8,28.5 15.6,28.5 22.4,28.5 29.2,28.5 36.0,28.5 42.8,27.9 49.6,30.0 56.4,30.0 63.2,27.9 70.0,27.9 76.8,12.0 83.6,30.0 90.4,6.0 97.2,29.0 104.0,29.0 110.8,2.0 117.6,29.4 124.4,29.4 131.2,14.7 138.0,5.0"/><circle cx="138.0" cy="5.0" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,28.5 8.5,28.5 15.0,28.5 21.4,28.5 27.9,28.5 34.4,28.5 40.9,27.9 47.3,30.0 53.8,30.0 60.3,27.9 66.8,27.9 73.2,12.0 79.7,30.0 86.2,6.0 92.7,29.0 99.1,29.0 105.6,2.0 112.1,29.4 118.6,29.4 125.0,14.7 131.5,5.0 138.0,18.1"/><circle cx="138.0" cy="18.1" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$311.98</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$4,495.00</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$1,227.48</strong></div>
-                      <div class="hist-stat"><span>Days</span><strong>21</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,266.39</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>22</strong></div>
                     </div>
             </div><div class="item-card" id="card-nvidia-geforce-rtx-5070-ti">
               <div class="item-header">
@@ -522,20 +497,19 @@
                   <button class="remove-btn" onclick="removeItem('nvidia-geforce-rtx-5070-ti')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/msi-geforce-rtx-5070-ti-16g-frieren-edition-oc-16gb-video-card-triple-fans/p/N82E16814982011?Item=N82E16814982011" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$1,149.99</div>
-                  
-                  <div class="r-item" title="MSI FRIEREN EDITION GeForce RTX 5070 Ti 16GB GDDR7 PCI Express 5.0 ATX Video Card RTX 5070">MSI FRIEREN EDITION GeForce RTX 5070 Ti 16GB GDDR7 PCI </div>
-                </a><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.ebay.com/itm/306939698028" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.ebay.com/itm/306939698028" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
                   <div class="r-price miss">$1,007.98</div>
                   <div class="r-ship">incl. $12.99 ship (item $994.99)</div>
                   <div class="r-item" title="MSI INSPIRE GeForce RTX 5070 Ti 16GB GDDR7 PCI Express 5.0 Video Card RTX 5070 T">MSI INSPIRE GeForce RTX 5070 Ti 16GB GDDR7 PCI Express </div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#3dd68c" stroke-width="2" points="2.0,30.0 138.0,30.0"/><circle cx="138.0" cy="30.0" r="2.5" fill="#3dd68c"/></svg></div>
                       
-                      <div class="hist-stat"><span>History</span><strong>1 day — more after next runs</strong></div>
+                      <div class="hist-stat"><span>30-day Low</span><strong>$1,007.98</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$1,007.98</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$1,007.98</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>2</strong></div>
                     </div>
             </div>
         </div>
@@ -547,39 +521,29 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/257766740010" target="_blank">$439.95</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/237079366010" target="_blank">$399.99</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('ddr5-32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/corsair-vengeance-32gb-2-x-16gb-ddr5-6000-pc5-48000-cas-latency-cl38-desktop-memory-gray/p/N82E16820982346?Item=N82E16820982346" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$479.99</div>
-                  
-                  <div class="r-item" title="CORSAIR Vengeance 32GB (2 x 16GB) 288-Pin PC RAM DDR5 6000 (PC5 48000) Desktop Memory Mode">CORSAIR Vengeance 32GB (2 x 16GB) 288-Pin PC RAM DDR5 6</div>
-                </a><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_3?dib=eyJ2IjoiMSJ9.iRi_3oFKCuIJRdn2kKnkieaEkfOqX1J-cMKzDYVRcTIFwmIYhgHZ1kQ_5lfCon8t0qYYi_OBpy7vaXlK8rpiR3H6NoSy5Y-YxBfsj38DzoQsQPk7TOMjQBe6reZDApX9bV42zn3SIivihdh1--xtPYvUszY4it3LsFhE8dYB9du2Ich9H5CYfpZpSNRAkh2UUe5JXAn3wb03U85_8oLmrKw-rTdDgSS3lKFbUQnISgc.dOes-aMK_VGdxkikxHVXd0FliLysjKXdtamlUHCN2is&dib_tag=se&keywords=DDR5+RAM+32GB+6000MHz&qid=1790522000&sr=8-3" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_3?dib=eyJ2IjoiMSJ9.iRi_3oFKCuIJRdn2kKnkieaEkfOqX1J-cMKzDYVRcTIFwmIYhgHZ1kQ_5lfCon8t0qYYi_OBpy7vaXlK8rpiRxH66ZMpuXs9shhFAsX-TUPOzlKFzMW_ek5GTTbgIot9zMUlNXYu6t7g5lLhzyGlGr_LraZHhIlU8S6-K2h6gcRxZhDeBPYivM3GrgQb2o0-tZqVwgnCLFmBJOriNMHZOMBjOFhzL6X3g518lewc8XE.oWOFwrA9NeS7n4MPT6XUIkfhUI7F4GT4hj1gH3uYbtc&dib_tag=se&keywords=DDR5+RAM+32GB+6000MHz&qid=1790593303&sr=8-3" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
                   <div class="r-price miss">$469.99</div>
                   
                   <div class="r-item" title="CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz AMD Intel RAM">CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/257766740010" target="_blank" rel="noopener">
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/237079366010" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price miss">$439.95</div>
+                  <div class="r-price miss">$399.99</div>
                   <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="CORSAIR Vengeance 32GB DDR5-6000 RAM 2x16GB Kit Mfg. CMK32GX5M2E6000Z36">CORSAIR Vengeance 32GB DDR5-6000 RAM 2x16GB Kit Mfg. CM</div>
-                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/2028686474353999/" target="_blank" rel="noopener">
-                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
-                  <div class="r-price miss">$1,400.00</div>
-                  <div class="r-ship">local · Richmond, KY</div>
-                  <div class="r-item" title="Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4070 Super, 32GB RAM">Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4</div>
-                </a></div>
+                  <div class="r-item" title="ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM Kit - CL38 XMP EXPO">ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM K</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,23.7 6.9,23.7 11.7,24.9 16.6,24.9 21.4,23.7 26.3,13.5 31.1,13.5 36.0,13.2 40.9,18.6 45.7,18.6 50.6,18.6 55.4,18.6 60.3,26.0 65.1,19.8 70.0,19.8 74.9,13.2 79.7,13.2 84.6,13.2 89.4,13.2 94.3,12.9 99.1,19.3 104.0,19.3 108.9,7.1 113.7,19.3 118.6,2.0 123.4,14.7 128.3,14.7 133.1,30.0 138.0,4.6"/><circle cx="138.0" cy="4.6" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,23.7 6.9,24.9 11.7,24.9 16.6,23.7 21.4,13.5 26.3,13.5 31.1,13.2 36.0,18.6 40.9,18.6 45.7,18.6 50.6,18.6 55.4,26.0 60.3,19.8 65.1,19.8 70.0,13.2 74.9,13.2 79.7,13.2 84.6,13.2 89.4,12.9 94.3,19.3 99.1,19.3 104.0,7.1 108.9,19.3 113.7,2.0 118.6,14.7 123.4,14.7 128.3,30.0 133.1,4.6 138.0,14.7"/><circle cx="138.0" cy="14.7" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$340.00</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$449.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$390.38</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$391.60</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>29</strong></div>
                     </div>
             </div><div class="item-card" id="card-ddr5-64gb-kit-2x32gb">
@@ -588,34 +552,29 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/227541293764" target="_blank">$610.83</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/287604432498" target="_blank">$650.00</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('ddr5-64gb-kit-2x32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/nemix-ram-asrock-gaming-motherboard-compatible-series-memory-64gb-ddr5-4800-cas-latency-cl40/p/2SJ-000N-00BZ7?Item=9SIA7S6K429329" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$1,298.99</div>
-                  
-                  <div class="r-item" title="NEMIX RAM 64GB (2X32GB) DDR5 4800MHZ PC5-38400 2Rx8 1.1V CL40 288-PIN Non-ECC Unbuffered U">NEMIX RAM 64GB (2X32GB) DDR5 4800MHZ PC5-38400 2Rx8 1.1</div>
-                </a><a class="price-cell " href="https://www.amazon.com/Tech-5600MHz-PC5-44800-Non-ECC-Unbuffered/dp/B0CQ3PG5D4/ref=sr_1_5?dib=eyJ2IjoiMSJ9.VQSS5XMRLnGHhvye1luBjWxMoUHuH4W5mg-l6iv698EEdxcMYbK6dDy5enuD642i-JY6k1UL0kwroNUP0Q5DL9nObOnqPINcp28apjsyYoRctWARY18jaFBLpDZM395t05RgcqIDkJIPm7GD0N98-Z075bjDeaUaSJe_vI1uQcOFSAUWHKOP4flIIaNp2tbNn8qLL2C-GGvg7cB_V0SAYLBxBmsF7r88VjBFhWS_Jvc.qEkizxxP_oiHkTYlQY8tj9QNvZjZOfIIAZ2Nzzggp60&dib_tag=se&keywords=DDR5+64GB+Kit+%282x32GB%29&qid=1790522179&sr=8-5" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/G-Skill-RipJaws-SO-DIMM-CL40-39-39-76-F5-4800S4039A32GA2-RS/dp/B0B1LFX3VC/ref=sr_1_6_mod_primary_new?dib=eyJ2IjoiMSJ9.yJX7lA16-xb8pn7j3Wux6XLbuyLNWTffq9JeGwXjebMI4fktwUmB6_8SvGrr-NvJBQBY59-UWQ3TuivSdExWsYZmDg_oDP5-ecGjM8ROXrzH14zzej8Eb2_yl4gOIgaNww_u4fMfjGsQ5OxF60QeCzr4V4rL1zG98BYTosXy2UHOrUfr99jx_W35RGRwaAuVkc9RI0EcBc1mzIcEdjlNk4m-V2TtAQ9uHOrs7ghaqmU.s3TjA8kDD-VM_IjsTMJt2Id37nNdrc8EvSiEb5fT1yU&dib_tag=se&keywords=DDR5+64GB+Kit+%282x32GB%29&qid=1790593497&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&sr=8-6" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price ">$998.98</div>
+                  <div class="r-price ">$889.99</div>
                   
-                  <div class="r-item" title="A-Tech 64GB Kit (2x32GB) DDR5 5600MHz PC5-44800 CL46 SODIMM 2Rx8 Dual Rank 1.1V Non-ECC Un">A-Tech 64GB Kit (2x32GB) DDR5 5600MHz PC5-44800 CL46 SO</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/227541293764" target="_blank" rel="noopener">
+                  <div class="r-item" title="G.SKILL Ripjaws DDR5 SO-DIMM Series DDR5 RAM 64GB (2x32GB) Up to 4800MT/s* CL40-39-39-76 1">G.SKILL Ripjaws DDR5 SO-DIMM Series DDR5 RAM 64GB (2x32</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/287604432498" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$610.83</div>
-                  <div class="r-ship">incl. $5.83 ship (item $605.00)</div>
-                  <div class="r-item" title="DATO 64GB (2x32GB) DDR5 PC5-5600 288-Pin UDIMM Desktop RAM Kit">DATO 64GB (2x32GB) DDR5 PC5-5600 288-Pin UDIMM Desktop </div>
+                  <div class="r-price ">$650.00</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="SK Hynix 64GB Kit (2x32GB) DDR5 4800MHz SODIMM PC5-38400">SK Hynix 64GB Kit (2x32GB) DDR5 4800MHz SODIMM PC5-3840</div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,30.0 6.7,30.0 11.4,30.0 16.1,28.6 20.8,28.6 25.4,28.6 30.1,28.6 34.8,28.6 39.5,28.7 44.2,28.6 48.9,28.4 53.6,28.4 58.3,28.4 63.0,20.8 67.7,20.8 72.3,20.8 77.0,23.8 81.7,23.8 86.4,23.8 91.1,24.4 95.8,20.8 100.5,20.8 105.2,6.2 109.9,7.9 114.6,2.0 119.2,7.9 123.9,17.8 128.6,7.9 133.3,24.4 138.0,27.0"/><circle cx="138.0" cy="27.0" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,30.0 6.7,30.0 11.4,28.6 16.1,28.6 20.8,28.6 25.4,28.6 30.1,28.6 34.8,28.7 39.5,28.6 44.2,28.4 48.9,28.4 53.6,28.4 58.3,20.8 63.0,20.8 67.7,20.8 72.3,23.8 77.0,23.8 81.7,23.8 86.4,24.4 91.1,20.8 95.8,20.8 100.5,6.2 105.2,7.9 109.9,2.0 114.6,7.9 119.2,17.8 123.9,7.9 128.6,24.4 133.3,27.0 138.0,24.4"/><circle cx="138.0" cy="24.4" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$565.57</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$989.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$678.40</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$681.22</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-corsair-vengence-rgb-ddr4-32gb">
@@ -624,35 +583,30 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/257757913314" target="_blank">$156.23</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/236900571775" target="_blank">$139.99</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('corsair-vengence-rgb-ddr4-32gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/corsair-vengeance-rgb-pro-32gb-2-x-16gb-ddr4-3200-pc4-25600-cas-latency-cl16-desktop-memory-black/p/N82E16820236454T?Item=N82E16820236454T" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$209.99</div>
-                  
-                  <div class="r-item" title="RefurbishedCORSAIR Vengeance RGB Pro 32GB (2 x 16GB) DDR4 3200 (PC4 25600) Desktop Memory ">RefurbishedCORSAIR Vengeance RGB Pro 32GB (2 x 16GB) DD</div>
-                </a><a class="price-cell " href="https://www.amazon.com/G-SKILL-TridentZ-32GB-3200Mhz-F4-3200C16D-32GTZR/dp/B07DMNZY56/ref=sr_1_11?dib=eyJ2IjoiMSJ9.VpDBIGKuOW_UjqF1ISKevPi5yf0Ee-K0ZU4V68-buAmQlYqyj84MlHMUXGVSVa7qUwhv_FBx7dbLbR8Pbk80MKQQWPA182cWO7wW8A-ZJpAbo0CSZxaFPbcOU7vsUAuW97gH6iSbnGJm8EuXi3rLSinVK3Ib0x-Ane9ckzBMWyPo_tc1FYfjS-fm8adFyMAiT4rOh-rVZLLg-vrB4_a0cAFt8whYOcSuQQZVVKukcPM.D9lvLYOp92eeRZW8d_g85oOpAhMWidsqw-_G_ioxNRM&dib_tag=se&keywords=corsair+vengeance+rgb+ddr4+32gb&qid=1790522260&sr=8-11" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/GIGASTONE-Desktop-DDR4-3200MHz-PC4-25600-Unbuffered/dp/B0CB2TZKCG/ref=sr_1_10?dib=eyJ2IjoiMSJ9.VpDBIGKuOW_UjqF1ISKevPi5yf0Ee-K0ZU4V68-buAkkkLiYpV6cOBdjn4ANR4QqOUOLcdHbNmjg6msJ3y2XJGoWsKGmN7WocuOmj0DmpyPmRftF81XUPUFElsQthM28WaVh0z_84_6VBLhfhAOScxGvRpuipvOmY6Pz9zi8Wo1COppHybTBA3rQXTrXWC3VJ_jlMNQVP4i_69GFDfb2-RJLKYCzSJ6MizmJ0rQ-FNE.ZKNmCWP8CkKf6f7lcBNn5x7KajnOr2ZiGCFs9UVQDGA&dib_tag=se&keywords=corsair+vengeance+rgb+ddr4+32gb&qid=1790593583&sr=8-10" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price ">$249.99</div>
+                  <div class="r-price ">$206.09</div>
                   
-                  <div class="r-item" title="G SKILL TridentZ 32GB 3200Mhz F4 3200C16D 32GTZR">G SKILL TridentZ 32GB 3200Mhz F4 3200C16D 32GTZR</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/257757913314" target="_blank" rel="noopener">
+                  <div class="r-item" title="【DDR4 RAM】 GIGASTONE Game PRO 32GB Kit (2x16GB) DDR4 3200MHz PC4-25600 CL 16-18-18-40 Inte">【DDR4 RAM】 GIGASTONE Game PRO 32GB Kit (2x16GB) DDR4 32</div>
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/236900571775" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$156.23</div>
-                  <div class="r-ship">incl. $6.23 ship (item $150.00)</div>
-                  <div class="r-item" title="Corsair Vengeance RGB PRO 32GB (2x16GB) DDR4 3000MHz DIMM">Corsair Vengeance RGB PRO 32GB (2x16GB) DDR4 3000MHz DI</div>
+                  <div class="r-price ">$139.99</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="Corsair Vengeance RGB Pro 32GB (4x8GB) DDR4-3000 Memory (CMW16GX4M2D3000C16)">Corsair Vengeance RGB Pro 32GB (4x8GB) DDR4-3000 Memory</div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,22.4 7.0,18.0 12.1,18.9 17.1,15.8 22.1,15.8 27.2,15.8 32.2,19.7 37.3,15.8 42.3,20.1 47.3,15.8 52.4,14.6 57.4,30.0 62.4,30.0 67.5,30.0 72.5,15.8 77.6,16.8 82.6,13.5 87.6,13.5 92.7,2.0 97.7,14.4 102.7,16.0 107.8,24.9 112.8,24.9 117.9,24.9 122.9,24.9 127.9,24.9 133.0,27.2 138.0,14.3"/><circle cx="138.0" cy="14.3" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,22.4 6.9,18.0 11.7,18.9 16.6,15.8 21.4,15.8 26.3,15.8 31.1,19.7 36.0,15.8 40.9,20.1 45.7,15.8 50.6,14.6 55.4,30.0 60.3,30.0 65.1,30.0 70.0,15.8 74.9,16.8 79.7,13.5 84.6,13.5 89.4,2.0 94.3,14.4 99.1,16.0 104.0,24.9 108.9,24.9 113.7,24.9 118.6,24.9 123.4,24.9 128.3,27.2 133.1,14.3 138.0,18.0"/><circle cx="138.0" cy="18.0" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$87.83</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$209.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$134.53</strong></div>
-                      <div class="hist-stat"><span>Days</span><strong>28</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$134.71</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>29</strong></div>
                     </div>
             </div><div class="item-card" id="card-ddr5-32gb-kit-2x16gb">
               <div class="item-header">
@@ -660,36 +614,30 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/407247788730" target="_blank">$299.99</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/377527168289" target="_blank">$260.00</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('ddr5-32gb-kit-2x16gb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/a-tech-ddr5-desktop-memory-ram-32gb-ddr5-4800-cas-latency-cl40-green/p/0RN-005A-00SR9?Item=9SIAMBVJEE3317" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$499.98</div>
-                  
-                  <div class="r-item" title="A-Tech 32GB (2x16GB) DDR5 4800MHz DIMM PC5-38400 Non-ECC Unbuffered CL40 UDIMM 288-Pin 1.1">A-Tech 32GB (2x16GB) DDR5 4800MHz DIMM PC5-38400 Non-EC</div>
-                </a><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_6?dib=eyJ2IjoiMSJ9.PzlWUlNlSdOWYOfJpPEKTbmOjBxNz4oNGDC0CgLb6yasQVr3B0sOhMlpploVDVoR-w-R92uDhVQR9X_HTD01mNJY8TnLFqxjFqGRmSEhiU8PuiqOa_uaIaQDxzDonNXjE0E1-wsLaNS8CqNyJOZd9FV6vVrCn6trklbQcW7bY7u93Bjm7yYeCZn69IHg4C5GJWujd2iy2wVMKX7_W5SvWPYgIv3U9Pj7KjyfdRzWNIg.9EkpU0sH6rTfpQYGoMLSoLnRo5uLLZ5gw1BRDQK-LgI&dib_tag=se&keywords=DDR5+32GB+Kit+%282x16GB%29&qid=1790522345&sr=8-6" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_5?dib=eyJ2IjoiMSJ9.uA9pqT3t95-7dnX8V6zoe35-yrdzXDCmqXkPiknjFKHc4mNVXNPKV8dJEw697I5IvRUXtGyQenCjAD3a_cwgUaDWLIzrJ-3UES2PUngYt-x_M9u7giub0RdP1R3iodhZ62fnSGgbA9uQ1_9_oH5xisAgqCZzk2pkxbr-0KCwK99wJlFvsbFVGeLHXf1RVUrC_nSYg6RcWjKOTTzcAwYWOpvXQyvrE2D9ZUppcR97784.5rVac3lY1rDlMh1pC4POMc1K845Pyzb101-TFAdThz8&dib_tag=se&keywords=DDR5+32GB+Kit+%282x16GB%29&qid=1790593739&sr=8-5" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
                   <div class="r-price ">$469.99</div>
                   
                   <div class="r-item" title="CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz AMD Intel RAM">CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/407247788730" target="_blank" rel="noopener">
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/377527168289" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$299.99</div>
+                  <div class="r-price ">$260.00</div>
                   <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="SK Hynix 32GB DDR5 SODIMM Memory Kit (2x16GB) PC5-4800B">SK Hynix 32GB DDR5 SODIMM Memory Kit (2x16GB) PC5-4800B</div>
-                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/2028686474353999/" target="_blank" rel="noopener">
-                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
-                  <div class="r-price ">$1,400.00</div>
-                  <div class="r-ship">local · Richmond, KY</div>
-                  <div class="r-item" title="Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4070 Super, 32GB RAM">Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4</div>
-                </a></div>
+                  <div class="r-item" title="32GB Kit 2x16GB DDR5-5600 CL48 UDIMM Apacer Pulled Tested">32GB Kit 2x16GB DDR5-5600 CL48 UDIMM Apacer Pulled Test</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#3dd68c" stroke-width="2" points="2.0,2.0 138.0,30.0"/><circle cx="138.0" cy="30.0" r="2.5" fill="#3dd68c"/></svg></div>
                       
-                      <div class="hist-stat"><span>History</span><strong>1 day — more after next runs</strong></div>
+                      <div class="hist-stat"><span>30-day Low</span><strong>$260.00</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$299.99</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$280.00</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>2</strong></div>
                     </div>
             </div><div class="item-card" id="card-best-ddr5-32gb-kit-any-brand">
               <div class="item-header">
@@ -697,36 +645,30 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/237079366010" target="_blank">$399.99</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/158351513156" target="_blank">$422.00</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('best-ddr5-32gb-kit-any-brand')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/corsair-vengeance-32gb-2-x-16gb-ddr5-6000-pc5-48000-cas-latency-cl38-desktop-memory-gray/p/N82E16820982346?Item=N82E16820982346" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$479.99</div>
-                  
-                  <div class="r-item" title="CORSAIR Vengeance 32GB (2 x 16GB) 288-Pin PC RAM DDR5 6000 (PC5 48000) Desktop Memory Mode">CORSAIR Vengeance 32GB (2 x 16GB) 288-Pin PC RAM DDR5 6</div>
-                </a><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_3?dib=eyJ2IjoiMSJ9.9idOXsqx2U5IYBZqKGLLnt3PuvflbK06ttTK6gQ9mdapS4V8SkAYs1oDhWK8ZXvt69VAdAgJqFXZ6dCYhDMHV2F4Tv2XBa-VPrvgfzRGk2a0GefC_-MWQGnp-Aew4xKx4ds9jBg4BHKphQ4sbFCmBLGuzLcg38bJLMXuAIhag8AP5JDYm2hpo7x2nsF_t3YOaHno3EXMR_wtlpnRGMIXPh65hqAqblBALb56IvhFCrc.wBzP_7bVizgO7CCOEPNR3fyNEunQ53Lh7UZxd0JPSIQ&dib_tag=se&keywords=DDR5+32GB+kit+6000&qid=1790522395&sr=8-3" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/CORSAIR-Vengeance-DDR5-6000MHz-Intel/dp/B0HC887B5X/ref=sr_1_3?dib=eyJ2IjoiMSJ9.9idOXsqx2U5IYBZqKGLLnt3PuvflbK06ttTK6gQ9mdZh8Rc73ZlioWalH_h13K3wFywVuXV-uTw1AC1RMAjJmGL0HnN9h320Uq1ZU3oEkd3GT6YOMeUUsjanbMuHVLC-Y2UVNPvn2_7_uBSkXApfLblPygyV1xXqvdEPWuNR4rMGBIvTWiTL477ABhpER17rnzEp2Sy2VAYXYFwcRBqcuxKnVyHy89fdRihZMLOlgDc.KzY_9tbjRI6Yw53F2caKN84ZJ0MgwDjtBdzuxJ05SI0&dib_tag=se&keywords=DDR5+32GB+kit+6000&qid=1790593783&sr=8-3" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
                   <div class="r-price ">$469.99</div>
                   
                   <div class="r-item" title="CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz AMD Intel RAM">CORSAIR Vengeance RS DDR5 32GB (2 x 16GB) Up to 6000MHz</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/237079366010" target="_blank" rel="noopener">
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/158351513156" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$399.99</div>
+                  <div class="r-price ">$422.00</div>
                   <div class="r-ship">incl. free shipping</div>
-                  <div class="r-item" title="ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM Kit - CL38 XMP EXPO">ITEMPOWERS 32GB (2x16GB) DDR5 6000MHz RGB Desktop RAM K</div>
-                </a><a class="price-cell " href="https://www.facebook.com/marketplace/item/2028686474353999/" target="_blank" rel="noopener">
-                  <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
-                  <div class="r-price ">$1,400.00</div>
-                  <div class="r-ship">local · Richmond, KY</div>
-                  <div class="r-item" title="Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4070 Super, 32GB RAM">Alienware Aurora R16 Gaming PC - Intel i9-14900F, RTX 4</div>
-                </a></div>
+                  <div class="r-item" title="CORSAIR Vengeance 32GB DDR5-6000 RAM 2x16GB Kit CL38">CORSAIR Vengeance 32GB DDR5-6000 RAM 2x16GB Kit CL38</div>
+                </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,30.0 138.0,2.0"/><circle cx="138.0" cy="2.0" r="2.5" fill="#f5c542"/></svg></div>
                       
-                      <div class="hist-stat"><span>History</span><strong>1 day — more after next runs</strong></div>
+                      <div class="hist-stat"><span>30-day Low</span><strong>$399.99</strong></div>
+                      <div class="hist-stat"><span>30-day High</span><strong>$422.00</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$411.00</strong></div>
+                      <div class="hist-stat"><span>Days</span><strong>2</strong></div>
                     </div>
             </div>
         </div>
@@ -744,23 +686,18 @@
                   <button class="remove-btn" onclick="removeItem('samsung-980-pro-2tb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/samsung-2tb-990-pro-nvme-2-0/p/N82E16820147861?Item=9SIA2W0KT05885" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$387.99</div>
-                  
-                  <div class="r-item" title="SAMSUNG 990 PRO 2TB SSD, PCIe Gen4 M.2 2280, Seq. Read Speeds Up-to 7,450MB/s for High End">SAMSUNG 990 PRO 2TB SSD, PCIe Gen4 M.2 2280, Seq. Read </div>
-                </a><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.ebay.com/itm/116119410878" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><div class="price-cell"><div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.ebay.com/itm/116119410878" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
                   <div class="r-price miss">$269.99</div>
                   <div class="r-ship">incl. free shipping</div>
                   <div class="r-item" title="Samsung 990 2TB Pro PCI-E 4.0 M.2 SSD NVMe (MZ-V9P2T0)">Samsung 990 2TB Pro PCI-E 4.0 M.2 SSD NVMe (MZ-V9P2T0)</div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,16.4 6.7,16.4 11.4,16.4 16.1,16.4 20.8,16.4 25.4,16.4 30.1,16.4 34.8,16.4 39.5,16.4 44.2,16.4 48.9,30.0 53.6,16.4 58.3,16.4 63.0,14.7 67.7,16.4 72.3,16.4 77.0,16.4 81.7,16.4 86.4,14.2 91.1,14.2 95.8,15.3 100.5,16.6 105.2,15.3 109.9,18.6 114.6,15.8 119.2,14.2 123.9,2.0 128.6,2.0 133.3,13.1 138.0,13.1"/><circle cx="138.0" cy="13.1" r="2.5" fill="#f5c542"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#f5c542" stroke-width="2" points="2.0,16.4 6.7,16.4 11.4,16.4 16.1,16.4 20.8,16.4 25.4,16.4 30.1,16.4 34.8,16.4 39.5,16.4 44.2,30.0 48.9,16.4 53.6,16.4 58.3,14.7 63.0,16.4 67.7,16.4 72.3,16.4 77.0,16.4 81.7,14.2 86.4,14.2 91.1,15.3 95.8,16.6 100.5,15.3 105.2,18.6 109.9,15.8 114.6,14.2 119.2,2.0 123.9,2.0 128.6,13.1 133.3,13.1 138.0,13.1"/><circle cx="138.0" cy="13.1" r="2.5" fill="#f5c542"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$116.70</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$369.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$249.08</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$250.08</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-wd-sn850x-2tb">
@@ -769,34 +706,29 @@
                 <div style="display:flex;align-items:flex-start;gap:10px">
                   <div class="best-block">
                   <div class="best-label">Best Price</div>
-                  <div class="best-val"><a href="https://www.ebay.com/itm/398435522418" target="_blank">$245.26</a></div>
+                  <div class="best-val"><a href="https://www.ebay.com/itm/128102117267" target="_blank">$249.00</a></div>
                   <div class="best-at">at eBay</div>
                 </div>
                   <button class="remove-btn" onclick="removeItem('wd-sn850x-2tb')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/western-digital-2tb-black-sn850x-nvme/p/N82E16820250247?Item=9SIC89BM6K5963" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price miss">$348.99</div>
-                  
-                  <div class="r-item" title="WD_BLACK 2TB SN850X NVMe Internal Gaming SSD Solid State Drive - Gen4 PCIe, M.2 2280, Up t">WD_BLACK 2TB SN850X NVMe Internal Gaming SSD Solid Stat</div>
-                </a><a class="price-cell " href="https://www.amazon.com/WD_Black-SN850X-Internal-SSD-Heatsink/dp/B0B3RQDGL7/ref=sr_1_4?dib=eyJ2IjoiMSJ9.jKiMqeHhg4Ng2VtTUw5tK-54zPL9GtkAIr6-IC1Sb2xrytbKiM8CabXD-PJcADGFTiwkYu3eR5Zlx5wKk7O--KKDoECu4llu37Cz6uSpYde17HuZVS0auR4jk13rHnC1U5TB4UVbvs-MbG0SV-KuD21frxtFmjPxwMOQ-F2jZFdjcSzLSJnGEMzn9mAABM6zsulRGIK1Wn6eCRydxgwAOx6Qm0HeCY07DQCACxqQu94.AJpP_fz0YIpgNpDc7dIBItp8pdxVKttxUXb_Y1bYI88&dib_tag=se&keywords=WD+Black+SN850X+2TB+NVMe&qid=1790522099&sr=8-4" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/WD_Black-SN850X-Internal-SSD-Heatsink/dp/B0B3RQDGL7/ref=sr_1_1?dib=eyJ2IjoiMSJ9.pVEtnXRya6g7anA4DNGC5RFp27kV8gMrGY4gjIoFzkq36lcTutXdVtdGsCwJqxh80YihfGwY2fE0Z8JrrXLqJrFNKMxGZOWEn5PvuoYUcV9h6daI958V4FZjyvyYiVBNge5fCJ09LreT-r80ZwivzgtvPpP-MPu915XuOodlORPINj0t0mHePHEEgYNtKycJaqtT8hXznWHeN4M7lA3bjf7xLdNm7o2OFsG1Z0JxGJM.zC4fiI2chce3CMXq_7XpLtRsS3PYCq2xU-UauJkrCGg&dib_tag=se&keywords=WD+Black+SN850X+2TB+NVMe&qid=1790593390&sr=8-1" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
                   <div class="r-price miss">$419.99</div>
                   
                   <div class="r-item" title="WD_Black SN850X 2TB NVMe PCIe 4.0 x4 M.2 Internal Gaming SSD Without Heatsink">WD_Black SN850X 2TB NVMe PCIe 4.0 x4 M.2 Internal Gamin</div>
-                </a><a class="price-cell best" href="https://www.ebay.com/itm/398435522418" target="_blank" rel="noopener">
+                </a><a class="price-cell best" href="https://www.ebay.com/itm/128102117267" target="_blank" rel="noopener">
                   <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price miss">$245.26</div>
-                  <div class="r-ship">incl. $5.27 ship (item $239.99)</div>
-                  <div class="r-item" title="WD WD_BLACK SN850X 2TB NVMe Internal SSD (WDS200T2X0E) - 92%+ Health Tested">WD WD_BLACK SN850X 2TB NVMe Internal SSD (WDS200T2X0E) </div>
+                  <div class="r-price miss">$249.00</div>
+                  <div class="r-ship">incl. free shipping</div>
+                  <div class="r-item" title="WD_BLACK SN850X 2TB NVMe M.2 PCIe Gen4 SSD - 98% Health">WD_BLACK SN850X 2TB NVMe M.2 PCIe Gen4 SSD - 98% Health</div>
                 </a><div class="price-cell"><div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div><div class="no-data">No results</div></div></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,15.8 6.7,25.5 11.4,25.6 16.1,15.8 20.8,21.4 25.4,21.3 30.1,15.8 34.8,15.8 39.5,21.4 44.2,26.8 48.9,15.8 53.6,21.4 58.3,15.8 63.0,15.8 67.7,15.8 72.3,15.8 77.0,15.8 81.7,15.8 86.4,15.8 91.1,15.8 95.8,15.8 100.5,15.8 105.2,18.6 109.9,30.0 114.6,21.4 119.2,2.0 123.9,21.2 128.6,22.8 133.3,21.2 138.0,22.7"/><circle cx="138.0" cy="22.7" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,25.5 6.7,25.6 11.4,15.8 16.1,21.4 20.8,21.3 25.4,15.8 30.1,15.8 34.8,21.4 39.5,26.8 44.2,15.8 48.9,21.4 53.6,15.8 58.3,15.8 63.0,15.8 67.7,15.8 72.3,15.8 77.0,15.8 81.7,15.8 86.4,15.8 91.1,15.8 95.8,15.8 100.5,18.6 105.2,30.0 109.9,21.4 114.6,2.0 119.2,21.2 123.9,22.8 128.6,21.2 133.3,22.7 138.0,21.7"/><circle cx="138.0" cy="21.7" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$219.00</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$319.67</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$259.68</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$258.99</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div><div class="item-card" id="card-best-1tb-sata-ssd-any-brand">
@@ -811,33 +743,23 @@
                   <button class="remove-btn" onclick="removeItem('best-1tb-sata-ssd-any-brand')" title="Remove from watchlist">✕</button>
                 </div>
               </div>
-              <div class="price-grid"><a class="price-cell " href="https://www.newegg.com/kingspec-1tb-2-5-sata/p/0D9-000D-00134?Item=9SIB1V8FMT6936" target="_blank" rel="noopener">
-                  <div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div>
-                  <div class="r-price ">$123.99</div>
-                  
-                  <div class="r-item" title="KingSpec P3 SSD 1TB Internal 2.5&quot; Solid State Drive 2.5 Inch SATA III 3D NAND Flash Data S">KingSpec P3 SSD 1TB Internal 2.5" Solid State Drive 2.5</div>
-                </a><a class="price-cell " href="https://www.amazon.com/Aiibe-Internal-Solid-Computer-Laptop/dp/B0GFW7X63N/ref=sr_1_9?dib=eyJ2IjoiMSJ9.q3rEwQUJS5yUsp2-ix9AkW6qAgiwKQ3g5ewNbfHrBXO-72kM_plEYv9dGmdozHIamn_0bdElBgoW5Ce0i46krHaGiELRn6taoZD48nw5fzTAQEhgvKV_MePiGiiZmPwtRkWMPcbiO0kcOL1lzfx2b6_2gQvC3EZmrJywbOwOMuEyV0Ru-ffrGqZQ-SxTXxD_LfMN_OVsLmx6WNxjeba1NA3eEONvtBigP3JjC9JAkGY.EFdjB2gFg0dVVeehR4J2ZFm8cm3AnFZN5pqGTr2nJKI&dib_tag=se&keywords=1TB+SATA+SSD+2.5&qid=1790522209&sr=8-9" target="_blank" rel="noopener">
+              <div class="price-grid"><div class="price-cell"><div class="r-name">Newegg <span class="trust trust-good" title="Reliable titles & prices">good</span></div><div class="no-data">No results</div></div><a class="price-cell " href="https://www.amazon.com/Ediloca-ES106-Internal-Upgrade-Storage/dp/B0D7MDBVF9/ref=sr_1_8?dib=eyJ2IjoiMSJ9.q3rEwQUJS5yUsp2-ix9AkQ-tPBWoNc3JSjcQKOifyku2h6WpUEK9gx1FWIauI_oP01lZfU2oj6x0XqxtugfKElbdEGA1U-BqE7XpuCTIyr3ZAZ4ZtUQIR8L_0MQw9TQQbOxuieEYH66ThcneEfiiud29TEOEjKOUB8vZuzlejlfWB1qCQGc2sZceZchMC8vHvGDKCKZnQpWfcEeL_MMV4ebVP47UMYlV9tQp9Lpw8v4.DZVgmq5s_QutTUzm9SlsR8SZ_s09P-4mwsIOudpCoDU&dib_tag=se&keywords=1TB+SATA+SSD+2.5&qid=1790593540&sr=8-8" target="_blank" rel="noopener">
                   <div class="r-name">Amazon <span class="trust trust-fair" title="Titles sometimes approximate">fair</span></div>
-                  <div class="r-price ">$101.69</div>
+                  <div class="r-price ">$116.99</div>
                   
-                  <div class="r-item" title="Aiibe 1TB Internal Solid State Drive SATA III SSD 1TB 2.5” SSD Drive Internal Up to 550MB/">Aiibe 1TB Internal Solid State Drive SATA III SSD 1TB 2</div>
-                </a><a class="price-cell " href="https://www.ebay.com/itm/257768348807" target="_blank" rel="noopener">
-                  <div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div>
-                  <div class="r-price ">$87.90</div>
-                  <div class="r-ship">incl. $7.90 ship (item $80.00)</div>
-                  <div class="r-item" title="PNY CS900 1TB Internal SSD SATA III 2.5 Inch">PNY CS900 1TB Internal SSD SATA III 2.5 Inch</div>
-                </a><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1620801139256884/" target="_blank" rel="noopener">
+                  <div class="r-item" title="Ediloca 1TB SSD Internal Solid State Drive 2.5&quot; SATA III 6Gb/s, 550MB/s Read Speed 3D TLC ">Ediloca 1TB SSD Internal Solid State Drive 2.5" SATA II</div>
+                </a><div class="price-cell"><div class="r-name">eBay <span class="trust trust-fair" title="Incl. shipping; sellers need 6+ reviews">fair</span></div><div class="no-data">No results</div></div><a class="price-cell best" href="https://www.facebook.com/marketplace/item/1620801139256884/" target="_blank" rel="noopener">
                   <div class="r-name">Facebook <span class="trust trust-fair" title="Local pickup · ZIP + radius from settings">fair</span></div>
                   <div class="r-price ">$50.00</div>
                   <div class="r-ship">local · Richmond, KY</div>
                   <div class="r-item" title="Elgato HD60 S Game Capture Card">Elgato HD60 S Game Capture Card</div>
                 </a></div>
               <div class="hist-line">
-                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,29.1 6.7,29.1 11.4,29.1 16.1,30.0 20.8,30.0 25.4,30.0 30.1,30.0 34.8,30.0 39.5,30.0 44.2,30.0 48.9,30.0 53.6,30.0 58.3,30.0 63.0,30.0 67.7,30.0 72.3,30.0 77.0,30.0 81.7,30.0 86.4,30.0 91.1,30.0 95.8,30.0 100.5,30.0 105.2,2.0 109.9,30.0 114.6,30.0 119.2,30.0 123.9,29.6 128.6,29.6 133.3,16.4 138.0,22.1"/><circle cx="138.0" cy="22.1" r="2.5" fill="#4f8ef7"/></svg></div>
+                      <div class="hist-spark"><svg class="spark" viewBox="0 0 140 32" width="140" height="32" aria-label="Price trend"><polyline fill="none" stroke="#4f8ef7" stroke-width="2" points="2.0,29.1 6.7,29.1 11.4,30.0 16.1,30.0 20.8,30.0 25.4,30.0 30.1,30.0 34.8,30.0 39.5,30.0 44.2,30.0 48.9,30.0 53.6,30.0 58.3,30.0 63.0,30.0 67.7,30.0 72.3,30.0 77.0,30.0 81.7,30.0 86.4,30.0 91.1,30.0 95.8,30.0 100.5,2.0 105.2,30.0 109.9,30.0 114.6,30.0 119.2,29.6 123.9,29.6 128.6,16.4 133.3,22.1 138.0,22.1"/><circle cx="138.0" cy="22.1" r="2.5" fill="#4f8ef7"/></svg></div>
                       
                       <div class="hist-stat"><span>30-day Low</span><strong>$21.90</strong></div>
                       <div class="hist-stat"><span>30-day High</span><strong>$120.99</strong></div>
-                      <div class="hist-stat"><span>Average</span><strong>$28.14</strong></div>
+                      <div class="hist-stat"><span>Average</span><strong>$28.97</strong></div>
                       <div class="hist-stat"><span>Days</span><strong>30</strong></div>
                     </div>
             </div>
